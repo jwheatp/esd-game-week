@@ -14,7 +14,7 @@ class SawTrap extends Trap {
     this.y = y;
 
     this.discSprite = scene.physics.add.image(x, y - 18, "trap-saw-platform");
-    this.discSprite.setScale(0.1);
+    this.discSprite.setScale(0);
     this.discSprite.body.setAllowGravity(false);
 
     this.platformSprite = scene.physics.add.image(x, y, "trap-saw-disc");
