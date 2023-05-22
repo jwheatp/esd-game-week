@@ -17,6 +17,9 @@ class Scene extends Phaser.Scene {
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
+
+    this.load.image("trap-mode-closed", "assets/door/closed.png")
+    this.load.image("trap-mode-opened", "assets/door/opened.png")
   }
 
   // initialise la scène
@@ -36,17 +39,14 @@ class Scene extends Phaser.Scene {
 
     const sawTrap = new SawTrap(this, 400, 400);
     this.traps.push(sawTrap);
-
-    const computerTrap = new ComputerTrap(this, 100, 200);
-    this.traps.push(computerTrap);
   }
 
   // appelée très souvent (correspond au fps)
-  update() {
+  update(time) {
     this.player.update();
 
     for (let i = 0; i < this.traps.length; i++) {
-      this.traps[i].update();
+      this.traps[i].update(time);
     }
   }
 }
