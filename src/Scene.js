@@ -1,6 +1,7 @@
 class Scene extends Phaser.Scene {
   inputs
   player
+  Trap1
 
   traps = []
 
@@ -13,6 +14,7 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png")
     this.load.image("trap-saw-disc", "assets/traps/saw/disc.png")
+    this.load.image("trap-saw-Trap1", "assets/traps/saw/Trap1.png")
   }
 
   // initialise la scène
@@ -26,9 +28,11 @@ class Scene extends Phaser.Scene {
 
     const platform = new Platform(this, 200, 600)
     const platform2 = new Platform(this, 800, 550)
+    
 
     this.physics.add.collider(this.player.sprite, platform.sprite)
     this.physics.add.collider(this.player.sprite, platform2.sprite)
+    
 
 
     const sawTrap = new SawTrap(this, 400, 400)

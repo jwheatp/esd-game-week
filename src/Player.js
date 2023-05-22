@@ -1,7 +1,7 @@
 class Player {
   scene
   sprite
-  speed = 200
+  speed = 100
 
   constructor(scene, x, y) {
     this.scene = scene
@@ -12,6 +12,7 @@ class Player {
   }
 
   update() {
+    console.log('aa')
     // saut
     if (this.scene.inputs.up.isDown) {
       // je mets une vitesse X à 200
@@ -26,6 +27,11 @@ class Player {
     else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
+    }
+
+    else if (this.scene.inputs.down.isDown) {
+      // je mets une vitesse X à 200
+      this.sprite.setVelocityY(this.speed);
     }
     else {
       // sinon, je remets la vitesse à 0
