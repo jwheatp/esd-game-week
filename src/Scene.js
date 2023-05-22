@@ -41,15 +41,6 @@ class Scene extends Phaser.Scene {
 
     const sawTrap = new SawTrap(this, 400, 400);
     this.traps.push(sawTrap);
-
-
-    const doorTrap = new DoorTrap(this, 800, 455)
-    this.traps.push(doorTrap)
-
-
-    const openedTrap = new OpenedTrap(this, 800, 455)
-    this.traps.push(openedTrap)
-
   }
 
   // appelée très souvent (correspond au fps)
