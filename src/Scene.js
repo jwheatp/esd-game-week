@@ -27,8 +27,11 @@ class Scene extends Phaser.Scene {
     const platform = new Platform(this, 200, 600)
     const platform2 = new Platform(this, 800, 550)
 
-    this.physics.add.collider(this.player.sprite, platform.sprite)
-    this.physics.add.collider(this.player.sprite, platform2.sprite)
+    this.physics.add.collider(this.player.sprite, platform.sprite, function() {
+
+    })
+    this.physics.add.collider(this.player.sprite, platform2.sprite, function() {
+    })
 
 
     const sawTrap = new SawTrap(this, 400, 400)
