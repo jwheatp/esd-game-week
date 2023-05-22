@@ -56,11 +56,11 @@ class Scene extends Phaser.Scene {
   }
 
   // appelée très souvent (correspond au fps)
-  update() {
+  update(time) {
     this.player.update();
 
     for (let i = 0; i < this.traps.length; i++) {
-      this.traps[i].update();
+      this.traps[i].update(time);
     }
   }
 }
