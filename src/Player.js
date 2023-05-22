@@ -39,4 +39,8 @@ class Player {
     }
     
   }
+
+  die() {
+    console.log('le joueur est mort !')
+  }
 }

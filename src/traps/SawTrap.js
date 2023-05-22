@@ -1,54 +1,12 @@
-// class SawTrap extends Trap {
-//   scene
-//   platformSprite
-//   discSprite
-//   Trap1Sprite
-
-//   x
-//   y
-
-//   constructor(scene, x, y) {
-//     super()
-
-//     this.scene = scene
-//     this.x = x
-//     this.y = y
-
-//     this.discSprite = scene.physics.add.image(x, y-10, "trap-saw-disc");
-//     this.discSprite.setScale(0.2)
-//     this.discSprite.body.setAllowGravity(false)
-
-//     this.platformSprite = scene.physics.add.image(x, y, "trap-saw-platform");
-//     this.platformSprite.setScale(0.1)
-//     this.platformSprite.body.setAllowGravity(false)
-
-//     this.Trap1Sprite = scene.physics.add.image(x+280, y-10, "trap-saw-Trap1");
-//     this.Trap1Sprite.setScale(1)
-//     this.Trap1Sprite.body.setAllowGravity(false)
-  
-
-//     this.discSprite.setVelocityX(20)
-    
-//   }
-
-//   update() {
-//     if(this.discSprite.body.x > this.x + 45) {
-//       this.discSprite.setVelocityX(-20)
-//     }
-//   }
-// }
-
 class SawTrap extends Trap {
   scene;
   platformSprite;
   discSprite;
-  Trap1Sprite;
 
   x;
   y;
-  trap1StartY;
-  trap1Distance;
-  trap1Speed;
+
+  isGoingRight = true;
 
   constructor(scene, x, y) {
     super();
@@ -57,51 +15,44 @@ class SawTrap extends Trap {
     this.x = x;
     this.y = y;
 
-    this.discSprite = scene.physics.add.image(x, y - 10, "trap-saw-disc");
-    this.discSprite.setScale(0.2);
+    this.discSprite = scene.physics.add.image(x, y - 18, "trap-saw-disc");
     this.discSprite.body.setAllowGravity(false);
+    this.discSprite.setImmovable(true);
+    this.scene.physics.add.overlap(
+      this.discSprite,
+      this.scene.player.sprite,
+      this.scene.player.die
+    );
 
     this.platformSprite = scene.physics.add.image(x, y, "trap-saw-platform");
-    this.platformSprite.setScale(0.1);
     this.platformSprite.body.setAllowGravity(false);
-
-    this.Trap1Sprite = scene.physics.add.image(x + 280, y - 10, "trap-saw-Trap1");
-    this.Trap1Sprite.setScale(1);
-    this.Trap1Sprite.body.setAllowGravity(false);
+    this.platformSprite.setImmovable(true);
+    this.scene.physics.add.collider(
+      this.platformSprite,
+      this.scene.player.sprite
+    );
 
     this.discSprite.setVelocityX(20);
+    this.isGoingRight = true;
 
-    // Variables pour le mouvement de la sprite Trap1
-    this.trap1StartY = y - 30; // Position de départ en Y
-    this.trap1Distance = 130; // Distance de descente en cm
-    this.trap1Speed = 1.3; // Vitesse de déplacement en pixels par seconde
-
-    // Appel initial de l'animation
-    this.animateTrap1();
+    this.scene.tweens.add({
+      targets: this.discSprite,
+      rotation: 360,
+      duration: 200000,
+      repeat: -1,
+      ease: "Linear",
+    });
   }
 
   update() {
-    if (this.discSprite.body.x > this.x + 45) {
+    if (this.isGoingRight && this.discSprite.body.x > this.x + 40) {
       this.discSprite.setVelocityX(-20);
+      this.isGoingRight = false;
     }
-  }
 
-  // Fonction pour animer le mouvement de la sprite Trap1
-  animateTrap1() {
-    // Animation de descente
-    this.scene.tweens.add({
-      targets: this.Trap1Sprite,
-      y: this.trap1StartY + this.trap1Distance,
-      duration: this.trap1Distance * 10 / this.trap1Speed, // Durée basée sur la vitesse de déplacement
-      onComplete: () => {
-        // Animation de remontée
-        this.scene.tweens.add({
-          targets: this.Trap1Sprite,
-          y: this.trap1StartY,
-          duration: this.trap1Distance * 10 / this.trap1Speed, // Durée basée sur la vitesse de déplacement
-          onComplete: () => this.animateTrap1() // Appel récursif pour boucler l'animation
-        });
-      }
-    });
+    if (!this.isGoingRight && this.discSprite.body.x < this.x - 100) {
+      this.discSprite.setVelocityX(20);
+      this.isGoingRight = true;
+    }
   }
 }
