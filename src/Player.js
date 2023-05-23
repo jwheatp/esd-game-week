@@ -80,5 +80,24 @@ class Player {
 
     this.sprite.setScale(0.5, 0.1)
     this.canMove = false
+
+    this.canMove = false;
+
+    const numBlinks = 10;
+    const blinkInterval = 250;
+
+    let blinkCount = 0;
+
+    const blinkIntervalId = setInterval(() => {
+      this.sprite.alpha = (this.sprite.alpha === 1) ? 0.2 : 1;
+
+      blinkCount++;
+
+      if (blinkCount >= numBlinks) {
+        clearInterval(blinkIntervalId);
+        this.sprite.alpha = 0.2;
+        this.canMove = true;
+      }
+    }, blinkInterval);
   }
 }

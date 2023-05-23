@@ -13,22 +13,34 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
     this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
-    this.load.image("trap-saw-Trap1", "assets/traps/saw/Trap1.png");
+
+    //new trap sacha et faouzi
+
+    this.load.image("trapplatform", "assets/traps/trapplatform.png")
+
 
     //new trap ranime et celine
-    this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
+    this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
+    this.load.image("traphtml", "assets/traps/dev/html.png");
+    this.load.image("trapjs", "assets/traps/dev/js.png");
+    this.load.image("trapphp", "assets/traps/dev/php.png");
+    this.load.image("trapwordpress", "assets/traps/dev/wordpress.png");
 
     // new trap antonin & luca
-    this.load.image("trap-mode-closed", "assets/door/closed.png")
-    this.load.image("trap-mode-opened", "assets/door/opened.png")
-    this.load.image("trap-mode-hitbox", "assets/door/hitbox.png")
-
+    this.load.image("trap-mode-closed", "assets/door/closed.png");
+    this.load.image("trap-mode-opened", "assets/door/opened.png");
+    this.load.image("trap-mode-hitbox", "assets/door/hitbox.png");
 
     //new trap narjisse et maeva
     // this.load.image("monster", "assets/traps/barnacle.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
+
+    // new trap karim et rayan
+
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png")
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png")
   }
 
   // initialise la scène
@@ -38,19 +50,19 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "bg");
 
-
-
     const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
 
-    const doorTrap = new DoorTrap(this, 800, 455)
+    const doorTrap = new DoorTrap(this, 800, 455);
     this.traps.push(doorTrap);
 
     // const monsterTrap = new MonsterTrap(this, 900, 280);
     // this.traps.push(monsterTrap);
 
-    const openedTrap = new OpenedTrap(this, 800, 455)
-    this.traps.push(openedTrap);
+    // piege sacha + faouzi
+    const platformTrap = new PlatformTrap(this, 1100, 300);
+    this.traps.push(platformTrap);
+
 
     this.player = new Player(this, 200, 505);
 
@@ -60,11 +72,18 @@ class Scene extends Phaser.Scene {
     this.physics.add.collider(this.player.sprite, platform.sprite);
     this.physics.add.collider(this.player.sprite, platform2.sprite);
 
-    openedTrap.createColliders()
+    const openedTrap = new OpenedTrap(this, 800, 455);
+    this.traps.push(openedTrap);
 
+    const monsterTrap = new MonsterTrap(this, 900, 210);
+    this.traps.push(monsterTrap);
 
-    // const computerTrap = new ComputerTrap(this, 600, 210);
-    // this.traps.push(computerTrap);
+    const computerTrap = new ComputerTrap(this, 580, 400);
+    this.traps.push(computerTrap);
+    openedTrap.createColliders();
+
+    const spikesTrap = new SpikesTrap(this, 400, 350);
+    this.traps.push(spikesTrap);
   }
 
   // appelée très souvent (correspond au fps)
@@ -79,7 +98,4 @@ class Scene extends Phaser.Scene {
     //   this.player.y = 400;
     // }
   }
-
-
-
 }
