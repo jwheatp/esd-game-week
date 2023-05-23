@@ -17,8 +17,6 @@ class Player {
     this.sprite = scene.physics.add.image(x, y, "player");
 
     this.sprite.body.setMass(1000)
-
-    this.sprite.setScale(0.5)
   }
 
   update() {
@@ -64,6 +62,17 @@ class Player {
     }
 
 
+  }
+
+
+  freeze() {
+    this.canMove = false
+    this.sprite.body.setAllowGravity(false)
+  }
+
+  unfreeze() {
+    this.canMove = true
+    this.sprite.body.setAllowGravity(true)
   }
 
   die() {
