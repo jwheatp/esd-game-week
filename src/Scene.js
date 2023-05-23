@@ -19,6 +19,7 @@ class Scene extends Phaser.Scene {
     this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
 
+    // new trap antonin & luca
     this.load.image("trap-mode-closed", "assets/door/closed.png")
     this.load.image("trap-mode-opened", "assets/door/opened.png")
     this.load.image("trap-mode-hitbox", "assets/door/hitbox.png")
@@ -45,8 +46,8 @@ class Scene extends Phaser.Scene {
     const doorTrap = new DoorTrap(this, 800, 455)
     this.traps.push(doorTrap);
 
-    const monsterTrap = new MonsterTrap(this, 900, 280);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 280);
+    // this.traps.push(monsterTrap);
 
     const openedTrap = new OpenedTrap(this, 800, 455)
     this.traps.push(openedTrap);
@@ -62,8 +63,8 @@ class Scene extends Phaser.Scene {
     openedTrap.createColliders()
 
 
-    const computerTrap = new ComputerTrap(this, 600, 210);
-    this.traps.push(computerTrap);
+    // const computerTrap = new ComputerTrap(this, 600, 210);
+    // this.traps.push(computerTrap);
   }
 
   // appelée très souvent (correspond au fps)
