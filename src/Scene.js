@@ -20,6 +20,7 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-mode-closed", "assets/door/closed.png")
     this.load.image("trap-mode-opened", "assets/door/opened.png")
+    this.load.image("trap-mode-hitbox", "assets/door/hitbox.png")
 
 
   }
@@ -31,24 +32,31 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "bg");
 
-    this.player = new Player(this, 200, 505);
+
 
     const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
 
-    this.physics.add.collider(this.player.sprite, platform.sprite);
-    this.physics.add.collider(this.player.sprite, platform2.sprite);
 
-    const sawTrap = new SawTrap(this, 400, 400);
-    this.traps.push(sawTrap);
 
 
     const doorTrap = new DoorTrap(this, 800, 455)
-    this.traps.push(doorTrap)
+    this.traps.push(doorTrap);
 
 
     const openedTrap = new OpenedTrap(this, 800, 455)
-    this.traps.push(openedTrap)
+    this.traps.push(openedTrap);
+
+    this.player = new Player(this, 200, 505);
+
+    // const sawTrap = new SawTrap(this, 400, 400);
+    // this.traps.push(sawTrap);
+
+    this.physics.add.collider(this.player.sprite, platform.sprite);
+    this.physics.add.collider(this.player.sprite, platform2.sprite);
+
+    openedTrap.createColliders()
+
 
   }
 

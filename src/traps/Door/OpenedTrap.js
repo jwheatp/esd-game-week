@@ -20,16 +20,30 @@ class OpenedTrap extends Trap {
     this.openDeltaTimeMin = 2000; // Délai minimum  (2 secondes)
     this.openDeltaTimeMax = 7000; // Délai maximum  (7 secondes)
 
-    this.scene.physics.add.overlap(this.scene.player.sprite, this.openedSprite, () => {
-      if (this.opened) {
-        this.scene.player.sprite.setPosition(200, 480)
+
+    this.hitboxSprite = scene.physics.add.image(x, y, "trap-mode-hitbox");
+    this.hitboxSprite.setScale(0.4)
+    this.hitboxSprite.body.setAllowGravity(false)
+    this.hitboxSprite.setImmovable(true)
 
 
-      }
-    });
-
+    // const hitboxTrap = new HitboxTrap(this.scene, this, 800, 455)
 
   }
+
+
+  createColliders() {
+    this.scene.physics.add.overlap(this.scene.player.sprite, this.hitboxSprite, () => {
+
+      this.scene.player.sprite.setPosition(200, 480)
+
+
+
+    });
+
+  }
+
+
 
   toggle() {
 
