@@ -10,7 +10,7 @@ class ComputerTrap extends Trap {
   isGoingTop = true;
   isGoingLeft = true;
 
-  const = ["trapcss", "traphtml", "trapphp"];
+  images = ["trapcss", "traphtml", "trapphp"];
 
   constructor(scene, x, y) {
     super();
@@ -39,16 +39,16 @@ class ComputerTrap extends Trap {
     this.isGoingLeft = true;
 
     const myInterval = setInterval(() => this.fire(), 2000);
-    // this.scene.physics.add.overlap(this.css, this.scene.player.sprite, () => {
-    //   this.scene.player.die();
-    // });
   }
-  //this.fire
   fire() {
+    const index = Math.floor(Math.random() * this.images.length);
+
+    console.log(this.images[index]);
+
     this.css = this.scene.physics.add.image(
       this.cssX,
       this.computer.body.y + 50,
-      "trapcss"
+      this.images[index]
     );
     this.css.setScale(0.09);
     this.css.body.setAllowGravity(false); //valeurs//
