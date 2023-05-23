@@ -13,6 +13,7 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
     this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
+    this.load.image("trap-saw-Trap1", "assets/traps/saw/Trap1.png");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
@@ -23,6 +24,10 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-mode-hitbox", "assets/door/hitbox.png")
 
 
+    //new trap narjisse et maeva
+    // this.load.image("monster", "assets/traps/barnacle.png");
+    this.load.image("trap-monster-ground", "assets/traps/bloc.png");
+    this.load.image("trap-monster-piques", "assets/traps/pique.png");
   }
 
   // initialise la scène
@@ -37,12 +42,11 @@ class Scene extends Phaser.Scene {
     const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
 
-
-
-
     const doorTrap = new DoorTrap(this, 800, 455)
     this.traps.push(doorTrap);
 
+    const monsterTrap = new MonsterTrap(this, 900, 280);
+    this.traps.push(monsterTrap);
 
     const openedTrap = new OpenedTrap(this, 800, 455)
     this.traps.push(openedTrap);
@@ -58,6 +62,8 @@ class Scene extends Phaser.Scene {
     openedTrap.createColliders()
 
 
+    const computerTrap = new ComputerTrap(this, 600, 210);
+    this.traps.push(computerTrap);
   }
 
   // appelée très souvent (correspond au fps)

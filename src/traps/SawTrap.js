@@ -2,6 +2,7 @@ class SawTrap extends Trap {
   scene;
   platformSprite;
   discSprite;
+  speed = 150;
 
   x;
   y;
@@ -21,7 +22,9 @@ class SawTrap extends Trap {
     this.scene.physics.add.overlap(
       this.discSprite,
       this.scene.player.sprite,
-      this.scene.player.die
+      () => {
+        this.scene.player.die();
+      }
     );
 
     this.platformSprite = scene.physics.add.image(x, y, "trap-saw-platform");
@@ -32,7 +35,7 @@ class SawTrap extends Trap {
       this.scene.player.sprite
     );
 
-    this.discSprite.setVelocityX(20);
+    this.discSprite.setVelocityX(this.speed);
     this.isGoingRight = true;
 
     this.scene.tweens.add({
@@ -46,12 +49,12 @@ class SawTrap extends Trap {
 
   update() {
     if (this.isGoingRight && this.discSprite.body.x > this.x + 40) {
-      this.discSprite.setVelocityX(-20);
+      this.discSprite.setVelocityX(-this.speed);
       this.isGoingRight = false;
     }
 
-    if (!this.isGoingRight && this.discSprite.body.x < this.x - 100) {
-      this.discSprite.setVelocityX(20);
+    if (!this.isGoingRight && this.discSprite.body.x < this.x - 90) {
+      this.discSprite.setVelocityX(this.speed);
       this.isGoingRight = true;
     }
   }
