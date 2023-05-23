@@ -27,6 +27,9 @@ class Scene extends Phaser.Scene {
     const platform = new Platform(this, 200, 600)
     const platform2 = new Platform(this, 800, 550)
 
+    const platform3 = new Platform(this, 200, 600)
+    const platform4 = new Platform(this, 800, 550)
+
     this.physics.add.collider(this.player.sprite, platform.sprite, function() {
 
     })
