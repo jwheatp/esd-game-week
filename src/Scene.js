@@ -55,7 +55,7 @@ class Scene extends Phaser.Scene {
     const monsterTrap = new MonsterTrap(this, 900, 280);
     this.traps.push(monsterTrap);
 
-    const computerTrap = new ComputerTrap(this, 100, 210);
+    const computerTrap = new ComputerTrap(this, 600, 210);
     this.traps.push(computerTrap);
   }
 
