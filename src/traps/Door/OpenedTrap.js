@@ -3,8 +3,8 @@ class OpenedTrap extends Trap {
     super();
 
     this.scene = scene;
-    this.x = x;
-    this.y = y;
+    // this.x = 200;
+    // this.y = 400;
 
     this.openedSprite = scene.physics.add.image(x, y, "trap-mode-opened");
     this.openedSprite.setScale(1.5);
@@ -19,6 +19,15 @@ class OpenedTrap extends Trap {
 
     this.openDeltaTimeMin = 2000; // Délai minimum  (2 secondes)
     this.openDeltaTimeMax = 7000; // Délai maximum  (7 secondes)
+
+    this.scene.physics.add.overlap(this.scene.player.sprite, this.openedSprite, () => {
+      if (this.opened) {
+        this.scene.player.sprite.setPosition(200, 480)
+
+
+      }
+    });
+
 
   }
 

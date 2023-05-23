@@ -3,6 +3,7 @@ class Player {
   sprite
   speed = 200
 
+
   constructor(scene, x, y) {
     this.scene = scene
 
@@ -18,11 +19,13 @@ class Player {
       this.sprite.setVelocityY(-this.speed);
     }
 
+
+
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
-    } 
+    }
     else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
@@ -31,7 +34,7 @@ class Player {
       // sinon, je remets la vitesse à 0
       this.sprite.setVelocityX(0);
     }
-    
+
   }
 
   die() {

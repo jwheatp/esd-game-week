@@ -20,6 +20,8 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-mode-closed", "assets/door/closed.png")
     this.load.image("trap-mode-opened", "assets/door/opened.png")
+
+
   }
 
   // initialise la scène
@@ -29,7 +31,7 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "bg");
 
-    this.player = new Player(this, 200, 300);
+    this.player = new Player(this, 200, 505);
 
     const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
@@ -57,5 +59,12 @@ class Scene extends Phaser.Scene {
     for (let i = 0; i < this.traps.length; i++) {
       this.traps[i].update(time);
     }
+    // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
+    //   this.player.x = 500;
+    //   this.player.y = 400;
+    // }
   }
+
+
+
 }
