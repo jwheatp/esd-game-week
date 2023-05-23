@@ -21,8 +21,8 @@ class Scene extends Phaser.Scene {
 
     //new trap narjisse et maeva
     // this.load.image("monster", "assets/traps/barnacle.png");
-    this.load.image("trap-monster-platform", "assets/traps/bloc.png");
-    this.load.image("trap-monster-disc", "assets/traps/pique.png");
+    this.load.image("trap-monster-ground", "assets/traps/bloc.png");
+    this.load.image("trap-monster-piques", "assets/traps/pique.png");
   }
 
   // initialise la scène
