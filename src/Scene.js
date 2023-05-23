@@ -13,15 +13,19 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
     this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
-    this.load.image("trap-saw-Trap1", "assets/traps/saw/Trap1.png");
+
+    //new trap sacha et faouzi
+
+    this.load.image("trapplatform", "assets/traps/trapplatform.png")
+
 
     //new trap ranime et celine
-    this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
+    this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
     this.load.image("traphtml", "assets/traps/dev/html.png");
     this.load.image("trapjs", "assets/traps/dev/js.png");
     this.load.image("trapphp", "assets/traps/dev/php.png");
-    this.load.image("trapphp", "assets/traps/dev/wordpress.png");
+    this.load.image("trapwordpress", "assets/traps/dev/wordpress.png");
 
     // new trap antonin & luca
     this.load.image("trap-mode-closed", "assets/door/closed.png");
@@ -32,6 +36,11 @@ class Scene extends Phaser.Scene {
     // this.load.image("monster", "assets/traps/barnacle.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
+
+    // new trap karim et rayan
+
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png")
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png")
   }
 
   // initialise la scène
@@ -50,6 +59,11 @@ class Scene extends Phaser.Scene {
     // const monsterTrap = new MonsterTrap(this, 900, 280);
     // this.traps.push(monsterTrap);
 
+    // piege sacha + faouzi
+    const platformTrap = new PlatformTrap(this, 1100, 300);
+    this.traps.push(platformTrap);
+
+
     this.player = new Player(this, 200, 505);
 
     // const sawTrap = new SawTrap(this, 400, 400);
@@ -64,9 +78,12 @@ class Scene extends Phaser.Scene {
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
 
-    const computerTrap = new ComputerTrap(this, 600, 410);
+    const computerTrap = new ComputerTrap(this, 500, 400);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
+
+    const spikesTrap = new SpikesTrap(this, 400, 350);
+    this.traps.push(spikesTrap);
   }
 
   // appelée très souvent (correspond au fps)
