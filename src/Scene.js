@@ -16,7 +16,12 @@ class Scene extends Phaser.Scene {
 
     //new trap sacha et faouzi
 
+<<<<<<< HEAD
     this.load.image("trapplatform", "assets/traps/trapplatform.png");
+=======
+    this.load.image("trapplatform", "assets/traps/trapplatform.png")
+
+>>>>>>> f060bde230f1f0a2f7e30f2adee71016c7144cae
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
@@ -64,6 +69,7 @@ class Scene extends Phaser.Scene {
     const platformTrap = new PlatformTrap(this, 1100, 300);
     this.traps.push(platformTrap);
 
+
     this.player = new Player(this, 200, 505);
 
     // const sawTrap = new SawTrap(this, 400, 400);
@@ -81,6 +87,9 @@ class Scene extends Phaser.Scene {
     const computerTrap = new ComputerTrap(this, 500, 210);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
+
+    const spikesTrap = new SpikesTrap(this, 400, 350);
+    this.traps.push(spikesTrap);
   }
 
   // appelée très souvent (correspond au fps)
