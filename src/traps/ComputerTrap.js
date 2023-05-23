@@ -3,12 +3,14 @@ class ComputerTrap extends Trap {
   css;
   computer;
   speed = 50;
-
+  speedfire = 250;
   distance = 100;
-
   x;
   y;
   isGoingTop = true;
+  isGoingLeft = true;
+
+  const = ["trapcss", "traphtml", "trapphp"];
 
   constructor(scene, x, y) {
     super();
@@ -18,7 +20,7 @@ class ComputerTrap extends Trap {
     this.y = y;
 
     this.computerY = this.y;
-    this.cssX = this.x -60;
+    this.cssX = this.x - 60;
 
     this.computer = scene.physics.add.image(x, this.computerY, "trapcomputer");
     this.computer.setScale(0.6);
@@ -26,19 +28,33 @@ class ComputerTrap extends Trap {
 
     // this.computer.body.y
 
-    // myInterval = setInterval(#, 1000);
-
-    this.css = scene.physics.add.image(this.cssX , this.computerY, "trapcss");
+    this.css = scene.physics.add.image(this.cssX, this.computerY, "trapcss");
     this.css.setScale(0.09);
     this.css.body.setAllowGravity(false);
 
     this.computer.setVelocityY(-this.speed);
     this.isGoingTop = true;
 
-    // const computerGroup = new Group();
-    // computerGroup.addChild(trapcomputer);
-    // computerGroup.addChild(trapcss);
-    // computerGroup.visible = false;
+    this.css.setVelocityX(-this.speed);
+    this.isGoingLeft = true;
+
+    const myInterval = setInterval(() => this.fire(), 2000);
+    // this.scene.physics.add.overlap(this.css, this.scene.player.sprite, () => {
+    //   this.scene.player.die();
+    // });
+  }
+  //this.fire
+  fire() {
+    this.css = this.scene.physics.add.image(
+      this.cssX,
+      this.computer.body.y + 50,
+      "trapcss"
+    );
+    this.css.setScale(0.09);
+    this.css.body.setAllowGravity(false); //valeurs//
+    this.scene.physics.add.overlap(this.css, this.scene.player.sprite, () => {
+      this.scene.player.die();
+    });
   }
 
   update() {
@@ -56,6 +72,11 @@ class ComputerTrap extends Trap {
     ) {
       this.computer.setVelocityY(-this.speed);
       this.isGoingTop = true;
+    }
+
+    if (this.isGoingLeft && this.css.body.x < this.x + 5) {
+      this.css.setVelocityX(-this.speedfire);
+      // this.isGoingLeft = false;
     }
   }
 }
