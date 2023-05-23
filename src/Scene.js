@@ -85,7 +85,6 @@ class Scene extends Phaser.Scene {
     const spikesTrap = new SpikesTrap(this, 400, 350);
     this.traps.push(spikesTrap);
   }
-
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player.update();
