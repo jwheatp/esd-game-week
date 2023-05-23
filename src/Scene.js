@@ -32,6 +32,11 @@ class Scene extends Phaser.Scene {
     // this.load.image("monster", "assets/traps/barnacle.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
+
+    // new trap karim et rayan
+
+    this.load.image("trap-saw-platform", "assets/traps/spike/piege2.png")
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png")
   }
 
   // initialise la scène
