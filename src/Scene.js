@@ -13,7 +13,11 @@ class Scene extends Phaser.Scene {
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
     this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
-    this.load.image("trap-saw-Trap1", "assets/traps/saw/Trap1.png");
+
+    //new trap sacha et faouzi
+
+    this.load.image("trapplatform", "assets/traps/trapplatform.png")
+    
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
@@ -55,6 +59,11 @@ class Scene extends Phaser.Scene {
     // const monsterTrap = new MonsterTrap(this, 900, 280);
     // this.traps.push(monsterTrap);
 
+    // piege sacha + faouzi
+    const platformTrap = new PlatformTrap(this, 1100, 300);
+    this.traps.push(platformTrap);
+
+    
     this.player = new Player(this, 200, 505);
 
     // const sawTrap = new SawTrap(this, 400, 400);
