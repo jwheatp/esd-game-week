@@ -22,7 +22,7 @@ class Player {
   }
 
   update() {
-    if(!this.canMove) {
+    if (!this.canMove) {
       this.sprite.setVelocityX(0)
       return
     }
@@ -41,12 +41,8 @@ class Player {
     if (this.scene.inputs.right.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
-<<<<<<< HEAD
-    }
-=======
       this.lastSpeedX = this.speed
-    } 
->>>>>>> e82650003238599c0f1ff43066f0926515fed288
+    }
     else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
@@ -63,14 +59,11 @@ class Player {
       this.lastSpeedX = 0
     }
 
-<<<<<<< HEAD
-=======
-    if(Math.abs(this.sprite.body.velocity.y) === 0) {
+    if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false
     }
 
-    
->>>>>>> e82650003238599c0f1ff43066f0926515fed288
+
   }
 
   die() {
