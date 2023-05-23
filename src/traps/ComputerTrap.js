@@ -2,9 +2,13 @@ class ComputerTrap extends Trap {
   scene;
   css;
   computer;
+  speed = 50;
+
+  distance = 100;
 
   x;
   y;
+  isGoingTop = true;
 
   constructor(scene, x, y) {
     super();
@@ -13,20 +17,45 @@ class ComputerTrap extends Trap {
     this.x = x;
     this.y = y;
 
-    this.computer = scene.physics.add.image(x, y - 18, "trapcomputer");
-    this.computer.setScale(0.5);
+    this.computerY = this.y;
+    this.cssX = this.x -60;
+
+    this.computer = scene.physics.add.image(x, this.computerY, "trapcomputer");
+    this.computer.setScale(0.6);
     this.computer.body.setAllowGravity(false);
 
-    this.css = scene.physics.add.image(x, y, "trapcss");
-    this.css.setScale(0.1);
+    // this.computer.body.y
+
+    // myInterval = setInterval(#, 1000);
+
+    this.css = scene.physics.add.image(this.cssX , this.computerY, "trapcss");
+    this.css.setScale(0.09);
     this.css.body.setAllowGravity(false);
 
-    this.css.setVelocityX(20);
+    this.computer.setVelocityY(-this.speed);
+    this.isGoingTop = true;
+
+    // const computerGroup = new Group();
+    // computerGroup.addChild(trapcomputer);
+    // computerGroup.addChild(trapcss);
+    // computerGroup.visible = false;
   }
 
   update() {
-    if (this.css.body.x > this.x + 45) {
-      this.css.setVelocityX(-20);
+    if (
+      this.isGoingTop &&
+      this.computer.body.y < this.computerY - this.distance
+    ) {
+      this.computer.setVelocityY(this.speed);
+      this.isGoingTop = false;
+    }
+
+    if (
+      !this.isGoingTop &&
+      this.computer.body.y > this.computerY + this.distance
+    ) {
+      this.computer.setVelocityY(-this.speed);
+      this.isGoingTop = true;
     }
   }
 }
