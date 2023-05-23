@@ -40,7 +40,7 @@ class Scene extends Phaser.Scene {
 
     // new trap karim et rayan
 
-    this.load.image("trap-saw-platform", "assets/traps/spike/piege2.png");
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
     this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
   }
 
@@ -78,7 +78,7 @@ class Scene extends Phaser.Scene {
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
 
-    const computerTrap = new ComputerTrap(this, 500, 210);
+    const computerTrap = new ComputerTrap(this, 500, 400);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
 
