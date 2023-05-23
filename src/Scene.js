@@ -22,7 +22,7 @@ class Scene extends Phaser.Scene {
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
-    this.load.image("traphtml", "assets/traps/dev/html.png");
+    this.load.image("traphtml", "assets/traps/dev/test.png");
     this.load.image("trapjs", "assets/traps/dev/js.png");
     this.load.image("trapphp", "assets/traps/dev/php.png");
     this.load.image("trapwordpress", "assets/traps/dev/wordpress.png");
