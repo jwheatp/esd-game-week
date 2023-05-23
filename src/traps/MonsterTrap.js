@@ -4,6 +4,9 @@ class MonsterTrap extends Trap {
   ground;
   bleu;
   barnacle;
+  speed = 200;
+  lastSpeedX = +20;
+  lastSpeedY = -20;
 
   x;
   y;
@@ -50,9 +53,46 @@ class MonsterTrap extends Trap {
     this.piques.setVelocityY(-200);
   }
 
+  setVelocityX(speed) {
+    // je mets une vitesse X à 200
+    this.ground.setVelocityX(speed);
+    this.piques.setVelocityX(speed);
+    this.barnacle.setVelocityX(speed);
+    this.bleu.setVelocityX(speed);
+  }
+
+  setVelocityY(speed) {
+    // je mets une vitesse X à 200
+    this.ground.setVelocityY(speed);
+    this.piques.setVelocityY(speed);
+    this.barnacle.setVelocityY(speed);
+    this.bleu.setVelocityY(speed);
+  }
+
   update() {
     if (this.ground.body.y > this.piques.y - 2) {
       this.piques.setVelocityY(0);
     }
+    if (this.scene.inputs.right.isDown) {
+      this.setVelocityX(this.speed);
+    } else if (this.scene.inputs.left.isDown) {
+      // je mets une vitesse X à 200
+      this.setVelocityX(-this.speed);
+    } else {
+      this.setVelocityX(0);
+    }
+
+    if (this.scene.inputs.down.isDown) {
+      // je mets une vitesse X à 200
+      this.setVelocityY(this.speed);
+    } else if (this.scene.inputs.up.isDown) {
+      // je mets une vitesse X à 200
+      this.setVelocityY(-this.speed);
+    } else {
+      this.setVelocityY(0);
+    }
+
+    // if (this.scene.inputs.enter.isDown) {
+    // }
   }
 }
