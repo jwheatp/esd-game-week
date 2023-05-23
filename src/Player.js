@@ -10,6 +10,7 @@ class Player {
   lastSpeedY = 0
 
 
+
   constructor(scene, x, y) {
     this.scene = scene
 
@@ -21,7 +22,7 @@ class Player {
   }
 
   update() {
-    if(!this.canMove) {
+    if (!this.canMove) {
       this.sprite.setVelocityX(0)
       return
     }
@@ -34,12 +35,14 @@ class Player {
       this.lastSpeedY = -this.jump
     }
 
+
+
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed
-    } 
+    }
     else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
@@ -56,11 +59,11 @@ class Player {
       this.lastSpeedX = 0
     }
 
-    if(Math.abs(this.sprite.body.velocity.y) === 0) {
+    if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false
     }
 
-    
+
   }
 
   die() {
@@ -68,5 +71,24 @@ class Player {
 
     this.sprite.setScale(0.5, 0.1)
     this.canMove = false
+
+    this.canMove = false;
+
+    const numBlinks = 10;
+    const blinkInterval = 250;
+
+    let blinkCount = 0;
+
+    const blinkIntervalId = setInterval(() => {
+      this.sprite.alpha = (this.sprite.alpha === 1) ? 0.2 : 1;
+
+      blinkCount++;
+
+      if (blinkCount >= numBlinks) {
+        clearInterval(blinkIntervalId);
+        this.sprite.alpha = 0.2;
+        this.canMove = true;
+      }
+    }, blinkInterval);
   }
 }
