@@ -14,7 +14,7 @@ class SpikesTrap extends Trap {
     this.x = x
     this.y = y
 
-    this.platformSprite = scene.physics.add.image(400, 300, "trap-saw-platform");
+    this.platformSprite = scene.physics.add.image(400, 300, "trap-saw-spike");
     this.platformSprite.setScale(0.5);
     this.platformSprite.body.setAllowGravity(false);
     this.scene.physics.add.overlap(this.platformSprite, this.scene.player.sprite, () => {

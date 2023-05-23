@@ -39,7 +39,7 @@ class Scene extends Phaser.Scene {
 
     // new trap karim et rayan
 
-    this.load.image("trap-saw-platform", "assets/traps/spike/piege2.png")
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png")
     this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png")
   }
 
