@@ -10,7 +10,7 @@ class ComputerTrap extends Trap {
   isGoingTop = true;
   isGoingLeft = true;
 
-  images = ["trapcss", "traphtml", "trapphp"];
+  images = ["trapcss", "traphtml", "trapphp", "trapjs","trapwordpress"];
 
   constructor(scene, x, y) {
     super();

@@ -50,15 +50,52 @@ class OpenedTrap extends Trap {
   createColliders() {
     this.scene.physics.add.overlap(this.scene.player.sprite, this.hitboxSprite, () => {
       if (this.opened) {
-        // Définissez les coordonnées d'arrivée souhaitées lorsque la porte est ouverte
-        const targetX = 200;
-        const targetY = 480;
+        console.log("go");
 
-        // Téléportez le joueur aux coordonnées d'arrivée
-        this.scene.player.sprite.setPosition(targetX, targetY);
+        this.scene.player.freeze()
+
+        this.scene.tweens.chain({
+          targets: this.scene.player.sprite,
+          tweens: [
+            {
+              scale: 0.8,
+              // x: "+=10",
+              displayOriginY: 30,
+              duration: this.fadeDuration,
+              ease: 'Linear',
+            },
+            {
+              alpha: 0,
+              duration: this.fadeDuration,
+              ease: 'Linear',
+            }
+          ],
+          onComplete: () => {
+            setTimeout(() => {
+              this.scene.player.sprite.setPosition(200, 505)
+
+              this.scene.tweens.chain({
+                targets: this.scene.player.sprite,
+                tweens: [
+                  {
+                    scale: 1,
+                    alpha: 1,
+                    duration: 1000,
+                    ease: 'Linear'
+                  },
+                ]
+              });
+
+              this.scene.player.unfreeze()
+            }, 500)
+
+          }
+        });
       }
     });
   }
+
+
 
 
   toggle() {
@@ -67,14 +104,17 @@ class OpenedTrap extends Trap {
     const targetAlpha = this.opened ? 1 : 0;
 
     this.scene.tweens.add({
-      targets: this.openedSprite,
+      targets: [this.openedSprite],
       alpha: targetAlpha,
       duration: this.fadeDuration,
       ease: 'Linear',
       onComplete: () => {
+
       }
     });
   }
+
+
 
 
 
