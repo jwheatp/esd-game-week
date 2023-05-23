@@ -4,18 +4,17 @@ class SawTrap extends Trap {
   discSprite
   speed = 150
 
-  x
-  y
+  x;
+  y;
 
-
-  isGoingRight = true
+  isGoingRight = true;
 
   constructor(scene, x, y) {
-    super()
+    super();
 
-    this.scene = scene
-    this.x = x
-    this.y = y
+    this.scene = scene;
+    this.x = x;
+    this.y = y;
 
     this.discSprite = scene.physics.add.image(x, y-18, "trap-saw-disc");
     this.discSprite.body.setAllowGravity(false)
@@ -25,9 +24,12 @@ class SawTrap extends Trap {
     })
 
     this.platformSprite = scene.physics.add.image(x, y, "trap-saw-platform");
-    this.platformSprite.body.setAllowGravity(false)
-    this.platformSprite.setImmovable(true)
-    this.scene.physics.add.collider(this.platformSprite, this.scene.player.sprite)
+    this.platformSprite.body.setAllowGravity(false);
+    this.platformSprite.setImmovable(true);
+    this.scene.physics.add.collider(
+      this.platformSprite,
+      this.scene.player.sprite
+    );
 
     this.discSprite.setVelocityX(this.speed)
     this.isGoingRight = true
@@ -37,8 +39,8 @@ class SawTrap extends Trap {
       rotation: 360,
       duration: 200000,
       repeat: -1,
-      ease: "Linear"
-    })
+      ease: "Linear",
+    });
   }
 
   update() {

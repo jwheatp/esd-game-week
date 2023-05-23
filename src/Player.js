@@ -45,6 +45,11 @@ class Player {
       this.sprite.setVelocityX(-this.speed);
       this.lastSpeedX = -this.speed
     }
+
+    else if (this.scene.inputs.down.isDown) {
+      // je mets une vitesse X à 200
+      this.sprite.setVelocityY(this.speed);
+    }
     else {
       // sinon, je remets la vitesse à 0
       this.sprite.setVelocityX(0);
