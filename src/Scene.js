@@ -37,8 +37,8 @@ class Scene extends Phaser.Scene {
     const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
 
-    const platform3 = new Platform(this, 200, 600)
-    const platform4 = new Platform(this, 800, 550)
+    const platform3 = new Platform(this, 200, 600);
+    const platform4 = new Platform(this, 800, 550);
 
     this.physics.add.collider(this.player.sprite, platform.sprite);
     this.physics.add.collider(this.player.sprite, platform2.sprite);
@@ -54,6 +54,9 @@ class Scene extends Phaser.Scene {
 
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
+
+    const computerTrap = new ComputerTrap(this, 100, 210);
+    this.traps.push(computerTrap);
   }
 
   // appelée très souvent (correspond au fps)
