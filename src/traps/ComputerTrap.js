@@ -51,7 +51,11 @@ class ComputerTrap extends Trap {
       this.images[index]
     );
     this.css.setScale(0.09);
-    this.css.body.setAllowGravity(false); //valeurs//
+    this.css.body.setAllowGravity(true);
+
+    this.css.setGravity(-100, -100);
+    console.log(this.css.body.mass);
+    //valeurs//
     this.scene.physics.add.overlap(this.css, this.scene.player.sprite, () => {
       this.scene.player.die();
     });
