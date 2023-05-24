@@ -9,6 +9,7 @@ class Scene extends Phaser.Scene {
   blackHolead;
 
   endPoint;
+  platforms = []
 
   // on précharge les assets
   preload() {
@@ -67,19 +68,20 @@ class Scene extends Phaser.Scene {
 
   // initialise la scène
   // est appelée qu'une seule fois
-  create() {
-
+  async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
     // this.sound.play("gamesong");
 
 
     this.add.image(640, 360, "bg");
 
-    const platform = new Platform(this, 200, 600);
-    const platform2 = new Platform(this, 800, 550);
+    new Platform(this, 200, 600)
+    new Platform(this, 800, 550)
+    // const platform2 = new Platform(this, 800, 550);
+    // this.platforms.add(platform2.sprite)
 
-    const doorTrap = new DoorTrap(this, 800, 455);
-    this.traps.push(doorTrap);
+    // const doorTrap = new DoorTrap(this, 800, 455);
+    // this.traps.push(doorTrap);
 
     // const monsterTrap = new MonsterTrap(this, 900, 280);
     // this.traps.push(monsterTrap);
@@ -103,32 +105,42 @@ class Scene extends Phaser.Scene {
         // Autres actions à effectuer en cas de collision avec hbBlackHole...
       }
     );
+    // this.player = new Player(this, 200, 505);
 
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
-    this.physics.add.collider(this.player.sprite, platform.sprite);
-    this.physics.add.collider(this.player.sprite, platform2.sprite);
+    // this.physics.add.collider(this.player.sprite, platform.sprite);
+    // this.physics.add.collider(this.player.sprite, platform2.sprite);
 
-    const openedTrap = new OpenedTrap(this, 800, 455);
-    this.traps.push(openedTrap);
+    // const openedTrap = new OpenedTrap(this, 800, 455);
+    // this.traps.push(openedTrap);
 
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
 
     // const computerTrap = new ComputerTrap(this, 600, 410);
     
     // this.traps.push(computerTrap);
-    openedTrap.createColliders();
+    // openedTrap.createColliders();
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
+    // openedTrap.createColliders();
+
+    // const spikesTrap = new SpikesTrap(this, 400, 350);
+    // this.traps.push(spikesTrap);
+
+    const multiplayerSystem = new MultiplayerSystem(this)
+    await multiplayerSystem.init()
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
-    this.player.update();
+    this.player?.update();
 
-    for (let i = 0; i < this.traps.length; i++) {
-      this.traps[i].update(time);
-    }
+    // for (let i = 0; i < this.traps.length; i++) {
+    //   this.traps[i].update(time);
+    // }
     // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
     //   this.player.x = 500;
     //   this.player.y = 400;

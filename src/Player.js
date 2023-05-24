@@ -54,6 +54,9 @@ class Player {
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
       this.winRound();
     });
+    this.sprite.body.setMass(1000)
+
+    Platform.addCollider(this.sprite)
   }
   //score
 
