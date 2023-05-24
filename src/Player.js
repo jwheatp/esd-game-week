@@ -18,12 +18,13 @@ class Player {
 
     this.sprite.body.setMass(1000);
 
+    //score text 
     this.scoreText = this.scene.add.text(100, 50, "yoyo", {
       fontSize: "40px",
       color: "black",
     });
   }
-
+  //score
   winRound() {
     this.score += 1;
     this.scoreText.setText("Points: " + this.score);
@@ -64,6 +65,7 @@ class Player {
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false;
     }
+    //score 
     if (this.scene.inputs.space.isDown) {
       this.winRound();
     }
