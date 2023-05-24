@@ -130,22 +130,22 @@ class Scene extends Phaser.Scene {
     this.add.image(1100, 110, "icon");
 
 
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 400);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.hbBlackHole.sprite,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
     // this.player = new Player(this, 200, 505);
     // this.physics.add.overlap(
     //   this.player.sprite,
