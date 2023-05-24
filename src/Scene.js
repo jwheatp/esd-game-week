@@ -94,8 +94,8 @@ class Scene extends Phaser.Scene {
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
     this.load.image("player-idl", "assets/skin/playerTwo.png");
     //bandeau du score et icone du player
-    this.load.image("blindfold-score", "assets/traps/dev/test.png");
-    this.load.image("icon", "assets/traps/dev/icone.png");
+    this.load.image("blindfold-score", "assets/traps/dev/bgscore.png");
+    this.load.image("icon", "assets/traps/dev/sanstitre.png");
   }
 
   // initialise la scène
@@ -126,8 +126,8 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-   this.add.image(1100, 110,"blindfold-score");
-   this.add.image(1100, 110, "icon");
+   this.add.image(1000, 40,"blindfold-score");
+   this.add.image(870, 40, "icon");
     
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
