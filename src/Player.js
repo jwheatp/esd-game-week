@@ -12,6 +12,9 @@ class Player {
   constructor(scene, x, y) {
     this.scene = scene;
 
+    this.x = x
+    this.y = y
+
     this.sprite = scene.physics.add.image(x, y, "player");
 
     this.sprite.body.setMass(1000);
@@ -88,5 +91,12 @@ class Player {
         this.canMove = true;
       }
     }, blinkInterval);
+
+
+
+  }
+
+  destroy() {
+    this.sprite.alpha = 0;
   }
 }
