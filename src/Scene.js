@@ -1,6 +1,7 @@
 class Scene extends Phaser.Scene {
   inputs;
   player;
+  viseur;
 
   traps = [];
 
@@ -15,7 +16,6 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
     //new trap sacha et faouzi
-
     this.load.image("trapplatform", "assets/traps/trapplatform.png");
 
     //new trap ranime et celine
@@ -32,14 +32,13 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-mode-hitbox", "assets/door/hitbox.png");
 
     //new trap narjisse et maeva
-
     this.load.image("monster", "assets/traps/tibiscuit.jpeg");
     this.load.image("barnacle", "assets/traps/monster.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
+    this.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-
     this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
     this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
   }
@@ -56,9 +55,6 @@ class Scene extends Phaser.Scene {
 
     const doorTrap = new DoorTrap(this, 800, 455);
     this.traps.push(doorTrap);
-
-    // const monsterTrap = new MonsterTrap(this, 900, 280);
-    // this.traps.push(monsterTrap);
 
     // piege sacha + faouzi
     const platformTrap = new PlatformTrap(this, 1100, 300);
@@ -77,10 +73,14 @@ class Scene extends Phaser.Scene {
 
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
+    // monsterTrap.canSetupTrap = true;
+    // monsterTrap.initCursor();
 
     const computerTrap = new ComputerTrap(this, 580, 400);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
+    computerTrap.canSetupTrap = true;
+    computerTrap.initCursor();
 
     const spikesTrap = new SpikesTrap(this, 400, 350);
     this.traps.push(spikesTrap);
