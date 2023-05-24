@@ -10,7 +10,7 @@ class Scene extends Phaser.Scene {
   blackHolead;
 
   endPoint;
-  platforms = []
+  platforms = [];
   isgameover = false;
 
   // on précharge les assets
@@ -46,7 +46,13 @@ class Scene extends Phaser.Scene {
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+
+
+    // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     this.load.image("endPlatform", "assets/platforms/end.png");
+    this.load.image("hitbox-invisible", "assets/platforms/hitbox-invisible.png")
+
+    this.load.image("collideborder", "assets/platforms/collideborder.png");
 
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
@@ -57,7 +63,8 @@ class Scene extends Phaser.Scene {
 
     //audio sacha et faouzi
     this.load.audio("gamesong", "assets/audio/game-song.mp3");
-    this.load.audio("jump", "assets/audio/jump-player.mp3");
+    // this.load.audio("jump", "assets/audio/jump-player.mp3");
+    this.load.audio("jump", "assets/audio/cartoonjump.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
 
     //new trap ranime et celine
@@ -106,46 +113,39 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "scene1");
 
-    // const doorTrap = new DoorTrap(this, 800, 455);
-    // this.traps.push(doorTrap);
+    const doorTrap = new DoorTrap(this, 800, 455);
+    this.traps.push(doorTrap);
 
-    // new Platform(this, 200, 600)
-    // new Platform(this, 800, 550)
-    // const platform2 = new Platform(this, 800, 550);
-    // this.platforms.add(platform2.sprite)
-
-    // const doorTrap = new DoorTrap(this, 800, 455);
-    // this.traps.push(doorTrap);
-
-    // const monsterTrap = new MonsterTrap(this, 900, 280);
-    // this.traps.push(monsterTrap);
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
+    const openedTrap = new OpenedTrap(this, 800, 455);
+    this.traps.push(openedTrap);
 
     // piege sacha + faouzi
-    // const platformTrap = new PlatformTrap(this, 1100, 300);
-    // this.traps.push(platformTrap);
+    const platformTrap = new PlatformTrap(this, 600, 300);
+    this.traps.push(platformTrap);
 
-   this.add.image(1100, 110,"blindfold-score");
-   this.add.image(1100, 110, "icon");
-    
+    this.add.image(1100, 110, "blindfold-score");
+    this.add.image(1100, 110, "icon");
 
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
-    this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 200, 400);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.hbBlackHole.sprite,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
+    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
+    this.add.image(1233, 230, "endPlatform");
+    this.endPoint.body.setAllowGravity(false);
+
+    this.player = new Player(this, 180, 230);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
     // this.player = new Player(this, 200, 505);
     // this.physics.add.overlap(
     //   this.player.sprite,
