@@ -111,7 +111,7 @@ class Scene extends Phaser.Scene {
 
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
+    this.endPoint = this.physics.add.image(680, 450, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 400);
