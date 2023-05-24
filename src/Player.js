@@ -18,7 +18,7 @@ class Player {
     this.y = y;
 
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.5)
+    this.sprite.setScale(0.5);
 
     this.sprite.body.setMass(1000);
 
@@ -30,6 +30,8 @@ class Player {
     //score
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
       this.winRound();
+      this.scene.isgameover = true;
+      console.log("aaa");
     });
 
     /*tests animations*/
@@ -53,19 +55,24 @@ class Player {
       frameRate: 7,
       repeat: -1,
     });
+    this.sprite.body.setMass(1000);
+
+    // Platform.addCollider(this.sprite)
   }
   //score
 
   winRound() {
-
+    if (this.scene.isgameover) {
+      return;
+    }
     this.score += 1;
     this.scoreText.setText("player:" + this.score);
   }
 
   update() {
-    if (!this.score) {
-      this.scene.isgameover = true;
-    }
+    // if (!this.score) {
+    //   this.scene.isgameover = true;
+    // }
     if (!this.canMove) {
       this.sprite.setVelocityX(0);
       return;

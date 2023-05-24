@@ -10,6 +10,7 @@ class Scene extends Phaser.Scene {
   blackHolead;
 
   endPoint;
+  platforms = [];
   isgameover = false;
 
   // on précharge les assets
@@ -45,7 +46,13 @@ class Scene extends Phaser.Scene {
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+
+
+    // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     this.load.image("endPlatform", "assets/platforms/end.png");
+    this.load.image("hitbox-invisible", "assets/platforms/hitbox-invisible.png")
+
+    this.load.image("collideborder", "assets/platforms/collideborder.png");
 
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
@@ -93,13 +100,14 @@ class Scene extends Phaser.Scene {
     this.load.image("player-run", "assets/skin/playerTwo-Run.png");
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
     this.load.image("player-idl", "assets/skin/playerTwo.png");
-    //bandeau du score
+    //bandeau du score et icone du player
     this.load.image("blindfold-score", "assets/traps/dev/test.png");
+    this.load.image("icon", "assets/traps/dev/icone.png");
   }
 
   // initialise la scène
   // est appelée qu'une seule fois
-  create() {
+  async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
     // this.sound.play("gamesong");
 
@@ -115,16 +123,30 @@ class Scene extends Phaser.Scene {
     const platformTrap = new PlatformTrap(this, 600, 300);
     this.traps.push(platformTrap);
 
-    // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-    this.add.image(1080, 15, "blindfold-score");
+    this.add.image(1100, 110, "blindfold-score");
+    this.add.image(1100, 110, "icon");
 
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1200, 100, "endPlatform");
-    this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 200, 400);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
+    // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
+    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
+    this.add.image(1233, 230, "endPlatform");
+    this.endPoint.body.setAllowGravity(false);
+
+    this.player = new Player(this, 180, 230);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
+    // this.player = new Player(this, 200, 505);
     // this.physics.add.overlap(
     //   this.player.sprite,
     //   this.hbBlackHole.sprite,
@@ -138,6 +160,14 @@ class Scene extends Phaser.Scene {
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
+    // this.physics.add.collider(this.player.sprite, platform.sprite);
+    // this.physics.add.collider(this.player.sprite, platform2.sprite);
+
+    // const openedTrap = new OpenedTrap(this, 800, 455);
+    // this.traps.push(openedTrap);
+
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
@@ -145,9 +175,9 @@ class Scene extends Phaser.Scene {
 
     const computerTrap = new ComputerTrap(this, 580, 400);
     this.traps.push(computerTrap);
-    openedTrap.createColliders();
-    computerTrap.canSetupTrap = true;
-    computerTrap.initCursor();
+    // openedTrap.createColliders();
+    // computerTrap.canSetupTrap = true;
+    // computerTrap.initCursor();
 
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
@@ -155,20 +185,25 @@ class Scene extends Phaser.Scene {
     // const computerTrap = new ComputerTrap(this, 600, 410);
     // this.traps.push(computerTrap);
     // openedTrap.createColliders();
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
+    // openedTrap.createColliders();
 
     // const spikesTrap = new SpikesTrap(this, 400, 350);
     // this.traps.push(spikesTrap);
 
+    // const multiplayerSystem = new MultiplayerSystem(this)
+    // await multiplayerSystem.init()
     new PlatformLevels(this);
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
-    this.player.update();
+    this.player?.update();
 
-    for (let i = 0; i < this.traps.length; i++) {
-      this.traps[i].update(time);
-    }
+    // for (let i = 0; i < this.traps.length; i++) {
+    //   this.traps[i].update(time);
+    // }
     // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
     //   this.player.x = 500;
     //   this.player.y = 400;
