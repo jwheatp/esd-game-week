@@ -12,7 +12,7 @@ class Scene extends Phaser.Scene {
   preload() {
     this.load.image("bg", "assets/bg.png");
 
-    this.load.image("player", "assets/player-idle.png");
+    this.load.image("player", "assets/skin/playerTwo.png");
     this.load.image("platform", "assets/platform.png");
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
@@ -48,12 +48,26 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
-    this.load.image("trap-blackHole", "assets/traps/blackHole.png")
+    this.load.image("trap-blackHole", "assets/traps/blackHole.png");
+
+    //animation player
+    this.load.image("player-death", "assets/skin/playerTwo-Death.png");
+    this.load.image("player-jump", "assets/skin/playerTwo-Jump.png");
+    this.load.image("player-run", "assets/skin/playerTwo-Run.png");
+    this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
+
   }
 
   // initialise la scène
   // est appelée qu'une seule fois
   create() {
+    this.anims.create({
+      key: 'anim-player-run',
+      frames: [{ key: "player-run" }, { key: "player-walk" }],
+      frameRate: 10,
+      repeat: -1
+    });
+
     this.inputs = this.input.keyboard.createCursorKeys();
 
     this.add.image(640, 360, "bg");
@@ -76,7 +90,7 @@ class Scene extends Phaser.Scene {
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.player = new Player(this, 200, 505);
+    this.player = new Player(this, 200, 200);
 
     this.physics.add.overlap(
       this.player.sprite,
@@ -95,6 +109,7 @@ class Scene extends Phaser.Scene {
     this.physics.add.collider(this.player.sprite, platform.sprite);
     this.physics.add.collider(this.player.sprite, platform2.sprite);
 
+    /*
     const openedTrap = new OpenedTrap(this, 800, 455);
     this.traps.push(openedTrap);
 
@@ -107,10 +122,16 @@ class Scene extends Phaser.Scene {
 
     const spikesTrap = new SpikesTrap(this, 400, 350);
     this.traps.push(spikesTrap);
+    */
+
   }
+
+
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player.update();
+
+
 
     for (let i = 0; i < this.traps.length; i++) {
       this.traps[i].update(time);

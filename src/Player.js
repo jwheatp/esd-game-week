@@ -25,6 +25,10 @@ class Player {
       fontSize: "40px",
       color: "black",
     });
+
+    /*tests animations*/
+
+
   }
 
   winRound() {
@@ -51,6 +55,7 @@ class Player {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed;
+      // this.scene.anims.play('anim-player-run', true);
     } else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
@@ -62,6 +67,7 @@ class Player {
       // sinon, je remets la vitesse à 0
       this.sprite.setVelocityX(0);
       this.lastSpeedX = 0;
+      //this.sprite.anims.stop('player-run');
     }
 
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
