@@ -46,7 +46,7 @@ class Scene extends Phaser.Scene {
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
 
     //new trap ranime et celine
-    this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
+    this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
     this.load.image("traphtml", "assets/traps/dev/html.png");
     this.load.image("trapjs", "assets/traps/dev/js.png");
@@ -77,6 +77,8 @@ class Scene extends Phaser.Scene {
     this.load.image("player-run", "assets/skin/playerTwo-Run.png");
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
     this.load.image("player-idl", "assets/skin/playerTwo.png");
+    //bandeau du score 
+    this.load.image("blindfold-score", "assets/traps/test.png");
   }
 
   // initialise la scène
@@ -103,7 +105,10 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    var rect = this.add.rectangle(1000, 139, 300, 30, 0XFF0000, 1);
+
+    // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
+   this.add.image(1100, 110,"blindfold-score");
+    
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
