@@ -4,9 +4,11 @@ class Scene extends Phaser.Scene {
 
   traps = [];
 
-  hbBlackHole
-  playerCollider
-  blackHolead
+  hbBlackHole;
+  playerCollider;
+  blackHolead;
+
+  endPoint;
 
   // on précharge les assets
   preload() {
@@ -80,8 +82,8 @@ class Scene extends Phaser.Scene {
     // this.traps.push(monsterTrap);
 
     // piege sacha + faouzi
-    const platformTrap = new PlatformTrap(this, 1100, 300);
-    this.traps.push(platformTrap);
+    // const platformTrap = new PlatformTrap(this, 1100, 300);
+    // this.traps.push(platformTrap);
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
@@ -110,7 +112,7 @@ class Scene extends Phaser.Scene {
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
+    const computerTrap = new ComputerTrap(this, 580, 100);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
 
