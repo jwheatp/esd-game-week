@@ -11,11 +11,13 @@ class Scene extends Phaser.Scene {
   endPoint;
   platforms = []
 
+  multiplayerSystem
+
   // on précharge les assets
   preload() {
     this.load.image("bg", "assets/bg.png");
 
-    this.load.image("player", "assets/player-idle.png");
+    this.load.image("player", "assets/skin/playerTwo.png");
     this.load.image("platform", "assets/platform.png");
 
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
@@ -93,18 +95,18 @@ class Scene extends Phaser.Scene {
     this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 200, 400);
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    // this.player = new Player(this, 200, 400);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.hbBlackHole.sprite,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
     // this.player = new Player(this, 200, 505);
 
     // const sawTrap = new SawTrap(this, 400, 400);
@@ -130,13 +132,15 @@ class Scene extends Phaser.Scene {
     // const spikesTrap = new SpikesTrap(this, 400, 350);
     // this.traps.push(spikesTrap);
 
-    const multiplayerSystem = new MultiplayerSystem(this)
-    await multiplayerSystem.init()
+    this.multiplayerSystem = new MultiplayerSystem(this)
+    this.multiplayerSystem.init()
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
-    this.player?.update();
+    this.player?.update()
+
+    this.multiplayerSystem.update()
 
     // for (let i = 0; i < this.traps.length; i++) {
     //   this.traps[i].update(time);

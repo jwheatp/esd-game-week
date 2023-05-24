@@ -11,6 +11,16 @@ class Player {
   scoreText;
   score = 0;
 
+  inputPayload = {
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+  };
+
+  inputQueue = []
+
+  gravityY
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -19,8 +29,11 @@ class Player {
     this.y = y;
 
     this.sprite = scene.physics.add.sprite(x, y, "player");
+    // this.sprite.body.setAllowGravity(false)
 
     this.sprite.body.setMass(1000);
+
+    this.sprite.setScale(0.4)
 
     //score text
     this.scoreText = this.scene.add.text(600, 50, "t", {
@@ -37,7 +50,7 @@ class Player {
     });
 
     this.scene.anims.create({
-      key: 'anim-player-idl',
+      key: 'anim-player-idle',
       frames: [{ key: "player-idl" }],
       frameRate: 7,
       repeat: -1
@@ -56,7 +69,13 @@ class Player {
     });
     this.sprite.body.setMass(1000)
 
-    Platform.addCollider(this.sprite)
+    this.initPlatformColliders()
+  }
+
+  initPlatformColliders() {
+    for(let i = 0; i < this.scene.platforms.length; i++) {
+      this.scene.physics.add.collider(this.sprite, this.scene.platforms[i])
+    }
   }
   //score
 
@@ -67,17 +86,26 @@ class Player {
   safezone() { }
 
   update() {
+    const speed = 2
+
+    this.inputPayload = {
+      x: this.sprite.x,
+      y: this.sprite.y
+    }
+
     if (!this.canMove) {
-      this.sprite.setVelocityX(0);
+      // this.sprite.setVelocityX(0);
       return;
     }
+
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
-          // this.scene.sound.play("jump");
+      this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
-      this.sprite.setVelocityY(-this.jump);
+      this.sprite.body.setVelocityY(-2*this.speed)
+
       this.lastSpeedY = -this.jump;
       this.sprite.play('anim-player-jump', true);
     }
@@ -85,23 +113,22 @@ class Player {
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
       // je mets une vitesse X à 200
-      this.sprite.setVelocityX(this.speed);
-      this.lastSpeedX = this.speed;
+      this.sprite.body.setVelocityX(this.speed)
+      //this.lastSpeedX = this.speed;
       this.sprite.play('anim-player-run', true);
     } else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
-      this.sprite.setVelocityX(-this.speed);
-      this.lastSpeedX = -this.speed;
-    } else if (this.scene.inputs.down.isDown) {
-      // je mets une vitesse X à 200
-      this.sprite.setVelocityY(this.speed);
+
+      this.sprite.body.setVelocityX(-this.speed)
     } else {
       // sinon, je remets la vitesse à 0
-      this.sprite.setVelocityX(0);
-      this.lastSpeedX = 0;
-      this.sprite.play('anim-player-idl', true);
+      this.sprite.body.setVelocityX(0)
+      this.sprite.play('anim-player-idle', true);
     }
 
+
+    // this.sprite.y += speed
+    // this.inputPayload.up = true
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false;
     }
