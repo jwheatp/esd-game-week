@@ -55,7 +55,7 @@ class Player {
     });
     this.sprite.body.setMass(1000)
 
-    Platform.addCollider(this.sprite)
+    // Platform.addCollider(this.sprite)
   }
   //score
 

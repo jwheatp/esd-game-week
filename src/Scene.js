@@ -108,8 +108,8 @@ class Scene extends Phaser.Scene {
     // const doorTrap = new DoorTrap(this, 800, 455);
     // this.traps.push(doorTrap);
 
-    new Platform(this, 200, 600)
-    new Platform(this, 800, 550)
+    // new Platform(this, 200, 600)
+    // new Platform(this, 800, 550)
     // const platform2 = new Platform(this, 800, 550);
     // this.platforms.add(platform2.sprite)
 
@@ -173,9 +173,9 @@ class Scene extends Phaser.Scene {
 
     const computerTrap = new ComputerTrap(this, 580, 400);
     this.traps.push(computerTrap);
-    openedTrap.createColliders();
-    computerTrap.canSetupTrap = true;
-    computerTrap.initCursor();
+    // openedTrap.createColliders();
+    // computerTrap.canSetupTrap = true;
+    // computerTrap.initCursor();
 
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
