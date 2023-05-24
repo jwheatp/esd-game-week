@@ -1,6 +1,7 @@
 class Scene extends Phaser.Scene {
   inputs;
   player;
+  viseur;
 
   traps = [];
 
@@ -21,20 +22,30 @@ class Scene extends Phaser.Scene {
     // platforms
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
 
-    this.load.image("big-grassPlatform", "assets/platforms/big-grassPlatform.png")
-    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png")
-    this.load.image("big-cakePlatform", "assets/platforms/big-cakePlatform.png")
-    this.load.image("rotate-big-cakePlatform", "assets/platforms/90big-cakePlatform.png")
-    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png")
-    this.load.image("rotate-cakePlatform", "assets/platforms/40cakePlatform.png")
-    this.load.image("icePlatform", "assets/platforms/icePlatform.png")
-    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png")
-    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png")
-    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png")
-    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png")
-    this.load.image("endPlatform", "assets/platforms/end.png")
-
-
+    this.load.image(
+      "big-grassPlatform",
+      "assets/platforms/big-grassPlatform.png"
+    );
+    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png");
+    this.load.image(
+      "big-cakePlatform",
+      "assets/platforms/big-cakePlatform.png"
+    );
+    this.load.image(
+      "rotate-big-cakePlatform",
+      "assets/platforms/90big-cakePlatform.png"
+    );
+    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png");
+    this.load.image(
+      "rotate-cakePlatform",
+      "assets/platforms/40cakePlatform.png"
+    );
+    this.load.image("icePlatform", "assets/platforms/icePlatform.png");
+    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png");
+    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
+    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
+    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+    this.load.image("endPlatform", "assets/platforms/end.png");
 
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
@@ -62,12 +73,13 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-mode-hitbox", "assets/door/hitbox.png");
 
     //new trap narjisse et maeva
-    // this.load.image("monster", "assets/traps/barnacle.png");
+    this.load.image("monster", "assets/traps/tibiscuit.jpeg");
+    this.load.image("barnacle", "assets/traps/monster.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
+    this.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-
     this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
     this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
@@ -98,15 +110,12 @@ class Scene extends Phaser.Scene {
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
 
-    // const monsterTrap = new MonsterTrap(this, 900, 280);
-    // this.traps.push(monsterTrap);
-
     // piege sacha + faouzi
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
     // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-    this.add.image(400, 100, "blindfold-score");
+    this.add.image(1080, 15, "blindfold-score");
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
@@ -128,9 +137,16 @@ class Scene extends Phaser.Scene {
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
+    const monsterTrap = new MonsterTrap(this, 900, 210);
+    this.traps.push(monsterTrap);
+    // monsterTrap.canSetupTrap = true;
+    // monsterTrap.initCursor();
 
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
+    const computerTrap = new ComputerTrap(this, 580, 400);
+    this.traps.push(computerTrap);
+    openedTrap.createColliders();
+    computerTrap.canSetupTrap = true;
+    computerTrap.initCursor();
 
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
