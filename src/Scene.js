@@ -56,7 +56,8 @@ class Scene extends Phaser.Scene {
 
     //audio sacha et faouzi
     this.load.audio("gamesong", "assets/audio/game-song.mp3");
-    this.load.audio("jump", "assets/audio/jump-player.mp3");
+    // this.load.audio("jump", "assets/audio/jump-player.mp3");
+    this.load.audio("jump", "assets/audio/cartoonjump.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
 
     //new trap ranime et celine
@@ -104,15 +105,15 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "scene1");
 
-    // const doorTrap = new DoorTrap(this, 800, 455);
-    // this.traps.push(doorTrap);
+    const doorTrap = new DoorTrap(this, 800, 455);
+    this.traps.push(doorTrap);
 
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
+    const openedTrap = new OpenedTrap(this, 800, 455);
+    this.traps.push(openedTrap);
 
     // piege sacha + faouzi
-    // const platformTrap = new PlatformTrap(this, 1100, 300);
-    // this.traps.push(platformTrap);
+    const platformTrap = new PlatformTrap(this, 600, 300);
+    this.traps.push(platformTrap);
 
     // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
     this.add.image(1080, 15, "blindfold-score");

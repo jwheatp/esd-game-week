@@ -73,7 +73,7 @@ class Player {
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
-      // this.scene.sound.play("jump");
+       this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
       this.sprite.setVelocityY(-this.jump);
