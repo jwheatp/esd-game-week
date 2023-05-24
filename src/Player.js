@@ -29,7 +29,7 @@ class Player {
     });
     //score
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
-      this.winRound();
+      this.winRound(isgameover=true);
     });
 
     /*tests animations*/

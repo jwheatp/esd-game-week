@@ -53,7 +53,7 @@ class PlatformLevels {
     this.bigGrassPlatform = scene.physics.add.staticImage(450, 670, "big-grassPlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
 
-    this.bigGrassPlatform = scene.physics.add.staticImage(1050, 570, "big-grassPlatform");
+    this.bigGrassPlatform = scene.physics.add.staticImage(1000, 570, "big-grassPlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
 
     this.bigcakePlatform = scene.physics.add.staticImage(1250, 370, "big-cakePlatform");
