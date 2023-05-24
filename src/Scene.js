@@ -88,11 +88,11 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    
-    this.player = new Player(this, 200, 505);
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
+    this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 200, 200);
+    this.player = new Player(this, 200, 400);
+    this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     this.physics.add.overlap(
       this.player.sprite,
@@ -116,9 +116,9 @@ class Scene extends Phaser.Scene {
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
 
-    const computerTrap = new ComputerTrap(this, 600, 410);
+    // const computerTrap = new ComputerTrap(this, 600, 410);
     
-    this.traps.push(computerTrap);
+    // this.traps.push(computerTrap);
     openedTrap.createColliders();
   }
 
