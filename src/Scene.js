@@ -137,9 +137,6 @@ class Scene extends Phaser.Scene {
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
-
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
@@ -150,6 +147,7 @@ class Scene extends Phaser.Scene {
     openedTrap.createColliders();
     computerTrap.canSetupTrap = true;
     computerTrap.initCursor();
+
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
 
