@@ -109,7 +109,7 @@ class Scene extends Phaser.Scene {
     this.add.image(400, 100, "blindfold-score");
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1200, 100, "endPlatform");
+    this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 400);
