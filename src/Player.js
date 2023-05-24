@@ -53,6 +53,9 @@ class Player {
       frameRate: 7,
       repeat: -1,
     });
+    this.sprite.body.setMass(1000)
+
+    // Platform.addCollider(this.sprite)
   }
   //score
 
