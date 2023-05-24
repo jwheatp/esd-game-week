@@ -9,6 +9,9 @@ const config = {
       gravity: { y: 400 },
     },
   },
+  audio: {
+        disableWebAudio: true
+    },
   scene: Scene,
 };
 
