@@ -9,10 +9,11 @@ class Scene extends Phaser.Scene {
   blackHolead;
 
   endPoint;
+  isgameover = false;
 
   // on précharge les assets
   preload() {
-    this.load.image("scene1", "assets/scene1.jpg")
+    this.load.image("scene1", "assets/scene1.jpg");
 
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
@@ -37,12 +38,12 @@ class Scene extends Phaser.Scene {
     //Assets sacha et faouzi
 
     //trap sacha et faouzi
-    this.load.image("trapplatform", "assets/traps/trapplatform.png")
+    this.load.image("trapplatform", "assets/traps/trapplatform.png");
 
     //audio sacha et faouzi
-    this.load.audio("gamesong", "assets/audio/game-song.mp3")
-    this.load.audio("jump", "assets/audio/jump-player.mp3")
-    this.load.audio("teleport", "assets/audio/teleportation.mp3")
+    this.load.audio("gamesong", "assets/audio/game-song.mp3");
+    this.load.audio("jump", "assets/audio/jump-player.mp3");
+    this.load.audio("teleport", "assets/audio/teleportation.mp3");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
@@ -83,10 +84,8 @@ class Scene extends Phaser.Scene {
   // initialise la scène
   // est appelée qu'une seule fois
   create() {
-
     this.inputs = this.input.keyboard.createCursorKeys();
     // this.sound.play("gamesong");
-
 
     this.add.image(640, 360, "scene1");
 
@@ -128,12 +127,12 @@ class Scene extends Phaser.Scene {
       }
     );
 
-
-
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
 
+    const monsterTrap = new MonsterTrap(this, 900, 210);
+    this.traps.push(monsterTrap);
   
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
@@ -142,8 +141,7 @@ class Scene extends Phaser.Scene {
     // this.traps.push(monsterTrap);
 
     const computerTrap = new ComputerTrap(this, 600, 410);
-
-    // this.traps.push(computerTrap);
+    this.traps.push(computerTrap);
     openedTrap.createColliders();
 
     // const spikesTrap = new SpikesTrap(this, 400, 350);
