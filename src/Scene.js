@@ -106,7 +106,7 @@ class Scene extends Phaser.Scene {
     // this.traps.push(platformTrap);
 
     // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-    this.add.image(400, 100, "blindfold-score");
+    this.add.image(1080, 15, "blindfold-score");
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(1200, 100, "endPlatform");
