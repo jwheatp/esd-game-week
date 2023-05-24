@@ -47,6 +47,7 @@ class Scene extends Phaser.Scene {
   // initialise la scène
   // est appelée qu'une seule fois
   create() {
+
     this.inputs = this.input.keyboard.createCursorKeys();
 
     this.add.image(640, 360, "bg");

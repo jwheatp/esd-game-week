@@ -10,6 +10,7 @@ class Player {
   lastSpeedY = 0;
   scoreText;
   score = 0;
+  
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -18,8 +19,8 @@ class Player {
 
     this.sprite.body.setMass(1000);
 
-    this.scoreText = this.scene.add.text(100, 50, "yoyo", {
-      fontSize: "40px",
+    this.scoreText = this.scene.add.text(850, 100, "yoyo, tit, tuu, tito", {
+      fontSize: "15px",
       color: "black",
     });
   }
