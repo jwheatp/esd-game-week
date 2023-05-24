@@ -31,8 +31,7 @@ class Player {
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
       this.winRound();
       this.scene.isgameover = true;
-      console.log("aaa");
-    });
+      this.canMove = false });
 
     /*tests animations*/
     this.scene.anims.create({
