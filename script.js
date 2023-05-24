@@ -5,9 +5,12 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      debug: false,
+      debug: true,
       gravity: { y: 400 },
     },
+  },
+  audio: {
+    disableWebAudio: true
   },
   scene: Scene,
 };

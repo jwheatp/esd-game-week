@@ -23,13 +23,11 @@ class ComputerTrap extends Trap {
     this.cssX = this.x - 50;
 
     this.computer = scene.physics.add.image(x, this.computerY, "trapcomputer");
-    this.computer.setScale(0.6);
     this.computer.body.setAllowGravity(false);
 
     // this.computer.body.y
 
     this.css = scene.physics.add.image(this.cssX, this.computerY, "trapcss");
-    this.css.setScale(0.09);
     this.css.body.setAllowGravity(false);
 
     this.computer.setVelocityY(-this.speed);
@@ -40,6 +38,7 @@ class ComputerTrap extends Trap {
 
     const myInterval = setInterval(() => this.fire(), 1500);
   }
+  
   fire() {
     const index = Math.floor(Math.random() * this.images.length);
 
