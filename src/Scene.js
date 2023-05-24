@@ -21,13 +21,15 @@ class Scene extends Phaser.Scene {
   phaseTitle
 
 
+  multiplayerSystem
+
   // on précharge les assets
   preload() {
     this.load.image("scene1", "assets/scene1.jpg");
 
     this.load.image("fall-collider", "assets/platforms/fallcollider.png");
 
-    this.load.image("player", "assets/player-idle.png");
+    this.load.image("player", "assets/skin/playerTwo.png");
     this.load.image("platform", "assets/platform.png");
 
     // platforms
@@ -183,6 +185,9 @@ class Scene extends Phaser.Scene {
     // this.player = new Player(this, 180, 230);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
+    // this.player = new Player(this, 200, 400);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
     // this.physics.add.overlap(
     //   this.player.sprite,
     //   this.hbBlackHole.sprite,
@@ -309,6 +314,8 @@ class Scene extends Phaser.Scene {
     this.phaseTitle.setOrigin(0.5)
     this.roundTitle = this.add.text(640, 330, '', { color: "black", fontSize: '70px', align: "center", backgroundColor: 'white' });
     this.roundTitle.setOrigin(0.5)
+    this.multiplayerSystem = new MultiplayerSystem(this)
+    this.multiplayerSystem.init()
   }
 
   // Fonction pour démarrer le jeu
@@ -339,7 +346,9 @@ class Scene extends Phaser.Scene {
 
   // appelée très souvent (correspond au fps)
   update(time) {
-    this.player?.update();
+    this.player?.update()
+
+    this.multiplayerSystem.update()
 
     for (let i = 0; i < this.traps.length; i++) {
       this.traps[i].update(time);
