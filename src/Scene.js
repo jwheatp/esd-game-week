@@ -21,21 +21,20 @@ class Scene extends Phaser.Scene {
     // platforms
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
 
-    this.load.image(
-      "big-grassPlatform",
-      "assets/platforms/big-grassPlatform.png"
-    );
-    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png");
-    this.load.image(
-      "big-cakePlatform",
-      "assets/platforms/big-cakePlatform.png"
-    );
-    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png");
-    this.load.image("icePlatform", "assets/platforms/icePlatform.png");
-    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png");
-    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
-    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
-    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+    this.load.image("big-grassPlatform", "assets/platforms/big-grassPlatform.png")
+    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png")
+    this.load.image("big-cakePlatform", "assets/platforms/big-cakePlatform.png")
+    this.load.image("rotate-big-cakePlatform", "assets/platforms/90big-cakePlatform.png")
+    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png")
+    this.load.image("rotate-cakePlatform", "assets/platforms/40cakePlatform.png")
+    this.load.image("icePlatform", "assets/platforms/icePlatform.png")
+    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png")
+    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png")
+    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png")
+    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png")
+    this.load.image("endPlatform", "assets/platforms/end.png")
+
+
 
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
@@ -93,14 +92,11 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "scene1");
 
-    // const platform = new Platform(this, 200, 600);
-    const platform2 = new Platform(this, 800, 550);
+    // const doorTrap = new DoorTrap(this, 800, 455);
+    // this.traps.push(doorTrap);
 
-    const doorTrap = new DoorTrap(this, 800, 455);
-    this.traps.push(doorTrap);
-
-    const openedTrap = new OpenedTrap(this, 800, 455);
-    this.traps.push(openedTrap);
+    // const openedTrap = new OpenedTrap(this, 800, 455);
+    // this.traps.push(openedTrap);
 
     // const monsterTrap = new MonsterTrap(this, 900, 280);
     // this.traps.push(monsterTrap);
@@ -113,35 +109,35 @@ class Scene extends Phaser.Scene {
     this.add.image(400, 100, "blindfold-score");
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
+    this.endPoint = this.physics.add.image(680, 450, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 400);
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.hbBlackHole.sprite,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
 
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
 
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
 
     // const computerTrap = new ComputerTrap(this, 600, 410);
     // this.traps.push(computerTrap);
-
-    openedTrap.createColliders();
+    // openedTrap.createColliders();
 
     // const spikesTrap = new SpikesTrap(this, 400, 350);
     // this.traps.push(spikesTrap);
