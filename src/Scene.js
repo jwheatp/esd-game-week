@@ -46,7 +46,13 @@ class Scene extends Phaser.Scene {
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+
+
+    // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     this.load.image("endPlatform", "assets/platforms/end.png");
+    this.load.image("hitbox-invisible", "assets/platforms/hitbox-invisible.png")
+
+    this.load.image("collideborder", "assets/platforms/collideborder.png");
 
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
@@ -129,22 +135,24 @@ class Scene extends Phaser.Scene {
     this.add.image(1100, 110, "blindfold-score");
     this.add.image(1100, 110, "icon");
 
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1233, 230, "endPlatform");
+
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
+    this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 180, 230);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.hbBlackHole.sprite,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
     // this.player = new Player(this, 200, 505);
     // this.physics.add.overlap(
     //   this.player.sprite,
