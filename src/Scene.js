@@ -80,8 +80,8 @@ class Scene extends Phaser.Scene {
     this.load.image("player-run", "assets/skin/playerTwo-Run.png");
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
     this.load.image("player-idl", "assets/skin/playerTwo.png");
-    //bandeau du score 
-    this.load.image("blindfold-score", "assets/traps/test.png");
+    //bandeau du score
+    this.load.image("blindfold-score", "assets/traps/dev/test.png");
   }
 
   // initialise la scène
@@ -105,10 +105,8 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-
     // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-    this.add.image(1100, 110, "blindfold-score");
-
+    this.add.image(400, 100, "blindfold-score");
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(1200, 100, "endPlatform");
@@ -145,7 +143,6 @@ class Scene extends Phaser.Scene {
     // this.traps.push(spikesTrap);
 
     new PlatformLevels(this);
-
   }
 
   // appelée très souvent (correspond au fps)
