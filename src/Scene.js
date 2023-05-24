@@ -21,17 +21,21 @@ class Scene extends Phaser.Scene {
     // platforms
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
 
-    this.load.image("big-grassPlatform", "assets/platforms/big-grassPlatform.png")
-    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png")
-    this.load.image("big-cakePlatform", "assets/platforms/big-cakePlatform.png")
-    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png")
-    this.load.image("icePlatform", "assets/platforms/icePlatform.png")
-    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png")
-    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png")
-    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png")
-    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png")
-
-
+    this.load.image(
+      "big-grassPlatform",
+      "assets/platforms/big-grassPlatform.png"
+    );
+    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png");
+    this.load.image(
+      "big-cakePlatform",
+      "assets/platforms/big-cakePlatform.png"
+    );
+    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png");
+    this.load.image("icePlatform", "assets/platforms/icePlatform.png");
+    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png");
+    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
+    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
+    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
 
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
@@ -77,8 +81,8 @@ class Scene extends Phaser.Scene {
     this.load.image("player-run", "assets/skin/playerTwo-Run.png");
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
     this.load.image("player-idl", "assets/skin/playerTwo.png");
-    //bandeau du score 
-    this.load.image("blindfold-score", "assets/traps/test.png");
+    //bandeau du score
+    this.load.image("blindfold-score", "assets/traps/dev/test.png");
   }
 
   // initialise la scène
@@ -105,10 +109,8 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-
     // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-   this.add.image(1100, 110,"blindfold-score");
-    
+    this.add.image(400, 100, "blindfold-score");
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
@@ -130,10 +132,9 @@ class Scene extends Phaser.Scene {
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
-
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
-  
+
     // const openedTrap = new OpenedTrap(this, 800, 455);
     // this.traps.push(openedTrap);
 
@@ -146,7 +147,6 @@ class Scene extends Phaser.Scene {
     // this.traps.push(spikesTrap);
 
     new PlatformLevels(this);
-
   }
 
   // appelée très souvent (correspond au fps)
