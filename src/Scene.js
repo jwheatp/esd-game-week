@@ -4,6 +4,12 @@ class Scene extends Phaser.Scene {
 
   traps = [];
 
+  hbBlackHole;
+  playerCollider;
+  blackHolead;
+
+  endPoint;
+
   // on précharge les assets
   preload() {
     this.load.image("bg", "assets/bg.png");
@@ -41,11 +47,28 @@ class Scene extends Phaser.Scene {
     // this.load.image("monster", "assets/traps/barnacle.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
+
+    // new trap karim et rayan
+
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
+
+    // new trap sixte antoine
+    this.load.image("trap-blackHole", "assets/traps/blackHole.png");
+
+    //animation player
+    this.load.image("player-death", "assets/skin/playerTwo-Death.png");
+    this.load.image("player-jump", "assets/skin/playerTwo-Jump.png");
+    this.load.image("player-run", "assets/skin/playerTwo-Run.png");
+    this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
+    this.load.image("player-idl", "assets/skin/playerTwo.png")
+
   }
 
   // initialise la scène
   // est appelée qu'une seule fois
   create() {
+
     this.inputs = this.input.keyboard.createCursorKeys();
     // this.sound.play("gamesong");
 
@@ -62,11 +85,24 @@ class Scene extends Phaser.Scene {
     // this.traps.push(monsterTrap);
 
     // piege sacha + faouzi
-    const platformTrap = new PlatformTrap(this, 1100, 300);
-    this.traps.push(platformTrap);
+    // const platformTrap = new PlatformTrap(this, 1100, 300);
+    // this.traps.push(platformTrap);
 
     
     this.player = new Player(this, 200, 505);
+    this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    this.player = new Player(this, 200, 200);
+
+    this.physics.add.overlap(
+      this.player.sprite,
+      this.hbBlackHole.sprite,
+      () => {
+        // Faire disparaître le joueur
+        this.player.die();
+        // Autres actions à effectuer en cas de collision avec hbBlackHole...
+      }
+    );
 
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
@@ -81,6 +117,7 @@ class Scene extends Phaser.Scene {
     this.traps.push(monsterTrap);
 
     const computerTrap = new ComputerTrap(this, 600, 410);
+    
     this.traps.push(computerTrap);
     openedTrap.createColliders();
   }
