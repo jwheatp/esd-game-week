@@ -48,6 +48,8 @@ class Scene extends Phaser.Scene {
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
     this.load.image("endPlatform", "assets/platforms/end.png");
 
+    this.load.image("collideborder", "assets/platforms/collideborder.png");
+
     // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
     //Assets sacha et faouzi

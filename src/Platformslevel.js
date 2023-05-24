@@ -77,6 +77,11 @@ class PlatformLevels {
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigcakePlatform)
 
 
+    // Bordure pour ne pas passer à droite 
+
+    this.collideBorder = scene.physics.add.staticImage(1280, 360, "collideborder");
+    this.scene.physics.add.collider(this.scene.player.sprite, this.collideBorder)
+    this.collideBorder.setAlpha(0)
 
     //this.sprite = scene.physics.add.staticImage(200, 200, "snowPlatform");
 
