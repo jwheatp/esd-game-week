@@ -170,12 +170,11 @@ class Scene extends Phaser.Scene {
     // this.traps.push(monsterTrap);
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
-    // monsterTrap.canSetupTrap = true;
-    // monsterTrap.initCursor();
+    monsterTrap.canSetupTrap = true;
+    monsterTrap.initCursor();
 
     const computerTrap = new ComputerTrap(this, 580, 400);
     this.traps.push(computerTrap);
-    // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
 
@@ -201,9 +200,9 @@ class Scene extends Phaser.Scene {
   update(time) {
     this.player?.update();
 
-    // for (let i = 0; i < this.traps.length; i++) {
-    //   this.traps[i].update(time);
-    // }
+    for (let i = 0; i < this.traps.length; i++) {
+      this.traps[i].update(time);
+    }
     // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
     //   this.player.x = 500;
     //   this.player.y = 400;
