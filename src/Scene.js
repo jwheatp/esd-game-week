@@ -16,8 +16,7 @@ class Scene extends Phaser.Scene {
 
     //new trap sacha et faouzi
 
-    this.load.image("trapplatform", "assets/traps/trapplatform.png")
-
+    this.load.image("trapplatform", "assets/traps/trapplatform.png");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
@@ -33,14 +32,16 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-mode-hitbox", "assets/door/hitbox.png");
 
     //new trap narjisse et maeva
-    // this.load.image("monster", "assets/traps/barnacle.png");
+
+    this.load.image("monster", "assets/traps/tibiscuit.jpeg");
+    this.load.image("barnacle", "assets/traps/monster.png");
     this.load.image("trap-monster-ground", "assets/traps/bloc.png");
     this.load.image("trap-monster-piques", "assets/traps/pique.png");
 
     // new trap karim et rayan
 
-    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png")
-    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png")
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
   }
 
   // initialise la scène
@@ -63,7 +64,6 @@ class Scene extends Phaser.Scene {
     const platformTrap = new PlatformTrap(this, 1100, 300);
     this.traps.push(platformTrap);
 
-
     this.player = new Player(this, 200, 505);
 
     // const sawTrap = new SawTrap(this, 400, 400);
@@ -85,7 +85,6 @@ class Scene extends Phaser.Scene {
     const spikesTrap = new SpikesTrap(this, 400, 350);
     this.traps.push(spikesTrap);
   }
-
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player.update();

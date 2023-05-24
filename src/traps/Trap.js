@@ -1,3 +1,1 @@
-class Trap {
-  
-}
+class Trap {}

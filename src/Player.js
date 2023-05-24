@@ -8,6 +8,8 @@ class Player {
 
   lastSpeedX = 0;
   lastSpeedY = 0;
+  scoreText;
+  score = 0;
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -15,6 +17,16 @@ class Player {
     this.sprite = scene.physics.add.image(x, y, "player");
 
     this.sprite.body.setMass(1000);
+
+    this.scoreText = this.scene.add.text(100, 50, "yoyo", {
+      fontSize: "40px",
+      color: "black",
+    });
+  }
+
+  winRound() {
+    this.score += 1;
+    this.scoreText.setText("Points: " + this.score);
   }
 
   update() {
@@ -51,6 +63,9 @@ class Player {
 
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false;
+    }
+    if (this.scene.inputs.space.isDown) {
+      this.winRound();
     }
   }
 
