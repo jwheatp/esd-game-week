@@ -10,7 +10,7 @@ class Scene extends Phaser.Scene {
   blackHolead;
 
   endPoint;
-  platforms = []
+  platforms = [];
   isgameover = false;
 
   // on précharge les assets
@@ -143,7 +143,7 @@ class Scene extends Phaser.Scene {
     this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 200, 400);
+    this.player = new Player(this, 180, 230);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
