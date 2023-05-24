@@ -20,6 +20,7 @@ class Scene extends Phaser.Scene {
 
   phaseTitle
 
+  platformsLevel
 
   multiplayerSystem
 
@@ -223,6 +224,8 @@ class Scene extends Phaser.Scene {
     // this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
     // monsterTrap.initCursor();
+    // // monsterTrap.canSetupTrap = true;
+    // // monsterTrap.initCursor();
 
     // const computerTrap = new ComputerTrap(this, 580, 400);
     // this.traps.push(computerTrap);
@@ -316,6 +319,7 @@ class Scene extends Phaser.Scene {
     this.roundTitle.setOrigin(0.5)
     this.multiplayerSystem = new MultiplayerSystem(this)
     this.multiplayerSystem.init()
+    this.platformsLevel = new PlatformLevels(this);
   }
 
   // Fonction pour démarrer le jeu

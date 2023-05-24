@@ -28,7 +28,6 @@ class PlatformLevels {
     this.rockdecoration = scene.physics.add.staticImage(40, 430, "rockdecoration");
     this.platforms.push(this.rockdecoration)
 
-
     // Bloc invisible pour tout à gauche
     this.rotateBigCakePlatformHidden = scene.physics.add.staticImage(10, 380, "rotate-big-cakePlatform");
     // this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
@@ -45,6 +44,7 @@ class PlatformLevels {
     // this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
     this.rotateBigCakePlatformHidden.setAlpha(0)
 
+    this.rotateBigCakePlatformHidden.setAlpha(0)
 
     // Bloc invisible pour hitbox à l'horizontale dans la montage
     this.rockPlatform = scene.physics.add.staticImage(30, 310, "rockPlatform");
@@ -113,3 +113,4 @@ class PlatformLevels {
     }
   }
 }
+

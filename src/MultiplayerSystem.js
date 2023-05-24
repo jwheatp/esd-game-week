@@ -54,6 +54,7 @@ class MultiplayerSystem {
         } else {
           _player.serverX = player.x
           _player.serverY = player.y
+          _player.sprite.play(player.animation, true);
         }
 
       });

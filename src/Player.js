@@ -13,10 +13,7 @@ class Player {
 
   hasWon = false;
   inputPayload = {
-    left: false,
-    right: false,
-    up: false,
-    down: false,
+    
   };
 
   inputQueue = []
@@ -29,6 +26,7 @@ class Player {
     this.x = x;
     this.y = y;
 
+    // this.sprite.body.setAllowGravity(false)
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
     this.sprite.setScale(0.5);
 
@@ -41,6 +39,7 @@ class Player {
       fontSize: "40px",
       color: "black",
     });
+
     //score
     // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
     //   this.winRound();
@@ -127,29 +126,40 @@ class Player {
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
       this.scene.sound.play("jump");
+      this.inputPayload.animation = "jump"
+      // this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityY(-2*this.speed)
 
       this.lastSpeedY = -this.jump;
       this.sprite.play("anim-player-jump", true);
+      this.inputPayload.animation = "anim-player-jump"
     }
 
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(this.speed)
-      this.lastSpeedX = this.speed;
+      //this.lastSpeedX = this.speed;
       this.sprite.play('anim-player-run', true);
+      this.inputPayload.animation = "anim-player-run"
+      this.lastSpeedX = this.speed;
+
     } else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
 
       this.sprite.body.setVelocityX(-this.speed)
     } else {
       // sinon, je remets la vitesse à 0
-      this.sprite.setVelocityX(0);
+      this.sprite.body.setVelocityX(0)
+
+      if(!this.isJumping) {
+        this.sprite.play('anim-player-idl', true);
+        this.inputPayload.animation = "anim-player-idl"
+
+      }
       this.lastSpeedX = 0;
-      this.sprite.play("anim-player-idl", true);
     }
 
 
