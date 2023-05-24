@@ -4,9 +4,11 @@ class Scene extends Phaser.Scene {
 
   traps = [];
 
-  hbBlackHole
-  playerCollider
-  blackHolead
+  hbBlackHole;
+  playerCollider;
+  blackHolead;
+
+  endPoint;
 
   // on précharge les assets
   preload() {
@@ -48,7 +50,7 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
-    this.load.image("trap-blackHole", "assets/traps/blackHole.png")
+    this.load.image("trap-blackHole", "assets/traps/blackHole.png");
   }
 
   // initialise la scène
@@ -71,10 +73,13 @@ class Scene extends Phaser.Scene {
     // this.traps.push(monsterTrap);
 
     // piege sacha + faouzi
-    const platformTrap = new PlatformTrap(this, 1100, 300);
-    this.traps.push(platformTrap);
+    // const platformTrap = new PlatformTrap(this, 1100, 300);
+    // this.traps.push(platformTrap);
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
+    this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 505);
 
@@ -101,7 +106,7 @@ class Scene extends Phaser.Scene {
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
+    const computerTrap = new ComputerTrap(this, 580, 100);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
 

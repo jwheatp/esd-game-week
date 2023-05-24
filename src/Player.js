@@ -14,31 +14,35 @@ class Player {
   constructor(scene, x, y) {
     this.scene = scene;
 
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
 
     this.sprite = scene.physics.add.image(x, y, "player");
 
     this.sprite.body.setMass(1000);
 
-    //score text 
-    this.scoreText = this.scene.add.text(100, 50, "yoyo", {
+    //score text
+    this.scoreText = this.scene.add.text(600, 50, "t", {
       fontSize: "40px",
       color: "black",
+    });
+
+    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+      this.winRound();
     });
   }
   //score
   winRound() {
     this.score += 1;
-    this.scoreText.setText("Points: " + this.score);
+    this.scoreText.setText("player:" + this.score);
   }
+  safezone() {}
 
   update() {
     if (!this.canMove) {
       this.sprite.setVelocityX(0);
       return;
     }
-
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
@@ -67,10 +71,6 @@ class Player {
 
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false;
-    }
-    //score 
-    if (this.scene.inputs.space.isDown) {
-      this.winRound();
     }
   }
 
@@ -108,9 +108,6 @@ class Player {
         this.canMove = true;
       }
     }, blinkInterval);
-
-
-
   }
 
   destroy() {
