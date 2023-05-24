@@ -28,6 +28,7 @@ class Player {
     });
   }
   //score
+
   winRound() {
     this.score += 1;
     this.scoreText.setText("Points: " + this.score);
