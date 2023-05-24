@@ -73,6 +73,8 @@ class OpenedTrap extends Trap {
           onComplete: () => {
             setTimeout(() => {
               this.scene.player.sprite.setPosition(200, 505)
+              this.scene.sound.play("teleport");
+
 
               this.scene.tweens.chain({
                 targets: this.scene.player.sprite,
