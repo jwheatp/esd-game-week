@@ -126,12 +126,12 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-   this.add.image(1100, 110,"blindfold-score");
-   this.add.image(1100, 110, "icon");
-    
+    this.add.image(1100, 110, "blindfold-score");
+    this.add.image(1100, 110, "icon");
+
 
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
+    this.endPoint = this.physics.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 400);
