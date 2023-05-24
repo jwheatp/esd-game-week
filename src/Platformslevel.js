@@ -69,7 +69,7 @@ class PlatformLevels {
 
 
     // Plateforme pour atteindre le end (cake)
-    this.bigcakePlatform = scene.physics.add.staticImage(1250, 370, "big-cakePlatform");
+    this.bigcakePlatform = scene.physics.add.staticImage(1250, 400, "big-cakePlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigcakePlatform)
 
 
