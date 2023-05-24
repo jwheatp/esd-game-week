@@ -23,7 +23,18 @@ class PlatformLevels {
 
 
 
+    // Bloc invisible pour tout à gauche
     this.rotateBigCakePlatformHidden = scene.physics.add.staticImage(10, 380, "rotate-big-cakePlatform");
+    this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
+    this.rotateBigCakePlatformHidden.setAlpha(0)
+
+
+    // Bloc invisible pour ne pas
+    this.rotateBigCakePlatformHidden = scene.physics.add.staticImage(200, 640, "rotate-big-cakePlatform");
+    this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
+    this.rotateBigCakePlatformHidden.setAlpha(0)
+
+    this.rotateBigCakePlatformHidden = scene.physics.add.staticImage(250, 740, "rotate-big-cakePlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
     this.rotateBigCakePlatformHidden.setAlpha(0)
 
@@ -53,13 +64,20 @@ class PlatformLevels {
     this.bigGrassPlatform = scene.physics.add.staticImage(450, 670, "big-grassPlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
 
-    this.bigGrassPlatform = scene.physics.add.staticImage(1050, 570, "big-grassPlatform");
+
+
+    // Plateforme en bas avant d'accéder au end (en grass)
+    this.bigGrassPlatform = scene.physics.add.staticImage(1000, 570, "big-grassPlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
 
+
+    // Plateforme pour atteindre le end (cake)
     this.bigcakePlatform = scene.physics.add.staticImage(1250, 370, "big-cakePlatform");
     this.scene.physics.add.collider(this.scene.player.sprite, this.bigcakePlatform)
 
 
+    this.bigcakePlatform = scene.physics.add.staticImage(1310, 280, "big-cakePlatform");
+    this.scene.physics.add.collider(this.scene.player.sprite, this.bigcakePlatform)
 
 
 
