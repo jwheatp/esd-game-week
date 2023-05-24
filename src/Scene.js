@@ -46,7 +46,11 @@ class Scene extends Phaser.Scene {
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+
+
+    // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     this.load.image("endPlatform", "assets/platforms/end.png");
+    this.load.image("hitbox-invisible", "assets/platforms/hitbox-invisible.png")
 
     this.load.image("collideborder", "assets/platforms/collideborder.png");
 
@@ -133,7 +137,8 @@ class Scene extends Phaser.Scene {
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1233, 230, "endPlatform");
+    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
+    this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
     this.player = new Player(this, 200, 400);
