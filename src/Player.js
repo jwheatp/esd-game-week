@@ -15,6 +15,9 @@ class Player {
   constructor(scene, x, y) {
     this.scene = scene;
 
+    this.x = x
+    this.y = y
+
     this.sprite = scene.physics.add.image(x, y, "player");
 
     this.sprite.body.setMass(1000);
@@ -23,7 +26,12 @@ class Player {
       fontSize: "15px",
       color: "black",
     });
+
+    /*tests animations*/
+
+
   }
+  //score
 
   winRound() {
     this.score += 1;
@@ -49,6 +57,7 @@ class Player {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed;
+      // this.scene.anims.play('anim-player-run', true);
     } else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
@@ -60,11 +69,13 @@ class Player {
       // sinon, je remets la vitesse à 0
       this.sprite.setVelocityX(0);
       this.lastSpeedX = 0;
+      //this.sprite.anims.stop('player-run');
     }
 
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false;
     }
+    //score 
     if (this.scene.inputs.space.isDown) {
       this.winRound();
     }
@@ -104,5 +115,12 @@ class Player {
         this.canMove = true;
       }
     }, blinkInterval);
+
+
+
+  }
+
+  destroy() {
+    this.sprite.alpha = 0;
   }
 }
