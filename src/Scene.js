@@ -27,7 +27,7 @@ class Scene extends Phaser.Scene {
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
-    this.load.image("traphtml", "assets/traps/dev/test.png");
+    this.load.image("traphtml", "assets/traps/dev/html.png");
     this.load.image("trapjs", "assets/traps/dev/js.png");
     this.load.image("trapphp", "assets/traps/dev/php.png");
     this.load.image("trapwordpress", "assets/traps/dev/wordpress.png");
@@ -85,6 +85,8 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
+    var rect = this.add.rectangle(1000, 139, 300, 30, 0XFF0000, 1);
+
     this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     this.player = new Player(this, 200, 200);
@@ -99,26 +101,26 @@ class Scene extends Phaser.Scene {
       }
     );
 
-    // const sawTrap = new SawTrap(this, 400, 400);
-    // this.traps.push(sawTrap);
+    const sawTrap = new SawTrap(this, 400, 400);
+    this.traps.push(sawTrap);
 
     this.physics.add.collider(this.player.sprite, platform.sprite);
     this.physics.add.collider(this.player.sprite, platform2.sprite);
 
-    /*
+  
     const openedTrap = new OpenedTrap(this, 800, 455);
     this.traps.push(openedTrap);
 
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
 
     const computerTrap = new ComputerTrap(this, 580, 100);
     this.traps.push(computerTrap);
     openedTrap.createColliders();
 
-    const spikesTrap = new SpikesTrap(this, 400, 350);
-    this.traps.push(spikesTrap);
-    */
+    // const spikesTrap = new SpikesTrap(this, 400, 350);
+    // this.traps.push(spikesTrap);
+    
 
   }
 
@@ -132,10 +134,10 @@ class Scene extends Phaser.Scene {
     for (let i = 0; i < this.traps.length; i++) {
       this.traps[i].update(time);
     }
-    // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
-    //   this.player.x = 500;
-    //   this.player.y = 400;
-    // }
+    if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
+      this.player.x = 500;
+      this.player.y = 400;
+    }
 
     // Vérification de la collision entre le joueur et le sprite hbBlackHole
     if (this.playerCollider && this.hbBlackHoleCollider) {
