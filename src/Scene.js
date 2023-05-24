@@ -105,6 +105,10 @@ class Scene extends Phaser.Scene {
     this.physics.add.collider(this.player.sprite, platform.sprite);
     this.physics.add.collider(this.player.sprite, platform2.sprite);
 
+
+      this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
+      this.endPoint.body.setAllowGravity(false);
+
     /*
     const openedTrap = new OpenedTrap(this, 800, 455);
     this.traps.push(openedTrap);
