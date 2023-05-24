@@ -13,6 +13,8 @@ class Scene extends Phaser.Scene {
   platforms = []
   isgameover = false;
 
+  platformsLevel
+
   multiplayerSystem
 
   // on précharge les assets
@@ -135,7 +137,6 @@ class Scene extends Phaser.Scene {
     this.endPoint.body.setAllowGravity(false);
 
     // this.player = new Player(this, 200, 400);
-    this.player = new Player(this, 200, 400);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -169,13 +170,13 @@ class Scene extends Phaser.Scene {
 
     // const monsterTrap = new MonsterTrap(this, 900, 210);
     // this.traps.push(monsterTrap);
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
-    // monsterTrap.canSetupTrap = true;
-    // monsterTrap.initCursor();
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
+    // // monsterTrap.canSetupTrap = true;
+    // // monsterTrap.initCursor();
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
-    this.traps.push(computerTrap);
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
@@ -197,7 +198,7 @@ class Scene extends Phaser.Scene {
     this.multiplayerSystem.init()
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    new PlatformLevels(this);
+    this.platformsLevel = new PlatformLevels(this);
   }
 
   // appelée très souvent (correspond au fps)
