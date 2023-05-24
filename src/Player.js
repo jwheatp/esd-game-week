@@ -17,7 +17,7 @@ class Player {
     this.x = x
     this.y = y
 
-    this.sprite = scene.physics.add.image(x, y, "player");
+    this.sprite = scene.physics.add.sprite(x, y, "player");
 
     this.sprite.body.setMass(1000);
 
@@ -28,6 +28,26 @@ class Player {
     });
 
     /*tests animations*/
+    this.scene.anims.create({
+      key: 'anim-player-run',
+      frames: [{ key: "player-run" }, { key: "player-walk" }],
+      frameRate: 7,
+      repeat: -1
+    });
+
+    this.scene.anims.create({
+      key: 'anim-player-idl',
+      frames: [{ key: "player-idl" }],
+      frameRate: 7,
+      repeat: -1
+    });
+
+    this.scene.anims.create({
+      key: 'anim-player-jump',
+      frames: [{ key: "player-jump" }],
+      frameRate: 7,
+      repeat: -1
+    });
 
 
   }
@@ -50,6 +70,7 @@ class Player {
       // je mets une vitesse X à 200
       this.sprite.setVelocityY(-this.jump);
       this.lastSpeedY = -this.jump;
+      this.sprite.play('anim-player-jump', true);
     }
 
     // déplacement horizontal
@@ -57,7 +78,7 @@ class Player {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed;
-      // this.scene.anims.play('anim-player-run', true);
+      this.sprite.play('anim-player-run', true);
     } else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
@@ -69,7 +90,7 @@ class Player {
       // sinon, je remets la vitesse à 0
       this.sprite.setVelocityX(0);
       this.lastSpeedX = 0;
-      //this.sprite.anims.stop('player-run');
+      this.sprite.play('anim-player-idl', true);
     }
 
     if (Math.abs(this.sprite.body.velocity.y) === 0) {

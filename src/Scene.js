@@ -55,18 +55,13 @@ class Scene extends Phaser.Scene {
     this.load.image("player-jump", "assets/skin/playerTwo-Jump.png");
     this.load.image("player-run", "assets/skin/playerTwo-Run.png");
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
+    this.load.image("player-idl", "assets/skin/playerTwo.png")
 
   }
 
   // initialise la scène
   // est appelée qu'une seule fois
   create() {
-    this.anims.create({
-      key: 'anim-player-run',
-      frames: [{ key: "player-run" }, { key: "player-walk" }],
-      frameRate: 10,
-      repeat: -1
-    });
 
     this.inputs = this.input.keyboard.createCursorKeys();
 
@@ -96,7 +91,6 @@ class Scene extends Phaser.Scene {
       this.player.sprite,
       this.hbBlackHole.sprite,
       () => {
-        console.log("destroyyyyed");
         // Faire disparaître le joueur
         this.player.die();
         // Autres actions à effectuer en cas de collision avec hbBlackHole...
