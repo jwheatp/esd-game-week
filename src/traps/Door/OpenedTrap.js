@@ -87,7 +87,7 @@ class OpenedTrap extends Trap {
               });
 
               this.scene.player.unfreeze()
-            }, 500)
+            }, 0)
 
           }
         });
