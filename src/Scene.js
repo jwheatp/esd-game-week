@@ -18,8 +18,22 @@ class Scene extends Phaser.Scene {
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
 
+    // platforms
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
-    this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
+
+    this.load.image("big-grassPlatform", "assets/platforms/big-grassPlatform.png")
+    this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png")
+    this.load.image("big-cakePlatform", "assets/platforms/big-cakePlatform.png")
+    this.load.image("cakePlatform", "assets/platforms/cakePlatform.png")
+    this.load.image("icePlatform", "assets/platforms/icePlatform.png")
+    this.load.image("rockPlatform", "assets/platforms/rockPlatform.png")
+    this.load.image("snowPlatform", "assets/platforms/snowPlatform.png")
+    this.load.image("grassPlatform", "assets/platforms/grassPlatform.png")
+    this.load.image("rockdecoration", "assets/platforms/rock_decoration.png")
+
+
+
+    // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
     //Assets sacha et faouzi
 
@@ -73,7 +87,7 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "scene1");
 
-    const platform = new Platform(this, 200, 600);
+    // const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
 
     const doorTrap = new DoorTrap(this, 800, 455);
@@ -89,6 +103,9 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
+    var rect = this.add.rectangle(1000, 139, 300, 30, 0XFF0000, 1);
+
+    this.hbBlackHole = new hbBlackHole(this, 900, 400);
     this.endPoint = this.physics.add.image(680, 450, "trap-mode-opened");
     this.endPoint.body.setAllowGravity(false);
 
@@ -108,11 +125,15 @@ class Scene extends Phaser.Scene {
     // const sawTrap = new SawTrap(this, 400, 400);
     // this.traps.push(sawTrap);
 
-    this.physics.add.collider(this.player.sprite, platform.sprite);
-    this.physics.add.collider(this.player.sprite, platform2.sprite);
 
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
+  
+    // const openedTrap = new OpenedTrap(this, 800, 455);
+    // this.traps.push(openedTrap);
+
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
 
     const computerTrap = new ComputerTrap(this, 600, 410);
     this.traps.push(computerTrap);
@@ -120,6 +141,9 @@ class Scene extends Phaser.Scene {
 
     // const spikesTrap = new SpikesTrap(this, 400, 350);
     // this.traps.push(spikesTrap);
+
+    new PlatformLevels(this);
+
   }
 
   // appelée très souvent (correspond au fps)

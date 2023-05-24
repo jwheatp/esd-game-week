@@ -17,7 +17,8 @@ class Player {
     this.x = x;
     this.y = y;
 
-    this.sprite = scene.physics.add.sprite(x, y, "player");
+    this.sprite = scene.physics.add.sprite(x, y, "player-idl");
+    this.sprite.setScale(0.5)
 
     this.sprite.body.setMass(1000);
 
