@@ -137,6 +137,8 @@ class Scene extends Phaser.Scene {
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
     this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
     this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
