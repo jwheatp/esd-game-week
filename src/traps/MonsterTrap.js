@@ -65,6 +65,7 @@ class MonsterTrap extends Trap {
   }
 
   update() {
+    
     this.setup();
 
     if (this.ground.body.y > this.piques.y - 2) {
