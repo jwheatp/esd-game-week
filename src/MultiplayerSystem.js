@@ -1,5 +1,5 @@
 class MultiplayerSystem {
-  client = new Colyseus.Client("ws://localhost:2567");
+  client = new Colyseus.Client("https://esd-game-week-server-production.up.railway.app");
 
   scene
 
@@ -16,8 +16,16 @@ class MultiplayerSystem {
     console.log("Joining room...");
 
     try {
-      this.room = await this.client.joinOrCreate("my_room");
-      console.log("Joined successfully!");
+      const name = window.location.hash.substring(1)
+
+      if(name) {
+        this.room = await this.client.joinById(name);
+        console.log(this.room)
+      } else {
+        this.room = await this.client.create("my_room");
+      }
+
+      window.location.hash = this.room.id
     } catch (e) {
       console.error(e);
     }
