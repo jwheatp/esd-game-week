@@ -5,14 +5,14 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      debug: true,
+      debug: false,
       gravity: { y: 400 },
     },
   },
   audio: {
     disableWebAudio: true
   },
-  scene: Scene4,
+  scene: Scene2,
 };
 
 const game = new Phaser.Game(config);
