@@ -89,7 +89,7 @@ class Scene5 extends Phaser.Scene {
 
     // Changer la position toutes les 2 à 8 secondes
     this.time.addEvent({
-      delay: Phaser.Math.Between(2000, 8000),
+      delay: Phaser.Math.Between(4000, 6000),
       loop: true,
       callback: changePosition
     });
