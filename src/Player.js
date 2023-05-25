@@ -133,8 +133,12 @@ class Player {
 
     // déplacement horizontal
     if (this.scene.inputs.right.isDown
-    ) {
-      this.scene.sound.play("run");
+      )
+    
+ {
+  this.scene.sound.play("run")
+
+  ;
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed;
@@ -144,8 +148,8 @@ class Player {
       }
       this.sprite.flipX = false
     } else if (this.scene.inputs.left.isDown) {
-      this.scene.sound.play("run");
-
+        this.scene.sound.play("run")
+        
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
       this.lastSpeedX = -this.speed;
