@@ -122,7 +122,7 @@ class Scene3 extends Phaser.Scene {
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
 
-    new PlatformLevelsScene3(this)
+    // new PlatformLevelsScene3(this)
 
     this.platformsLevels = new PlatformLevelsScene3(this);
 
