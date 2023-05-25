@@ -66,6 +66,8 @@ class Player {
     }
     this.score += 1;
     this.scoreText.setText("player:" + this.score);
+    this.scene.sound.play("gamewin");
+
   }
 
   update() {
@@ -127,7 +129,7 @@ class Player {
 
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
-
+       
     this.canMove = false;
 
     const numBlinks = 10;
@@ -150,5 +152,12 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
+    
+
+  }
+  fall (){
+    this.scene.sound.play("gamelose");
   }
 }
+
+

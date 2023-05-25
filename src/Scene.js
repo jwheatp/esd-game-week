@@ -63,6 +63,8 @@ class Scene extends Phaser.Scene {
 
     //audio sacha et faouzi
     this.load.audio("gamesong", "assets/audio/game-song.mp3");
+    this.load.audio("gamewin", "assets/audio/win.mp3");
+    this.load.audio("gamelose", "assets/audio/lose.mp3");
     // this.load.audio("jump", "assets/audio/jump-player.mp3");
     this.load.audio("jump", "assets/audio/cartoonjump.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
