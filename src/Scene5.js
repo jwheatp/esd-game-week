@@ -13,6 +13,8 @@ class Scene5 extends Phaser.Scene {
   platforms = [];
   isgameover = false;
 
+  platformsLevels
+
   positions = [
     { x: 1160, y: 150 },
     { x: 1160, y: 550 },

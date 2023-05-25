@@ -125,6 +125,7 @@ class Scene3 extends Phaser.Scene {
     new PlatformLevelsScene3(this)
 
     this.platformsLevels = new PlatformLevelsScene3(this);
+
     this.player = new Player(this, 1200, 130);
   }
 
