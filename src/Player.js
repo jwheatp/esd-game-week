@@ -82,7 +82,7 @@ class Player {
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
-      this.scene.sound.play("jump");
+       this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
       this.sprite.setVelocityY(-this.jump);
@@ -91,12 +91,18 @@ class Player {
     }
 
     // déplacement horizontal
-    if (this.scene.inputs.right.isDown) {
+    if (this.scene.inputs.right.isDown
+      )
+    
+ {
+  this.scene.sound.play("run");
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed;
       this.sprite.play("anim-player-run", true);
     } else if (this.scene.inputs.left.isDown) {
+        this.scene.sound.play("run");
+
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
       this.lastSpeedX = -this.speed;
@@ -129,9 +135,10 @@ class Player {
     console.log("le joueur est mort !");
 
     this.isDead = true;
+      
 
     this.canMove = false;
-       
+       this.scene.sound.play("hit");
     this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
 
