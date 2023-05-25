@@ -47,10 +47,12 @@ class Scene extends Phaser.Scene {
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
 
-
     // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     this.load.image("endPlatform", "assets/platforms/end.png");
-    this.load.image("hitbox-invisible", "assets/platforms/hitbox-invisible.png")
+    this.load.image(
+      "hitbox-invisible",
+      "assets/platforms/hitbox-invisible.png"
+    );
 
     this.load.image("collideborder", "assets/platforms/collideborder.png");
 
@@ -123,10 +125,8 @@ class Scene extends Phaser.Scene {
     const platformTrap = new PlatformTrap(this, 600, 300);
     this.traps.push(platformTrap);
 
-   this.add.image(1000, 40,"blindfold-score");
-   this.add.image(870, 40, "icon");
-    
-
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.image(870, 40, "icon");
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
