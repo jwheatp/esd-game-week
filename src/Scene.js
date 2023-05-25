@@ -81,6 +81,8 @@ class Scene extends Phaser.Scene {
     // this.load.audio("jump", "assets/audio/jump-player.mp3");
     this.load.audio("jump", "assets/audio/cartoonjump.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
+    this.load.audio("run", "assets/audio/run_1.mp3");
+    this.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
@@ -103,8 +105,8 @@ class Scene extends Phaser.Scene {
     this.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
-    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
+    // this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    // this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
     this.load.image("trap-blackHole", "assets/traps/blackHole.png");
