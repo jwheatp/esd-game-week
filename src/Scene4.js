@@ -1,4 +1,4 @@
-class Scene extends Phaser.Scene {
+class Scene4 extends Phaser.Scene {
   inputs;
   player;
   viseur;
@@ -15,32 +15,19 @@ class Scene extends Phaser.Scene {
 
   // on précharge les assets
   preload() {
-    this.load.image("scene1", "assets/scene1.jpg");
+    this.load.image("scene4", "assets/scene4.jpg");
 
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
 
     // platforms
     this.load.image("trap-saw-platform", "assets/traps/saw/platform.png");
-
-    this.load.image(
-      "big-grassPlatform",
-      "assets/platforms/big-grassPlatform.png"
-    );
+    this.load.image("big-grassPlatform", "assets/platforms/big-grassPlatform.png");
     this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png");
-    this.load.image(
-      "big-cakePlatform",
-      "assets/platforms/big-cakePlatform.png"
-    );
-    this.load.image(
-      "rotate-big-cakePlatform",
-      "assets/platforms/90big-cakePlatform.png"
-    );
+    this.load.image("big-cakePlatform", "assets/platforms/big-cakePlatform.png");
+    this.load.image("rotate-big-cakePlatform", "assets/platforms/90big-cakePlatform.png");
     this.load.image("cakePlatform", "assets/platforms/cakePlatform.png");
-    this.load.image(
-      "rotate-cakePlatform",
-      "assets/platforms/40cakePlatform.png"
-    );
+    this.load.image("rotate-cakePlatform", "assets/platforms/40cakePlatform.png");
     this.load.image("icePlatform", "assets/platforms/icePlatform.png");
     this.load.image("rockPlatform", "assets/platforms/rockPlatform.png");
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
@@ -66,8 +53,6 @@ class Scene extends Phaser.Scene {
     this.load.audio("gamesong", "assets/audio/game-song.mp3");
     this.load.audio("jump", "assets/audio/jump-player.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
-    this.load.audio("run", "assets/audio/run_1.mp3");
-    this.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
@@ -90,8 +75,8 @@ class Scene extends Phaser.Scene {
     this.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-    // this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
-    // this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
     this.load.image("trap-blackHole", "assets/traps/blackHole.png");
@@ -111,7 +96,7 @@ class Scene extends Phaser.Scene {
   // est appelée qu'une seule fois
   async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
-     this.sound.play("gamesong");
+    // this.sound.play("gamesong");
 
     this.add.image(640, 360, "scene1");
 
@@ -146,7 +131,7 @@ class Scene extends Phaser.Scene {
     this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 180, 430);
+    this.player = new Player(this, 180, 230);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -180,13 +165,13 @@ class Scene extends Phaser.Scene {
 
     // const monsterTrap = new MonsterTrap(this, 900, 210);
     // this.traps.push(monsterTrap);
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
+    const monsterTrap = new MonsterTrap(this, 900, 210);
+    this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
     // monsterTrap.initCursor();
 
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
+    const computerTrap = new ComputerTrap(this, 580, 400);
+    this.traps.push(computerTrap);
     // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
@@ -206,7 +191,7 @@ class Scene extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    new PlatformLevelsScene1(this);
+    new PlatformLevelsScene4(this);
   }
 
   // appelée très souvent (correspond au fps)

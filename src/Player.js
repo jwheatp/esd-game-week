@@ -2,7 +2,7 @@ class Player {
   scene;
   sprite;
   speed = 200;
-  jump = 400;
+  jump = 350;
   canMove = true;
   isJumping = false;
 
@@ -11,6 +11,8 @@ class Player {
   scoreText;
   score = 0;
 
+  hasWon = false;
+
   constructor(scene, x, y) {
     this.scene = scene;
 
@@ -18,21 +20,24 @@ class Player {
     this.y = y;
 
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
 
     this.sprite.body.setMass(1000);
 
     //score text
-    this.scoreText = this.scene.add.text(600, 50, "t", {
+    this.scoreText = this.scene.add.text(600, 50, "", {
       fontSize: "40px",
       color: "black",
     });
     //score
-    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
-      this.winRound();
-      this.scene.isgameover = true;
-      this.canMove = false
-    });
+    // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+    //   this.winRound();
+    // });
+    // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+    //   this.winRound();
+    //   this.scene.isgameover = true;
+    //   this.canMove = false
+    // });
 
     /*tests animations*/
     this.scene.anims.create({
@@ -58,17 +63,30 @@ class Player {
     this.sprite.body.setMass(1000);
 
     // Platform.addCollider(this.sprite)
+    this.scene.platformsLevels.initCollider(this.sprite);
   }
+
+  reset() {
+    this.hasWon = false;
+    this.isDead = false;
+
+    this.sprite.setScale(0.5);
+    this.canMove = true;
+
+    this.sprite.play("anim-player-idl", true);
+  }
+
   //score
 
   winRound() {
+    this.score += 1;
+    this.scoreText.setText("player:" + this.score);
+
+    this.hasWon = true;
     if (this.scene.isgameover) {
       return;
     }
-    this.score += 1;
-    this.scoreText.setText("player:" + this.score);
     this.scene.sound.play("gamewin");
-
   }
 
   update() {
@@ -131,6 +149,8 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
+  fall() {}
+
   die() {
     console.log("le joueur est mort !");
 
@@ -141,33 +161,33 @@ class Player {
        this.scene.sound.play("hit");
     this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
+    this.canMove = false;
+    this.isDead = true;
+
+    this.canMove = false;
 
     const numBlinks = 10;
     const blinkInterval = 250;
 
     let blinkCount = 0;
 
-    const blinkIntervalId = setInterval(() => {
-      this.sprite.alpha = this.sprite.alpha === 1 ? 0.2 : 1;
+    // const blinkIntervalId = setInterval(() => {
+    //   this.sprite.alpha = this.sprite.alpha === 1 ? 0.2 : 1;
 
-      blinkCount++;
+    //   blinkCount++;
 
-      if (blinkCount >= numBlinks) {
-        clearInterval(blinkIntervalId);
-        this.sprite.alpha = 0.2;
-        this.canMove = true;
-      }
-    }, blinkInterval);
+    //   if (blinkCount >= numBlinks) {
+    //     clearInterval(blinkIntervalId);
+    //     this.sprite.alpha = 0.2;
+    //     this.canMove = true;
+    //   }
+    // }, blinkInterval);
   }
 
   destroy() {
     this.sprite.alpha = 0;
-    
-
   }
-  fall (){
+  fall() {
     this.scene.sound.play("gamelose");
   }
 }
-
-

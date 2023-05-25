@@ -1,6 +1,6 @@
 class SawTrap extends Trap {
   scene;
-  platformSprite;
+  sprite;
   discSprite;
   speed = 150;
 
@@ -10,7 +10,7 @@ class SawTrap extends Trap {
   isGoingRight = true;
 
   constructor(scene, x, y) {
-    super();
+    super(scene, x, y);
 
     this.scene = scene;
     this.x = x;
@@ -19,6 +19,7 @@ class SawTrap extends Trap {
     this.discSprite = scene.physics.add.image(x, y - 18, "trap-saw-disc");
     this.discSprite.body.setAllowGravity(false);
     this.discSprite.setImmovable(true);
+
     this.scene.physics.add.overlap(
       this.discSprite,
       this.scene.player.sprite,
@@ -27,17 +28,18 @@ class SawTrap extends Trap {
       }
     );
 
-    this.platformSprite = scene.physics.add.image(x, y, "trap-saw-platform");
-    this.platformSprite.body.setAllowGravity(false);
-    this.platformSprite.setImmovable(true);
+    this.sprite = scene.physics.add.image(x, y, "trap-saw-platform");
+    this.sprite.body.setAllowGravity(false);
+    this.sprite.setImmovable(true);
     this.scene.physics.add.collider(
-      this.platformSprite,
+      this.sprite,
       this.scene.player.sprite
     );
 
-    this.discSprite.setVelocityX(this.speed);
-    this.isGoingRight = true;
 
+  }
+
+  startAnimation() {
     this.scene.tweens.add({
       targets: this.discSprite,
       rotation: 360,
@@ -45,17 +47,34 @@ class SawTrap extends Trap {
       repeat: -1,
       ease: "Linear",
     });
+
+    this.discSprite.setVelocityX(this.speed);
+    this.isGoingRight = true;
   }
 
   update() {
-    if (this.isGoingRight && this.discSprite.body.x > this.x + 40) {
+    this.setup();
+
+    if (this.isGoingRight && this.discSprite.body.x > this.x + 120) {
       this.discSprite.setVelocityX(-this.speed);
       this.isGoingRight = false;
     }
 
-    if (!this.isGoingRight && this.discSprite.body.x < this.x - 90) {
+    if (!this.isGoingRight && this.discSprite.body.x < this.x - 20) {
       this.discSprite.setVelocityX(this.speed);
       this.isGoingRight = true;
     }
+  }
+
+  setVelocityX(speed) {
+    this.discSprite.setVelocityX(speed)
+    this.sprite.setVelocityX(speed)
+
+  }
+
+  setVelocityY(speed) {
+    // je mets une vitesse X à 200
+    this.discSprite.setVelocityY(speed)
+    this.sprite.setVelocityY(speed)
   }
 }

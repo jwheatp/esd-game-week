@@ -1,7 +1,9 @@
-class Scene extends Phaser.Scene {
+class Scene2 extends Phaser.Scene {
   inputs;
   player;
   viseur;
+
+  speed = 150;
 
   traps = [];
 
@@ -13,9 +15,11 @@ class Scene extends Phaser.Scene {
   platforms = [];
   isgameover = false;
 
+  platformsLevel
+
   // on précharge les assets
   preload() {
-    this.load.image("scene1", "assets/scene1.jpg");
+    this.load.image("scene2", "assets/scene2.jpg");
 
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
@@ -46,7 +50,7 @@ class Scene extends Phaser.Scene {
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
-    this.load.image("90dirtPlatform", "assets/platforms/90dirtPlatform.png");
+    this.load.image("dirtPlatform", "assets/platforms/dirtPlatform.png");
 
 
     // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
@@ -66,8 +70,6 @@ class Scene extends Phaser.Scene {
     this.load.audio("gamesong", "assets/audio/game-song.mp3");
     this.load.audio("jump", "assets/audio/jump-player.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
-    this.load.audio("run", "assets/audio/run_1.mp3");
-    this.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");
@@ -90,8 +92,8 @@ class Scene extends Phaser.Scene {
     this.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-    // this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
-    // this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
+    this.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    this.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
     this.load.image("trap-blackHole", "assets/traps/blackHole.png");
@@ -111,9 +113,9 @@ class Scene extends Phaser.Scene {
   // est appelée qu'une seule fois
   async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
-     this.sound.play("gamesong");
+    // this.sound.play("gamesong");
 
-    this.add.image(640, 360, "scene1");
+    this.add.image(640, 360, "scene2");
 
     // const doorTrap = new DoorTrap(this, 800, 455);
     // this.traps.push(doorTrap);
@@ -142,11 +144,11 @@ class Scene extends Phaser.Scene {
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
-    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
-    this.add.image(1233, 230, "endPlatform");
+    this.endPoint = this.physics.add.image(400, 570, "hitbox-invisible");
+    this.add.image(390, 570, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 180, 430);
+    this.player = new Player(this, 800, 550);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -206,12 +208,14 @@ class Scene extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    new PlatformLevelsScene1(this);
+    this.platformsLevel = new PlatformLevelsScene2(this);
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player?.update();
+
+    this.platformsLevel?.update()
 
     // for (let i = 0; i < this.traps.length; i++) {
     //   this.traps[i].update(time);
