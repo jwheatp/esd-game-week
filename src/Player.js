@@ -31,7 +31,8 @@ class Player {
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
       this.winRound();
       this.scene.isgameover = true;
-      this.canMove = false });
+      this.canMove = false
+    });
 
     /*tests animations*/
     this.scene.anims.create({
@@ -81,7 +82,7 @@ class Player {
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
-       this.scene.sound.play("jump");
+      this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
       this.sprite.setVelocityY(-this.jump);
@@ -127,10 +128,12 @@ class Player {
   die() {
     console.log("le joueur est mort !");
 
-    this.sprite.setScale(0.5, 0.1);
+    this.isDead = true;
+
     this.canMove = false;
        
     this.canMove = false;
+    this.sprite.setScale(0.5, 0.1);
 
     const numBlinks = 10;
     const blinkInterval = 250;
