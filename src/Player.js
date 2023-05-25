@@ -33,11 +33,11 @@ class Player {
     // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
     //   this.winRound();
     // });
-    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
-      this.winRound();
-      this.scene.isgameover = true;
-      this.canMove = false
-    });
+    // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+    //   this.winRound();
+    //   this.scene.isgameover = true;
+    //   this.canMove = false
+    // });
 
     /*tests animations*/
     this.scene.anims.create({
