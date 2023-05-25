@@ -42,7 +42,7 @@ class PlatformLevelsScene4 {
     this.cakePlatform = scene.physics.add.staticImage(1125, 370, "cakePlatform")
     this.platforms.push(this.cakePlatform)
 
-    this.rockPlatform = scene.physics.add.staticImage(1170, 590, "rockPlatform")
+    this.rockPlatform = scene.physics.add.staticImage(1170, 630, "rockPlatform")
     this.platforms.push(this.rockPlatform)
 
     this.rockPlatform = scene.physics.add.staticImage(1200, 290, "rockPlatform")
