@@ -20,7 +20,7 @@ class Player {
     this.y = y;
 
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.5)
+    this.sprite.setScale(0.5);
 
     this.sprite.body.setMass(1000);
 
@@ -33,6 +33,11 @@ class Player {
     // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
     //   this.winRound();
     // });
+    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+      this.winRound();
+      this.scene.isgameover = true;
+      this.canMove = false
+    });
 
     /*tests animations*/
     this.scene.anims.create({
@@ -55,7 +60,7 @@ class Player {
       frameRate: 7,
       repeat: -1,
     });
-    this.sprite.body.setMass(1000)
+    this.sprite.body.setMass(1000);
 
     // Platform.addCollider(this.sprite)
     this.scene.platformsLevels.initCollider(this.sprite)
@@ -79,12 +84,17 @@ class Player {
     this.scoreText.setText("player:" + this.score);
 
     this.hasWon = true
+    if (this.scene.isgameover) {
+      return;
+    }
+    this.scene.sound.play("gamewin");
+
   }
 
   update() {
-    if (!this.score) {
-      this.scene.isgameover = true;
-    }
+    // if (!this.score) {
+    //   this.scene.isgameover = true;
+    // }
     if (!this.canMove) {
       this.sprite.setVelocityX(0);
       return;
@@ -92,7 +102,7 @@ class Player {
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
-      // this.scene.sound.play("jump");
+      this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
       this.sprite.setVelocityY(-this.jump);
@@ -146,9 +156,10 @@ class Player {
 
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
+    this.isDead = true;
 
     this.canMove = false;
-
+       
     const numBlinks = 10;
     const blinkInterval = 250;
 
@@ -169,5 +180,12 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
+    
+
+  }
+  fall (){
+    this.scene.sound.play("gamelose");
   }
 }
+
+
