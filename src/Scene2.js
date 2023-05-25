@@ -19,9 +19,13 @@ class Scene2 extends Phaser.Scene {
   platformsLevels
 
   // on précharge les assets
+
   preload() {
+    new Preloader(this)
+
     this.load.image("scene2", "assets/scene2.jpg");
 
+<<<<<<< HEAD
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
 
@@ -113,6 +117,8 @@ class Scene2 extends Phaser.Scene {
     //bandeau du score et icone du player
     this.load.image("blindfold-score", "assets/traps/dev/test.png");
     this.load.image("icon", "assets/traps/dev/icone.png");
+=======
+>>>>>>> 965a6e3f099e68d054053e04d97ef727cba06196
   }
 
   // initialise la scène
@@ -143,8 +149,8 @@ class Scene2 extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    this.add.image(1100, 110, "blindfold-score");
-    this.add.image(1100, 110, "icon");
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.image(1000, 40, "icon");
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);

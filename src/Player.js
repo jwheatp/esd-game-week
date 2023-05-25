@@ -100,7 +100,7 @@ class Player {
     // saut
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
-       this.scene.sound.play("jump");
+      this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
       this.sprite.setVelocityY(-this.jump);
@@ -157,10 +157,10 @@ class Player {
     console.log("le joueur est mort !");
 
     this.isDead = true;
-      
+
 
     this.canMove = false;
-       this.scene.sound.play("hit");
+    this.scene.sound.play("hit");
     this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;

@@ -24,8 +24,11 @@ class Scene extends Phaser.Scene {
 
   // on précharge les assets
   preload() {
+    new Preloader(this)
+
     this.load.image("scene1", "assets/scene1.jpg");
 
+<<<<<<< HEAD
     this.load.image("fall-collider", "assets/platforms/fallcollider.png");
 
     this.load.image("player", "assets/player-idle.png");
@@ -125,6 +128,8 @@ class Scene extends Phaser.Scene {
     this.load.image("icon-player3", "assets/traps/dev/mario.png");
     this.load.image("icon-player4", "assets/traps/dev/mario.png");
     this.load.image("icon-player5", "assets/traps/dev/mario.png");
+=======
+>>>>>>> 965a6e3f099e68d054053e04d97ef727cba06196
   }
   // initialise la scène
   // est appelée qu'une seule fois

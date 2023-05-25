@@ -17,8 +17,11 @@ class Scene3 extends Phaser.Scene {
 
   // on précharge les assets
   preload() {
+    new Preloader(this)
+
     this.load.image("scene3", "assets/scene3.jpg");
 
+<<<<<<< HEAD
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
 
@@ -104,6 +107,8 @@ class Scene3 extends Phaser.Scene {
     //bandeau du score et icone du player
     this.load.image("blindfold-score", "assets/traps/dev/test.png");
     this.load.image("icon", "assets/traps/dev/icone.png");
+=======
+>>>>>>> 965a6e3f099e68d054053e04d97ef727cba06196
   }
 
   // initialise la scène
@@ -134,8 +139,8 @@ class Scene3 extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    this.add.image(1100, 10, "blindfold-score");
-    this.add.image(1100, 10, "icon");
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.image(1000, 40, "icon");
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
@@ -204,7 +209,11 @@ class Scene3 extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
+
+    // new PlatformLevelsScene3(this)
+
     this.platformsLevels = new PlatformLevelsScene3(this);
+
     this.player = new Player(this, 1200, 130);
   }
 

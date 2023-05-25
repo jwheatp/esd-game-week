@@ -13,10 +13,20 @@ class Scene5 extends Phaser.Scene {
   platforms = [];
   isgameover = false;
 
+  platformsLevels
+
+  positions = [
+    { x: 1160, y: 150 },
+    { x: 1160, y: 550 },
+  ];
+
   // on précharge les assets
   preload() {
+    new Preloader(this)
+
     this.load.image("scene5", "assets/scene5.jpg");
 
+<<<<<<< HEAD
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
 
@@ -108,6 +118,8 @@ class Scene5 extends Phaser.Scene {
     //bandeau du score et icone du player
     this.load.image("blindfold-score", "assets/traps/dev/test.png");
     this.load.image("icon", "assets/traps/dev/icone.png");
+=======
+>>>>>>> 965a6e3f099e68d054053e04d97ef727cba06196
   }
 
   // initialise la scène
@@ -116,7 +128,7 @@ class Scene5 extends Phaser.Scene {
     this.inputs = this.input.keyboard.createCursorKeys();
     // this.sound.play("gamesong");
 
-    this.add.image(640, 360, "scene1");
+    this.add.image(640, 360, "scene5");
 
     // const doorTrap = new DoorTrap(this, 800, 455);
     // this.traps.push(doorTrap);
@@ -138,18 +150,46 @@ class Scene5 extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    this.add.image(1100, 110, "blindfold-score");
-    this.add.image(1100, 110, "icon");
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.image(1000, 40, "icon");
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
-    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
-    this.add.image(1233, 230, "endPlatform");
-    this.endPoint.body.setAllowGravity(false);
+    // this.endPoint = this.physics.add.image(1160, 150, "hitbox-invisible");
+    // this.add.image(1160, 150, "endPlatform");
+    // this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 180, 230);
+    // Créer la plateforme visible
+    const endPoint = this.physics.add.sprite(1160, 150, "endPlatform");
+    endPoint.body.setAllowGravity(false);
+
+    // Créer la hitbox invisible
+    const hitboxInvisible = this.physics.add.sprite(1160, 150, "hitbox-invisible");
+    hitboxInvisible.body.setAllowGravity(false);
+
+    const changePosition = () => {
+      const randomPosition = Phaser.Utils.Array.GetRandom(this.positions);
+
+      console.log(randomPosition)
+      const { x, y } = randomPosition;
+
+      endPoint.setPosition(x, y);
+      hitboxInvisible.setPosition(x, y);
+    }
+
+    changePosition();
+
+    // Changer la position toutes les 2 à 8 secondes
+    this.time.addEvent({
+      delay: Phaser.Math.Between(2000, 8000),
+      loop: true,
+      callback: changePosition
+    });
+
+    console.log(changePosition)
+
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -183,13 +223,13 @@ class Scene5 extends Phaser.Scene {
 
     // const monsterTrap = new MonsterTrap(this, 900, 210);
     // this.traps.push(monsterTrap);
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
     // monsterTrap.initCursor();
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
-    this.traps.push(computerTrap);
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
@@ -210,11 +250,17 @@ class Scene5 extends Phaser.Scene {
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
     new PlatformLevelsScene5(this);
+
+    this.platformsLevels = new PlatformLevelsScene5(this)
+
+    this.player = new Player(this, 80, 310);
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player?.update();
+
+    this.platformsLevels?.update()
 
     // for (let i = 0; i < this.traps.length; i++) {
     //   this.traps[i].update(time);
