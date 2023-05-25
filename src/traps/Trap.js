@@ -87,7 +87,10 @@ class Trap {
         this.viseur.setVisible(false);
         this.canSetupTrap = false;
         this.isSettled = true
-  
+
+        this.x = this.sprite.body.x
+        this.y = this.sprite.body.y
+
         this.startAnimation()
       }
     }

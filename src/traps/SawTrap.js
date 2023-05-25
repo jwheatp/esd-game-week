@@ -1,6 +1,6 @@
 class SawTrap extends Trap {
   scene;
-  platformSprite;
+  sprite;
   discSprite;
   speed = 150;
 
@@ -28,11 +28,11 @@ class SawTrap extends Trap {
       }
     );
 
-    this.platformSprite = scene.physics.add.image(x, y, "trap-saw-platform");
-    this.platformSprite.body.setAllowGravity(false);
-    this.platformSprite.setImmovable(true);
+    this.sprite = scene.physics.add.image(x, y, "trap-saw-platform");
+    this.sprite.body.setAllowGravity(false);
+    this.sprite.setImmovable(true);
     this.scene.physics.add.collider(
-      this.platformSprite,
+      this.sprite,
       this.scene.player.sprite
     );
 
@@ -55,12 +55,12 @@ class SawTrap extends Trap {
   update() {
     this.setup();
 
-    if (this.isGoingRight && this.discSprite.body.x > this.x + 40) {
+    if (this.isGoingRight && this.discSprite.body.x > this.x + 120) {
       this.discSprite.setVelocityX(-this.speed);
       this.isGoingRight = false;
     }
 
-    if (!this.isGoingRight && this.discSprite.body.x < this.x - 90) {
+    if (!this.isGoingRight && this.discSprite.body.x < this.x - 20) {
       this.discSprite.setVelocityX(this.speed);
       this.isGoingRight = true;
     }
@@ -68,13 +68,13 @@ class SawTrap extends Trap {
 
   setVelocityX(speed) {
     this.discSprite.setVelocityX(speed)
-    this.platformSprite.setVelocityX(speed)
+    this.sprite.setVelocityX(speed)
 
   }
 
   setVelocityY(speed) {
     // je mets une vitesse X à 200
     this.discSprite.setVelocityY(speed)
-    this.platformSprite.setVelocityY(speed)
+    this.sprite.setVelocityY(speed)
   }
 }
