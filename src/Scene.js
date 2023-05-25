@@ -248,6 +248,9 @@ class Scene extends Phaser.Scene {
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
 
+    this.multiplayerSystem = new MultiplayerSystem(this)
+
+    this.platformsLevel = new PlatformLevels(this);
 
     //karim rayane 
 
@@ -311,15 +314,11 @@ class Scene extends Phaser.Scene {
     }, this);
 
 
-
-
     this.phaseTitle = this.add.text(640, 400, '', { color: "black", fontSize: '50px', align: "center", backgroundColor: 'white' });
     this.phaseTitle.setOrigin(0.5)
     this.roundTitle = this.add.text(640, 330, '', { color: "black", fontSize: '70px', align: "center", backgroundColor: 'white' });
     this.roundTitle.setOrigin(0.5)
-    this.multiplayerSystem = new MultiplayerSystem(this)
-    this.multiplayerSystem.init()
-    this.platformsLevel = new PlatformLevels(this);
+
   }
 
   // Fonction pour démarrer le jeu
@@ -329,18 +328,19 @@ class Scene extends Phaser.Scene {
     const gm = new GameManager(this)
     gm.run()
 
+    this.multiplayerSystem.init()
 
     this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider")
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.fallCollider,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        this.player.fall()
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.fallCollider,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     this.player.fall()
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
 
 
   }

@@ -107,6 +107,8 @@ class Player {
   }
 
   update() {
+    // console.log(this.traps, this.trapPositions)
+
     // if (!this.score) {
     //   this.scene.isgameover = true;
     // }
@@ -190,6 +192,9 @@ class Player {
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
     this.isDead = true;
+
+    this.sprite.setVelocityX(0)
+    this.sprite.setVelocityY(0)
 
     this.canMove = false;
 

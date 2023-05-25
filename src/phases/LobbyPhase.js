@@ -4,24 +4,27 @@ class LobbyPhase extends Phase {
   }
 
   run() {
-    this.setTitle("Attribution des joueurs")
+    this.setTitle("Attribution des joueurs", false)
 
     console.log("/// Run - LobbyPhase")
     console.log(this.scene)
 
-    if(!this.scene.playerInitialized) {
-      this.scene.player = new Player(this.scene, 200, 400);
-      this.scene.playerInitialized = true
+    // if(!this.scene.playerInitialized) {
+    //   this.scene.player = new Player(this.scene, 100, 600);
+    //   this.scene.playerInitialized = true
+    // }
+    if(this.scene.player) {
+      this.scene.player.reset()
+      this.scene.player.sprite.setPosition(200, 400)
+      this.scene.player.freeze()
     }
-    this.scene.player.reset()
-    this.scene.player.sprite.setPosition(200, 400)
-    this.scene.player.freeze()
+
 
     // attribuer au player un piège aléatoire
   }
 
   isDone() {
     // tous les pièges sont posés
-    return this.scene.player !== null
+    return this.scene.multiplayerSystem.players().length === 2
   }
 }

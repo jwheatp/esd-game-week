@@ -19,14 +19,17 @@ class Phase {
 
   }
 
-  setTitle(title) {
+  setTitle(title, timeout = true) {
     this.scene.phaseTitle.alpha = 1
     
     this.scene.phaseTitle.setText(title)
 
-    setTimeout(() => {
-      this.scene.phaseTitle.alpha = 0
-    }, 2000)
+    if(timeout) {
+      setTimeout(() => {
+        this.scene.phaseTitle.alpha = 0
+      }, 2000)
+    }
+
   }
 
   isDone() {

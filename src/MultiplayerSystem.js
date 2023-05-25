@@ -24,11 +24,13 @@ class MultiplayerSystem {
 
     this.room.state.players.onAdd((player, sessionId) => {
       console.log("A player has joined! Their unique session id is", sessionId);
-
-      const startX = 200
-      const startY = 200
+      
+      const startX = 100
+      const startY = 450
 
       const _player = new Player(this.scene, startX, startY);
+      _player.sessionId = sessionId
+      _player.freeze()
 
       if (sessionId === this.room.sessionId) {
         console.log('I am ', sessionId)
@@ -54,7 +56,9 @@ class MultiplayerSystem {
         } else {
           _player.serverX = player.x
           _player.serverY = player.y
-          _player.sprite.play(player.animation, true);
+          if(player.animation) {
+            _player.sprite.play(player.animation, true);
+          }
         }
 
       });
@@ -70,6 +74,52 @@ class MultiplayerSystem {
         delete this.playerEntities[sessionId];
       }
     });
+
+    this.room.onMessage("trap-create", (content) => {
+      if(content.from === this.scene.player.sessionId) {
+        return
+      }
+
+      if(this.scene.traps.find(t => t.id === content.trapId)) {
+        return
+      }
+
+      const lookup = {
+        "SawTrap": SawTrap,
+        "ComputerTrap": ComputerTrap
+      }
+
+      const trap = new lookup[content.type](this.scene, content.x, content.y)
+      trap.id = content.trapId
+      this.scene.traps.push(trap)
+
+    })
+
+    this.room.onMessage("trap-move", (content) => {
+      if(content.from === this.scene.player.sessionId) {
+        return
+      }
+
+      const trap = this.scene.traps.find(t => t.id === content.trapId)
+      trap.setX(content.x)
+      trap.setY(content.y)
+      trap.setCursorX(content.x)
+      trap.setCursorY(content.y)
+    })
+
+    this.room.onMessage("trap-settle", (content) => {
+      if(content.from === this.scene.player.sessionId) {
+        return
+      }
+
+      const trap = this.scene.traps.find(t => t.id === content.trapId)
+      trap.isSettled = true
+      trap.startAnimation()
+    })
+  }
+
+  players() {
+    return Object.values(this.playerEntities)
   }
 
   update() {

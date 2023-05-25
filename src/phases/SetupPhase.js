@@ -9,7 +9,15 @@ class SetupPhase extends Phase {
     console.log("/// Run - SetupPhase")
 
     const trap = Trap.createRandomTrap(this.scene, 200, 200)
-    trap.canSetupTrap = true;
+
+    trap.id = Trap.generateId()
+    this.scene.traps.push(trap)
+
+    trap.multiplayerCreateTrap()
+    
+
+
+    trap.canSetupTrap = true
     trap.initCursor();
 
     // attribuer au player un piège aléatoire
@@ -19,6 +27,7 @@ class SetupPhase extends Phase {
 
   isDone() {
     // tous les pièges sont posés
+    console.log(this.scene.traps)
     return this.scene.traps.filter(t => !t.isSettled).length === 0
   }
 }

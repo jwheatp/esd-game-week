@@ -2,7 +2,7 @@ class SawTrap extends Trap {
   scene;
   sprite;
   discSprite;
-  speed = 150;
+  speed = 2;
 
   x;
   y;
@@ -66,14 +66,26 @@ class SawTrap extends Trap {
     }
   }
 
+  setX(x) {
+    this.discSprite.x = x
+    this.sprite.x = x
+
+    this.x = x
+  }
+
+  setY(y) {
+    this.discSprite.y = y
+    this.sprite.y = y
+
+    this.y = y
+  }
+
   setVelocityX(speed) {
     this.discSprite.setVelocityX(speed)
     this.sprite.setVelocityX(speed)
-
   }
 
   setVelocityY(speed) {
-    // je mets une vitesse X à 200
     this.discSprite.setVelocityY(speed)
     this.sprite.setVelocityY(speed)
   }

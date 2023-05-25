@@ -11,6 +11,7 @@ class GameManager {
   constructor(scene) {
     this.scene = scene
     this.round = new Round(this.scene, 0)
+
   }
 
   run() {

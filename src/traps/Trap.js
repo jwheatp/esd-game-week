@@ -9,8 +9,6 @@ class Trap {
   x;
   y;
 
-
-
   static createRandomTrap(scene, x, y) {
     const traps = [SawTrap]
     const index = Math.floor(Math.random() * traps.length);
@@ -24,8 +22,20 @@ class Trap {
     if (!scene) {
       return;
     }
+  }
 
-    this.scene.traps.push(this);
+  multiplayerCreateTrap() {
+    this.scene.multiplayerSystem.room.send("trap-create", {
+      from: this.scene.player.sessionId,
+      trapId: this.id,
+      type: this.constructor.name,
+      x: this.x,
+      y: this.y
+    })
+  }
+
+  static generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2);
   }
 
   // Ajouter une cible
@@ -52,29 +62,24 @@ class Trap {
     if (this.canSetupTrap) {
       this.infoText.setVisible(true);
       if (this.scene.inputs.right.isDown) {
-        this.setVelocityX(this.speed);
-        this.setCursorVelocityX(this.speed);
+        this.setX(this.x + this.speed);
+        this.setCursorX(this.x + this.speed);
       } else if (this.scene.inputs.left.isDown) {
         // je mets une vitesse X à 200
-        this.setVelocityX(-this.speed);
-        this.setCursorVelocityX(-this.speed);
-      } else {
-        this.setVelocityX(0);
-        this.setCursorVelocityX(0);
+        this.setX(this.x - this.speed);
+        this.setCursorX(this.x - this.speed)
       }
 
       if (this.scene.inputs.down.isDown) {
         // je mets une vitesse Y à 200
-        this.setVelocityY(this.speed);
-        this.setCursorVelocityY(this.speed);
+        this.setY(this.y + this.speed);
+        this.setCursorY(this.y + this.speed)
       } else if (this.scene.inputs.up.isDown) {
         // je mets une vitesse Y à 200
-        this.setVelocityY(-this.speed);
-        this.setCursorVelocityY(-this.speed);
-      } else {
-        this.setVelocityY(0);
-        this.setCursorVelocityY(0);
+        this.setY(this.y - this.speed);
+        this.setCursorY(this.y - this.speed)
       }
+
       if (this.scene.inputs.space.isDown) {
         console.log("poser piège");
         this.infoText.setVisible(false);
@@ -82,25 +87,46 @@ class Trap {
         this.canSetupTrap = false;
         this.isSettled = true
 
-        this.x = this.sprite.body.x
-        this.y = this.sprite.body.y
+        this.scene.multiplayerSystem.room.send("trap-settle", {
+          from: this.scene.player.sessionId,
+          trapId: this.id
+        })
+
+        // this.x = this.sprite.body.x
+        // this.y = this.sprite.body.y
 
         this.startAnimation()
       }
+
+      this.scene.multiplayerSystem.room.send("trap-move", {
+        from: this.scene.player.sessionId,
+        trapId: this.id,
+        x: this.x,
+        y: this.y
+      })
+
     }
   }
-  setCursorVelocityX(speed) {
+  setCursorX(x) {
     if (this.canSetupTrap) {
-      this.viseur.body.setVelocityX(speed);
+      this.viseur.x = x
     }
   }
-  setCursorVelocityY(speed) {
+  setCursorY(y) {
     if (this.canSetupTrap) {
-      this.viseur.body.setVelocityY(speed);
+      this.viseur.y = y
     }
   }
 
   startAnimation() {
 
+  }
+
+  setX(x) {
+    this.x = x
+  }
+
+  setY(y) {
+    this.y = y
   }
 }
