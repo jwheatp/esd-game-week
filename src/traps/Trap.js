@@ -10,8 +10,11 @@ class Trap {
   y;
 
 
+
   static createRandomTrap(scene, x, y) {
-    return new SawTrap(scene, x, y)
+    const traps = [SawTrap]
+    const index = Math.floor(Math.random() * traps.length);
+    return new traps[index](scene, x, y)
   }
 
   constructor(scene, x, y) {
@@ -23,15 +26,6 @@ class Trap {
     }
 
     this.scene.traps.push(this);
-  }
-
-  randomTrap() {
-    const index = Math.floor(Math.random() * this.traps.length);
-    console.log(this.traps[index]);
-    if (this.traps[index]) {
-      this.canSetupTrap = true;
-      this.traps[index].initCursor();
-    }
   }
 
   // Ajouter une cible
