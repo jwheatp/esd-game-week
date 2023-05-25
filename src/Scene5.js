@@ -13,6 +13,11 @@ class Scene5 extends Phaser.Scene {
   platforms = [];
   isgameover = false;
 
+  positions = [
+    { x: 1160, y: 150 },
+    { x: 1160, y: 550 },
+  ];
+
   // on précharge les assets
   preload() {
     new Preloader(this)
@@ -49,16 +54,45 @@ class Scene5 extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    this.add.image(1100, 110, "blindfold-score");
-    this.add.image(1100, 110, "icon");
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.image(1000, 40, "icon");
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
-    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
-    this.add.image(1233, 230, "endPlatform");
-    this.endPoint.body.setAllowGravity(false);
+    // this.endPoint = this.physics.add.image(1160, 150, "hitbox-invisible");
+    // this.add.image(1160, 150, "endPlatform");
+    // this.endPoint.body.setAllowGravity(false);
+
+    // Créer la plateforme visible
+    const endPoint = this.physics.add.sprite(1160, 150, "endPlatform");
+    endPoint.body.setAllowGravity(false);
+
+    // Créer la hitbox invisible
+    const hitboxInvisible = this.physics.add.sprite(1160, 150, "hitbox-invisible");
+    hitboxInvisible.body.setAllowGravity(false);
+
+    const changePosition = () => {
+      const randomPosition = Phaser.Utils.Array.GetRandom(this.positions);
+
+      console.log(randomPosition)
+      const { x, y } = randomPosition;
+
+      endPoint.setPosition(x, y);
+      hitboxInvisible.setPosition(x, y);
+    }
+
+    changePosition();
+
+    // Changer la position toutes les 2 à 8 secondes
+    this.time.addEvent({
+      delay: Phaser.Math.Between(2000, 8000),
+      loop: true,
+      callback: changePosition
+    });
+
+    console.log(changePosition)
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 

@@ -17,6 +17,32 @@ class PlatformLevelsScene5 {
     // this.scene.physics.add.collider(this.scene.player.sprite, this.GrassPlatform);
     this.platforms.push(this.GrassPlatform)
 
+    this.cakePlatform = scene.physics.add.staticImage(320, 260, "cakePlatform")
+    this.platforms.push(this.cakePlatform)
+
+    this.cakePlatform = scene.physics.add.staticImage(320, 500, "cakePlatform")
+    this.platforms.push(this.cakePlatform)
+
+    this.bigsnowPlatform = scene.physics.add.staticImage(640, 200, "bigsnowPlatform")
+    this.platforms.push(this.bigsnowPlatform)
+
+
+    this.bigsnowPlatform = scene.physics.add.staticImage(640, 600, "bigsnowPlatform")
+    this.platforms.push(this.bigsnowPlatform)
+
+    this.rockPlatform = scene.physics.add.staticImage(930, 280, "rockPlatform");
+    this.platforms.push(this.rockPlatform)
+
+    this.rockPlatform = scene.physics.add.staticImage(930, 500, "rockPlatform");
+    this.platforms.push(this.rockPlatform)
+
+
+    this.grassPlatform = scene.physics.add.staticImage(1170, 200, "grassPlatform")
+    this.platforms.push(this.grassPlatform)
+
+    this.grassPlatform = scene.physics.add.staticImage(1170, 600, "grassPlatform")
+    this.platforms.push(this.grassPlatform)
+
 
     // Bordure pour ne pas passer à droite 
 
