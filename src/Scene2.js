@@ -11,11 +11,12 @@ class Scene2 extends Phaser.Scene {
   playerCollider;
   blackHolead;
 
+
   endPoint;
   platforms = [];
   isgameover = false;
 
-  platformsLevel
+  platformsLevels
 
   // on précharge les assets
   preload() {
@@ -148,7 +149,7 @@ class Scene2 extends Phaser.Scene {
     this.add.image(390, 570, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 800, 550);
+
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -208,14 +209,16 @@ class Scene2 extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    this.platformsLevel = new PlatformLevelsScene2(this);
+    this.platformsLevels = new PlatformLevelsScene2(this);
+
+    this.player = new Player(this, 800, 550);
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player?.update();
 
-    this.platformsLevel?.update()
+    this.platformsLevels?.update()
 
     // for (let i = 0; i < this.traps.length; i++) {
     //   this.traps[i].update(time);

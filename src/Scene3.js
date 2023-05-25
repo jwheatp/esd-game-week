@@ -13,7 +13,7 @@ class Scene3 extends Phaser.Scene {
   platforms = [];
   isgameover = false;
 
-  platformsLevel
+  platformsLevels
 
   // on précharge les assets
   preload() {
@@ -136,11 +136,10 @@ class Scene3 extends Phaser.Scene {
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
-    this.endPoint = this.physics.add.image(560, 360, "hitbox-invisible");
-    this.add.image(560, 360, "endPlatform");
+    this.endPoint = this.physics.add.image(545, 365, "hitbox-invisible");
+    this.add.image(545, 365, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 1200, 130);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -200,14 +199,15 @@ class Scene3 extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    this.platformsLevel = new PlatformLevelsScene3(this);
+    this.platformsLevels = new PlatformLevelsScene3(this);
+    this.player = new Player(this, 1200, 130);
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player?.update();
 
-    this.platformsLevel?.update()
+    this.platformsLevels?.update()
 
     // for (let i = 0; i < this.traps.length; i++) {
     //   this.traps[i].update(time);

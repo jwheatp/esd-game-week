@@ -143,7 +143,7 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() {}
+  fall() { }
 
   die() {
     console.log("le joueur est mort !");

@@ -12,21 +12,23 @@ class PlatformLevels {
     // this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
 
 
-
-    this.bigGrassPlatform = scene.physics.add.staticImage(800, 220, "big-grassPlatform");
+    this.GrassPlatform = scene.physics.add.staticImage(520, 220, "grassPlatform");
     // this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
-    this.platforms.push(this.bigGrassPlatform)
+    this.platforms.push(this.GrassPlatform)
 
-  
+    this.GrassPlatform = scene.physics.add.staticImage(880, 220, "grassPlatform");
+    // this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
+    this.platforms.push(this.GrassPlatform)
+
+
     // Platforme en gateau à 90degré au milieu de la map
-    this.rotateBigCakePlatform = scene.physics.add.staticImage(500, 400, "rotate-big-cakePlatform");
+    this.rotateBigCakePlatform = scene.physics.add.staticImage(400, 444, "rotate-big-cakePlatform");
     this.platforms.push(this.rotateBigCakePlatform)
 
     // this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatform);
 
     // Montagne à gauche
     this.rockdecoration = scene.physics.add.staticImage(40, 430, "rockdecoration");
-    this.platforms.push(this.rockdecoration)
 
 
     // Bloc invisible pour tout à gauche
@@ -40,10 +42,12 @@ class PlatformLevels {
     this.rotateBigCakePlatformHidden = scene.physics.add.staticImage(200, 640, "rotate-big-cakePlatform");
     // this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
     this.rotateBigCakePlatformHidden.setAlpha(0)
+    this.platforms.push(this.rotateBigCakePlatformHidden)
 
     this.rotateBigCakePlatformHidden = scene.physics.add.staticImage(250, 740, "rotate-big-cakePlatform");
     // this.scene.physics.add.collider(this.scene.player.sprite, this.rotateBigCakePlatformHidden);
     this.rotateBigCakePlatformHidden.setAlpha(0)
+    this.platforms.push(this.rotateBigCakePlatformHidden)
 
 
     // Bloc invisible pour hitbox à l'horizontale dans la montage
@@ -76,13 +80,17 @@ class PlatformLevels {
 
 
     // Plateforme de fail du saut 
-    this.bigGrassPlatform1 = scene.physics.add.staticImage(450, 670, "big-grassPlatform");
+    this.bigGrassPlatform1 = scene.physics.add.staticImage(450, 700, "big-grassPlatform");
     // this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform1);
     this.platforms.push(this.bigGrassPlatform1)
-  
-    this.bigGrassPlatform = scene.physics.add.staticImage(1000, 570, "big-grassPlatform");
+
+    this.snowPlatform = scene.physics.add.staticImage(700, 570, "snowPlatform");
     // this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
-    this.platforms.push(this.bigGrassPlatform)
+    this.platforms.push(this.snowPlatform)
+
+    this.snowPlatform = scene.physics.add.staticImage(970, 520, "snowPlatform");
+    // this.scene.physics.add.collider(this.scene.player.sprite, this.bigGrassPlatform);
+    this.platforms.push(this.snowPlatform)
 
     // Plateforme pour atteindre le end (cake)
     this.bigcakePlatform = scene.physics.add.staticImage(1250, 400, "big-cakePlatform");
@@ -108,8 +116,9 @@ class PlatformLevels {
   }
 
   initCollider(target) {
-    for(let i = 0; i < this.platforms.length; i++) {
+    for (let i = 0; i < this.platforms.length; i++) {
       this.scene.physics.add.collider(target, this.platforms[i]);
     }
   }
+  update() { }
 }
