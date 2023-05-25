@@ -144,7 +144,7 @@ class Scene extends Phaser.Scene {
     this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 180, 400);
+    this.player = new Player(this, 180, 430);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -178,13 +178,13 @@ class Scene extends Phaser.Scene {
 
     // const monsterTrap = new MonsterTrap(this, 900, 210);
     // this.traps.push(monsterTrap);
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
     // monsterTrap.initCursor();
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
-    this.traps.push(computerTrap);
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
