@@ -37,6 +37,11 @@ class Preloader {
     scene.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
     scene.load.image("dirtPlatform", "assets/platforms/dirtPlatform.png");
     scene.load.image("bigsnowPlatform", "assets/platforms/big-snowPlatform.png");
+    scene.load.image("big-dirtPlatform", "assets/platforms/big-dirtPlatform.png");
+    scene.load.image("90dirtPlatform", "assets/platforms/90dirtPlatform.png");
+    scene.load.image("brickCube", "assets/platforms/brickCube.png");
+    scene.load.image("double-bigdirtPlatform", "assets/platforms/double-bigdirtPlatform.png");
+    scene.load.image("rotatesnowPlatform", "assets/platforms/rotatesnowPlatform.png");
 
     // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     scene.load.image("endPlatform", "assets/platforms/end.png");

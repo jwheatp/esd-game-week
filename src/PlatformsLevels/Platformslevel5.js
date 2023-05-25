@@ -30,6 +30,9 @@ class PlatformLevelsScene5 {
     this.bigsnowPlatform = scene.physics.add.staticImage(640, 600, "bigsnowPlatform")
     this.platforms.push(this.bigsnowPlatform)
 
+    this.bigsnowPlatform = scene.physics.add.staticImage(640, 400, "bigsnowPlatform")
+    this.platforms.push(this.bigsnowPlatform)
+
     this.rockPlatform = scene.physics.add.staticImage(930, 280, "rockPlatform");
     this.platforms.push(this.rockPlatform)
 
