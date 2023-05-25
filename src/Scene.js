@@ -31,12 +31,15 @@ class Scene extends Phaser.Scene {
     this.load.audio("teleport", "assets/audio/teleportation.mp3")
 
     //new trap ranime et celine
+    /*
     this.load.image("trapcomputer", "assets/traps/dev/trap1.png");
     this.load.image("trapcss", "assets/traps/dev/css.png");
     this.load.image("traphtml", "assets/traps/dev/html.png");
     this.load.image("trapjs", "assets/traps/dev/js.png");
     this.load.image("trapphp", "assets/traps/dev/php.png");
     this.load.image("trapphp", "assets/traps/dev/wordpress.png");
+    */
+
 
     // new trap antonin & luca
     this.load.image("trap-mode-closed", "assets/door/closed.png");
@@ -57,11 +60,50 @@ class Scene extends Phaser.Scene {
     this.load.image("trap-blackHole", "assets/traps/blackHole.png");
 
     //animation player
-    this.load.image("player-death", "assets/skin/playerTwo-Death.png");
-    this.load.image("player-jump", "assets/skin/playerTwo-Jump.png");
-    this.load.image("player-run", "assets/skin/playerTwo-Run.png");
-    this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
-    this.load.image("player-idl", "assets/skin/playerTwo.png")
+    //player One
+    this.load.image("player-2-death", "assets/skin/playerOne-all/playerOne-Death.png");
+    this.load.image("player-2-jump", "assets/skin/playerOne-all/playerOne-Jump.png");
+    this.load.image("player-2-run", "assets/skin/playerOne-all/playerOne-Run.png");
+    this.load.image("player-2-walk", "assets/skin/playerOne-all/playerOne-Walk.png");
+    this.load.image("player-2-idl", "assets/skin/playerOne-all/playerOne.png");
+
+    this.load.image("player-2-move1", "assets/skin/playerOne-all/victoryDanceOne/move1.png");
+    this.load.image("player-2-move2", "assets/skin/playerOne-all/victoryDanceOne/move2.png");
+
+    //playerTwo
+    this.load.image("player-1-death", "assets/skin/playerTwo-all/playerTwo-Death.png");
+    this.load.image("player-1-jump", "assets/skin/playerTwo-all/playerTwo-Jump.png");
+    this.load.image("player-1-run", "assets/skin/playerTwo-all/playerTwo-Run.png");
+    this.load.image("player-1-walk", "assets/skin/playerTwo-all/playerTwo-Walk.png");
+    this.load.image("player-1-idl", "assets/skin/playerTwo-all/playerTwo.png");
+
+    this.load.image("player-1-move1", "assets/skin/playerTwo-all/victoryDanceTwo/move1.png");
+    this.load.image("player-1-move2", "assets/skin/playerTwo-all/victoryDanceTwo/move2.png");
+    this.load.image("player-1-move3", "assets/skin/playerTwo-all/victoryDanceTwo/move3.png");
+    this.load.image("player-1-move4", "assets/skin/playerTwo-all/victoryDanceTwo/move4.png");
+
+    //player three
+    this.load.image("player-3-death", "assets/skin/playerThree-all/playerThree-Death.png");
+    this.load.image("player-3-jump", "assets/skin/playerThree-all/playerThree-Jump.png");
+    this.load.image("player-3-run", "assets/skin/playerThree-all/playerThree-Run.png");
+    this.load.image("player-3-walk", "assets/skin/playerThree-all/playerThree-Walk.png");
+    this.load.image("player-3-idl", "assets/skin/playerThree-all/playerThree.png");
+
+    this.load.image("player-3-move1", "assets/skin/playerThree-all/victoryDanceThree/move1.png");
+    this.load.image("player-3-move2", "assets/skin/playerThree-all/victoryDanceThree/move2.png");
+
+
+    //player four
+
+    this.load.image("player-4-death", "assets/skin/playerFour-all/playerFour-Death.png");
+    this.load.image("player-4-jump", "assets/skin/playerFour-all/playerFour-Jump.png");
+    this.load.image("player-4-run", "assets/skin/playerFour-all/playerFour-Run.png");
+    this.load.image("player-4-walk", "assets/skin/playerFour-all/playerFour-Walk.png");
+    this.load.image("player-4-idl", "assets/skin/playerFour-all/playerFour.png");
+
+    this.load.image("player-2-move1", "assets/skin/playerFour-all/victoryDanceFour/move1.png");
+    this.load.image("player-2-move1", "assets/skin/playerFour-all/victoryDanceFour/move2.png");
+    this.load.image("player-2-move1", "assets/skin/playerFour-all/victoryDanceFour/move3.png");
 
   }
 
@@ -77,6 +119,8 @@ class Scene extends Phaser.Scene {
 
     const platform = new Platform(this, 200, 600);
     const platform2 = new Platform(this, 800, 550);
+
+    const rectVictory = new Phaser.Geom.Rectangle(this, 200, 150, 300, 200);
 
     const doorTrap = new DoorTrap(this, 800, 455);
     this.traps.push(doorTrap);
