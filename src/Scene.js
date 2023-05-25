@@ -66,7 +66,7 @@ class Scene extends Phaser.Scene {
 
     this.load.image("collideborder", "assets/platforms/collideborder.png");
 
-    // this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
+    this.load.image("trap-saw-disc", "assets/traps/saw/disc.png");
 
     //Assets sacha et faouzi
 
@@ -128,7 +128,7 @@ class Scene extends Phaser.Scene {
   // est appelée qu'une seule fois
   async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
-    // this.sound.play("gamesong");
+    this.sound.play("gamesong");
 
     this.add.image(640, 360, "scene1");
 

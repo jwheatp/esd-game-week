@@ -36,8 +36,7 @@ class SawTrap extends Trap {
       this.scene.player.sprite
     );
 
-    this.discSprite.setVelocityX(this.speed);
-    this.isGoingRight = true;
+
   }
 
   startAnimation() {
@@ -48,11 +47,14 @@ class SawTrap extends Trap {
       repeat: -1,
       ease: "Linear",
     });
+
+    this.discSprite.setVelocityX(this.speed);
+    this.isGoingRight = true;
   }
 
   update() {
     this.setup();
-    
+
     if (this.isGoingRight && this.discSprite.body.x > this.x + 40) {
       this.discSprite.setVelocityX(-this.speed);
       this.isGoingRight = false;

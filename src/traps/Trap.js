@@ -74,6 +74,8 @@ class Trap {
         this.viseur.setVisible(false);
         this.canSetupTrap = false;
         this.isSettled = true
+  
+        this.startAnimation()
       }
     }
   }
@@ -86,5 +88,9 @@ class Trap {
     if (this.canSetupTrap) {
       this.viseur.body.setVelocityY(speed);
     }
+  }
+
+  startAnimation() {
+
   }
 }

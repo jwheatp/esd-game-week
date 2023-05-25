@@ -25,7 +25,7 @@ class Player {
     this.sprite.body.setMass(1000);
 
     //score text
-    this.scoreText = this.scene.add.text(600, 50, "t", {
+    this.scoreText = this.scene.add.text(600, 50, "", {
       fontSize: "40px",
       color: "black",
     });
