@@ -13,9 +13,18 @@ class Scene extends Phaser.Scene {
   platforms = []
   isgameover = false;
 
+  platformsLevels
+
+  playerInitialized = false
+
+  phaseTitle
+
+
   // on précharge les assets
   preload() {
     this.load.image("scene1", "assets/scene1.jpg");
+
+    this.load.image("fall-collider", "assets/platforms/fallcollider.png");
 
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
@@ -105,6 +114,17 @@ class Scene extends Phaser.Scene {
 
     this.add.image(640, 360, "scene1");
 
+    this.platformsLevels = new PlatformLevels(this);
+
+    this.phaseTitle = this.add.text(640, 400, '', { color: "black", fontSize: '50px', align: "center", backgroundColor: 'white' });
+    this.phaseTitle.setOrigin(0.5)
+    this.roundTitle = this.add.text(640, 330, '', { color: "black", fontSize: '70px', align: "center", backgroundColor: 'white' });
+    this.roundTitle.setOrigin(0.5)
+
+
+    const gm = new GameManager(this)
+    gm.run()
+
     // const doorTrap = new DoorTrap(this, 800, 455);
     // this.traps.push(doorTrap);
 
@@ -126,24 +146,24 @@ class Scene extends Phaser.Scene {
     // this.traps.push(platformTrap);
 
     // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-    this.add.image(1080, 15, "blindfold-score");
+    // this.add.image(1080, 15, "blindfold-score");
 
-    this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
-    this.endPoint.body.setAllowGravity(false);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    // this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
+    // this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 200, 400);
+
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.physics.add.overlap(
-      this.player.sprite,
-      this.hbBlackHole.sprite,
-      () => {
-        // Faire disparaître le joueur
-        this.player.die();
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    // this.physics.add.overlap(
+    //   this.player.sprite,
+    //   this.hbBlackHole.sprite,
+    //   () => {
+    //     // Faire disparaître le joueur
+    //     this.player.die();
+    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    //   }
+    // );
     // this.player = new Player(this, 200, 505);
     // this.physics.add.overlap(
     //   this.player.sprite,
@@ -166,13 +186,13 @@ class Scene extends Phaser.Scene {
 
     // const monsterTrap = new MonsterTrap(this, 900, 210);
     // this.traps.push(monsterTrap);
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
     // monsterTrap.initCursor();
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
-    this.traps.push(computerTrap);
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
@@ -192,16 +212,27 @@ class Scene extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    new PlatformLevels(this);
+
+    this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider")
+    this.physics.add.overlap(
+      this.player.sprite,
+      this.fallCollider,
+      () => {
+        // Faire disparaître le joueur
+        this.player.die();
+        this.player.fall()
+        // Autres actions à effectuer en cas de collision avec hbBlackHole...
+      }
+    );
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player?.update();
 
-    // for (let i = 0; i < this.traps.length; i++) {
-    //   this.traps[i].update(time);
-    // }
+    for (let i = 0; i < this.traps.length; i++) {
+      this.traps[i].update(time);
+    }
     // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
     //   this.player.x = 500;
     //   this.player.y = 400;

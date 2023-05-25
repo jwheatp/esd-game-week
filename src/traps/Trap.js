@@ -2,10 +2,17 @@ class Trap {
   scene;
   viseur;
   canSetupTrap = false;
+  isSettled = false
+
   speed = 200;
 
   x;
   y;
+
+
+  static createRandomTrap(scene, x, y) {
+    return new SawTrap(scene, x, y)
+  }
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -14,6 +21,8 @@ class Trap {
     if (!scene) {
       return;
     }
+
+    this.scene.traps.push(this);
   }
 
   initCursor() {
@@ -49,6 +58,7 @@ class Trap {
       if (this.scene.inputs.space.isDown) {
         console.log("poser piège");
         this.canSetupTrap = false;
+        this.isSettled = true
       }
     }
   }

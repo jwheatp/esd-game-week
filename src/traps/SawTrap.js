@@ -10,7 +10,7 @@ class SawTrap extends Trap {
   isGoingRight = true;
 
   constructor(scene, x, y) {
-    super();
+    super(scene, x, y);
 
     this.scene = scene;
     this.x = x;
@@ -19,6 +19,7 @@ class SawTrap extends Trap {
     this.discSprite = scene.physics.add.image(x, y - 18, "trap-saw-disc");
     this.discSprite.body.setAllowGravity(false);
     this.discSprite.setImmovable(true);
+
     this.scene.physics.add.overlap(
       this.discSprite,
       this.scene.player.sprite,
@@ -37,7 +38,9 @@ class SawTrap extends Trap {
 
     this.discSprite.setVelocityX(this.speed);
     this.isGoingRight = true;
+  }
 
+  startAnimation() {
     this.scene.tweens.add({
       targets: this.discSprite,
       rotation: 360,
@@ -48,6 +51,8 @@ class SawTrap extends Trap {
   }
 
   update() {
+    this.setup();
+    
     if (this.isGoingRight && this.discSprite.body.x > this.x + 40) {
       this.discSprite.setVelocityX(-this.speed);
       this.isGoingRight = false;
@@ -57,5 +62,17 @@ class SawTrap extends Trap {
       this.discSprite.setVelocityX(this.speed);
       this.isGoingRight = true;
     }
+  }
+
+  setVelocityX(speed) {
+    this.discSprite.setVelocityX(speed)
+    this.platformSprite.setVelocityX(speed)
+
+  }
+
+  setVelocityY(speed) {
+    // je mets une vitesse X à 200
+    this.discSprite.setVelocityY(speed)
+    this.platformSprite.setVelocityY(speed)
   }
 }
