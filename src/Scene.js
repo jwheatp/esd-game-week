@@ -10,6 +10,7 @@ class Scene extends Phaser.Scene {
   blackHolead;
 
   endPoint;
+  scoretextus;
   platforms = [];
   isgameover = false;
 
@@ -126,7 +127,12 @@ class Scene extends Phaser.Scene {
     this.traps.push(platformTrap);
 
     this.add.image(1000, 40, "blindfold-score");
-    this.add.image(870, 40, "icon");
+    this.add.text(870, 30, "Sydney", {
+      fontSize: "16px",
+      color: "black",
+    });
+
+    this.add.image(820, 40, "icon");
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
