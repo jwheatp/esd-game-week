@@ -33,6 +33,7 @@ class Player {
       fontSize: "40px",
       color: "black",
     });
+
     //score
     // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
     //   this.winRound();
