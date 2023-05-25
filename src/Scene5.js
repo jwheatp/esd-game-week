@@ -64,8 +64,13 @@ class Scene5 extends Phaser.Scene {
 
     //audio sacha et faouzi
     this.load.audio("gamesong", "assets/audio/game-song.mp3");
-    this.load.audio("jump", "assets/audio/jump-player.mp3");
+    this.load.audio("gamewin", "assets/audio/win.mp3");
+    this.load.audio("gamelose", "assets/audio/lose.mp3");
+    // this.load.audio("jump", "assets/audio/jump-player.mp3");
+    this.load.audio("jump", "assets/audio/cartoonjump.mp3");
     this.load.audio("teleport", "assets/audio/teleportation.mp3");
+    this.load.audio("run", "assets/audio/footstep_1.mp3");
+    this.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
     this.load.image("trapcomputer", "assets/traps/dev/trap2.png");

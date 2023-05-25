@@ -113,14 +113,16 @@ class Player {
       )
     
  {
-  this.scene.sound.play("run");
+  this.scene.sound.play("run")
+
+  ;
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(this.speed);
       this.lastSpeedX = this.speed;
       this.sprite.play("anim-player-run", true);
     } else if (this.scene.inputs.left.isDown) {
-        this.scene.sound.play("run");
-
+        this.scene.sound.play("run")
+        
       // je mets une vitesse X à 200
       this.sprite.setVelocityX(-this.speed);
       this.lastSpeedX = -this.speed;
