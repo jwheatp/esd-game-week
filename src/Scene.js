@@ -164,11 +164,6 @@ class Scene extends Phaser.Scene {
     // this.physics.add.collider(this.player.sprite, platform.sprite);
     // this.physics.add.collider(this.player.sprite, platform2.sprite);
 
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
     monsterTrap.canSetupTrap = true;
@@ -179,14 +174,6 @@ class Scene extends Phaser.Scene {
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
 
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const computerTrap = new ComputerTrap(this, 600, 410);
-    // this.traps.push(computerTrap);
-    // openedTrap.createColliders();
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
 
     // const spikesTrap = new SpikesTrap(this, 400, 350);
