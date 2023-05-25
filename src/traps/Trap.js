@@ -24,6 +24,7 @@ class Trap {
 
     this.scene.traps.push(this);
   }
+
   randomTrap() {
     const index = Math.floor(Math.random() * this.traps.length);
     console.log(this.traps[index]);
@@ -40,11 +41,22 @@ class Trap {
     this.viseur.setScale(0.2);
     this.viseur.body.setAllowGravity(false);
     this.viseur.setImmovable(true);
+    this.infoText = this.scene.add.text(
+      270,
+      50,
+      " '←↕→' Pour déplacer, 'space' Pour poser",
+      {
+        fontSize: "32px",
+        color: "black",
+        align: "center",
+      }
+    );
   }
 
   // Poser un piège
   setup() {
     if (this.canSetupTrap) {
+      this.infoText.setVisible(true);
       if (this.scene.inputs.right.isDown) {
         this.setVelocityX(this.speed);
         this.setCursorVelocityX(this.speed);
@@ -71,6 +83,7 @@ class Trap {
       }
       if (this.scene.inputs.space.isDown) {
         console.log("poser piège");
+        this.infoText.setVisible(false);
         this.viseur.setVisible(false);
         this.canSetupTrap = false;
         this.isSettled = true

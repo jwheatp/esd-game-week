@@ -123,7 +123,6 @@ class Scene extends Phaser.Scene {
     this.load.image("icon-player4", "assets/traps/dev/mario.png");
     this.load.image("icon-player5", "assets/traps/dev/mario.png");
   }
-
   // initialise la scène
   // est appelée qu'une seule fois
   async create() {

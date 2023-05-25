@@ -11,7 +11,7 @@ class Player {
   scoreText;
   score = 0;
 
-  hasWon = false
+  hasWon = false;
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -63,15 +63,14 @@ class Player {
     this.sprite.body.setMass(1000);
 
     // Platform.addCollider(this.sprite)
-    this.scene.platformsLevels.initCollider(this.sprite)
-
+    this.scene.platformsLevels.initCollider(this.sprite);
   }
 
   reset() {
-    this.hasWon = false
-    this.isDead = false
+    this.hasWon = false;
+    this.isDead = false;
 
-    this.sprite.setScale(0.5)
+    this.sprite.setScale(0.5);
     this.canMove = true;
 
     this.sprite.play("anim-player-idl", true);
@@ -83,12 +82,11 @@ class Player {
     this.score += 1;
     this.scoreText.setText("player:" + this.score);
 
-    this.hasWon = true
+    this.hasWon = true;
     if (this.scene.isgameover) {
       return;
     }
     this.scene.sound.play("gamewin");
-
   }
 
   update() {
@@ -145,21 +143,19 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() {
+  fall() {}
 
-  }
- 
   die() {
     console.log("le joueur est mort !");
 
-    this.isDead = true
+    this.isDead = true;
 
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
     this.isDead = true;
 
     this.canMove = false;
-       
+
     const numBlinks = 10;
     const blinkInterval = 250;
 
@@ -180,12 +176,8 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
-    
-
   }
-  fall (){
+  fall() {
     this.scene.sound.play("gamelose");
   }
 }
-
-
