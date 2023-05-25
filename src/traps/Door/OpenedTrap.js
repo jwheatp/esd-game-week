@@ -28,24 +28,7 @@ class OpenedTrap extends Trap {
     this.hitboxSprite.body.setAllowGravity(false)
     this.hitboxSprite.setImmovable(true)
 
-
-
-
-    // const hitboxTrap = new HitboxTrap(this.scene, this, 800, 455)
-
   }
-
-
-  // createColliders() {
-  //   this.scene.physics.add.overlap(this.scene.player.sprite, this.hitboxSprite, () => {
-
-  //     this.scene.player.sprite.setPosition(200, 480)
-
-
-
-  //   });
-
-  // }
 
   createColliders() {
     this.scene.physics.add.overlap(this.scene.player.sprite, this.hitboxSprite, () => {
@@ -58,7 +41,7 @@ class OpenedTrap extends Trap {
           targets: this.scene.player.sprite,
           tweens: [
             {
-              scale: 0.8,
+              scale: 0.3,
               // x: "+=10",
               displayOriginY: 30,
               duration: this.fadeDuration,
@@ -72,7 +55,7 @@ class OpenedTrap extends Trap {
           ],
           onComplete: () => {
             setTimeout(() => {
-              this.scene.player.sprite.setPosition(200, 505)
+              this.scene.player.sprite.setPosition(100, 405)
               this.scene.sound.play("teleport");
 
 
@@ -80,7 +63,7 @@ class OpenedTrap extends Trap {
                 targets: this.scene.player.sprite,
                 tweens: [
                   {
-                    scale: 1,
+                    scale: 0.5,
                     alpha: 1,
                     duration: 1000,
                     ease: 'Linear'
@@ -115,9 +98,6 @@ class OpenedTrap extends Trap {
       }
     });
   }
-
-
-
 
 
 

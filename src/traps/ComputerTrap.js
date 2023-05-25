@@ -10,10 +10,10 @@ class ComputerTrap extends Trap {
   isGoingTop = true;
   isGoingLeft = true;
 
-  images = ["trapcss", "traphtml", "trapphp", "trapjs","trapwordpress"];
+  images = ["trapcss", "traphtml", "trapphp", "trapjs", "trapwordpress"];
 
   constructor(scene, x, y) {
-    super();
+    super(scene, x, y);
 
     this.scene = scene;
     this.x = x;
@@ -23,13 +23,11 @@ class ComputerTrap extends Trap {
     this.cssX = this.x - 50;
 
     this.computer = scene.physics.add.image(x, this.computerY, "trapcomputer");
-    this.computer.setScale(0.6);
     this.computer.body.setAllowGravity(false);
 
     // this.computer.body.y
 
     this.css = scene.physics.add.image(this.cssX, this.computerY, "trapcss");
-    this.css.setScale(0.09);
     this.css.body.setAllowGravity(false);
 
     this.computer.setVelocityY(-this.speed);
@@ -40,6 +38,7 @@ class ComputerTrap extends Trap {
 
     const myInterval = setInterval(() => this.fire(), 1500);
   }
+  
   fire() {
     const index = Math.floor(Math.random() * this.images.length);
 
@@ -59,8 +58,19 @@ class ComputerTrap extends Trap {
       this.scene.player.die();
     });
   }
+  setVelocityX(speed) {
+    // je mets une vitesse X à 200
+    this.computer.setVelocityX(speed);
+    this.css.setVelocityX(speed);
+  }
 
+  setVelocityY(speed) {
+    // je mets une vitesse X à 200
+    this.computer.setVelocityY(speed);
+    this.css.setVelocityY(speed);
+  }
   update() {
+    this.setup();
     if (
       this.isGoingTop &&
       this.computer.body.y < this.computerY - this.distance
