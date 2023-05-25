@@ -47,10 +47,12 @@ class Scene extends Phaser.Scene {
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
 
-
     // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     this.load.image("endPlatform", "assets/platforms/end.png");
-    this.load.image("hitbox-invisible", "assets/platforms/hitbox-invisible.png")
+    this.load.image(
+      "hitbox-invisible",
+      "assets/platforms/hitbox-invisible.png"
+    );
 
     this.load.image("collideborder", "assets/platforms/collideborder.png");
 
@@ -123,10 +125,8 @@ class Scene extends Phaser.Scene {
     const platformTrap = new PlatformTrap(this, 600, 300);
     this.traps.push(platformTrap);
 
-   this.add.image(1000, 40,"blindfold-score");
-   this.add.image(870, 40, "icon");
-    
-
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.image(870, 40, "icon");
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
@@ -164,11 +164,6 @@ class Scene extends Phaser.Scene {
     // this.physics.add.collider(this.player.sprite, platform.sprite);
     // this.physics.add.collider(this.player.sprite, platform2.sprite);
 
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
     const monsterTrap = new MonsterTrap(this, 900, 210);
     this.traps.push(monsterTrap);
     monsterTrap.canSetupTrap = true;
@@ -179,14 +174,6 @@ class Scene extends Phaser.Scene {
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
 
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const computerTrap = new ComputerTrap(this, 600, 410);
-    // this.traps.push(computerTrap);
-    // openedTrap.createColliders();
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
 
     // const spikesTrap = new SpikesTrap(this, 400, 350);
