@@ -106,7 +106,6 @@ class Scene extends Phaser.Scene {
     this.load.image("blindfold-score", "assets/traps/dev/bgscore.png");
     this.load.image("icon", "assets/traps/dev/sanstitre.png");
   }
-
   // initialise la scène
   // est appelée qu'une seule fois
   async create() {
