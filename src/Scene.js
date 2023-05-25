@@ -103,8 +103,13 @@ class Scene extends Phaser.Scene {
     this.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
     this.load.image("player-idl", "assets/skin/playerTwo.png");
     //bandeau du score et icone du player
-    this.load.image("blindfold-score", "assets/traps/dev/bgscore.png");
-    this.load.image("icon", "assets/traps/dev/sanstitre.png");
+    // this.load.image("string", "assets/traps/dev/.png");
+    this.load.image("blindfold-score", "assets/traps/dev/test2.png");
+    this.load.image("icon-player1", "assets/traps/dev/mario.png");
+    this.load.image("icon-player2", "assets/traps/dev/mario.png");
+    this.load.image("icon-player3", "assets/traps/dev/mario.png");
+    this.load.image("icon-player4", "assets/traps/dev/mario.png");
+    this.load.image("icon-player5", "assets/traps/dev/mario.png");
   }
 
   // initialise la scène
@@ -124,9 +129,15 @@ class Scene extends Phaser.Scene {
     // piege sacha + faouzi
     const platformTrap = new PlatformTrap(this, 600, 300);
     this.traps.push(platformTrap);
-
-    this.add.image(1000, 40, "blindfold-score");
-    this.add.image(870, 40, "icon");
+    // var rect = this.add.rectangle(600, 20, 500, 45, 0xff0000, 1);
+    //bandeau pour le score 
+    // this.add.image(1000, 40, "string");
+    this.add.image(1020, 40, "blindfold-score");
+    this.add.image(830, 40, "icon-player1");
+    this.add.image(930, 40, "icon-player2");
+    this.add.image(1010, 40, "icon-player3");
+    this.add.image(1040, 40, "icon-player4");
+    this.add.image(1090, 40, "icon-player5");
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
