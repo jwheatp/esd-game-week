@@ -1,4 +1,4 @@
-class Scene extends Phaser.Scene {
+class Scene5 extends Phaser.Scene {
   inputs;
   player;
   viseur;
@@ -15,7 +15,7 @@ class Scene extends Phaser.Scene {
 
   // on précharge les assets
   preload() {
-    this.load.image("scene1", "assets/scene1.jpg");
+    this.load.image("scene5", "assets/scene5.jpg");
 
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
@@ -144,7 +144,7 @@ class Scene extends Phaser.Scene {
     this.add.image(1233, 230, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 180, 400);
+    this.player = new Player(this, 180, 230);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -204,7 +204,7 @@ class Scene extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    new PlatformLevelsScene1(this);
+    new PlatformLevelsScene5(this);
   }
 
   // appelée très souvent (correspond au fps)

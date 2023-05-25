@@ -1,4 +1,4 @@
-class Scene extends Phaser.Scene {
+class Scene3 extends Phaser.Scene {
   inputs;
   player;
   viseur;
@@ -13,9 +13,11 @@ class Scene extends Phaser.Scene {
   platforms = [];
   isgameover = false;
 
+  platformsLevel
+
   // on précharge les assets
   preload() {
-    this.load.image("scene1", "assets/scene1.jpg");
+    this.load.image("scene3", "assets/scene3.jpg");
 
     this.load.image("player", "assets/player-idle.png");
     this.load.image("platform", "assets/platform.png");
@@ -28,25 +30,19 @@ class Scene extends Phaser.Scene {
       "assets/platforms/big-grassPlatform.png"
     );
     this.load.image("big-icePlatform", "assets/platforms/big-icePlatform.png");
-    this.load.image(
-      "big-cakePlatform",
-      "assets/platforms/big-cakePlatform.png"
-    );
-    this.load.image(
-      "rotate-big-cakePlatform",
-      "assets/platforms/90big-cakePlatform.png"
-    );
+    this.load.image("big-cakePlatform", "assets/platforms/big-cakePlatform.png");
+    this.load.image("rotate-big-cakePlatform", "assets/platforms/90big-cakePlatform.png");
     this.load.image("cakePlatform", "assets/platforms/cakePlatform.png");
-    this.load.image(
-      "rotate-cakePlatform",
-      "assets/platforms/40cakePlatform.png"
-    );
+    this.load.image("rotate-cakePlatform", "assets/platforms/40cakePlatform.png");
     this.load.image("icePlatform", "assets/platforms/icePlatform.png");
     this.load.image("rockPlatform", "assets/platforms/rockPlatform.png");
     this.load.image("snowPlatform", "assets/platforms/snowPlatform.png");
     this.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     this.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
+    this.load.image("dirtPlatform", "assets/platforms/dirtPlatform.png")
+    this.load.image("big-dirtPlatform", "assets/platforms/big-dirtPlatform.png");
     this.load.image("90dirtPlatform", "assets/platforms/90dirtPlatform.png");
+    this.load.image("brickCube", "assets/platforms/brickCube.png");
 
 
     // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
@@ -111,7 +107,7 @@ class Scene extends Phaser.Scene {
     this.inputs = this.input.keyboard.createCursorKeys();
     // this.sound.play("gamesong");
 
-    this.add.image(640, 360, "scene1");
+    this.add.image(640, 360, "scene3");
 
     // const doorTrap = new DoorTrap(this, 800, 455);
     // this.traps.push(doorTrap);
@@ -133,18 +129,18 @@ class Scene extends Phaser.Scene {
     // const platformTrap = new PlatformTrap(this, 1100, 300);
     // this.traps.push(platformTrap);
 
-    this.add.image(1100, 110, "blindfold-score");
-    this.add.image(1100, 110, "icon");
+    this.add.image(1100, 10, "blindfold-score");
+    this.add.image(1100, 10, "icon");
 
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
-    this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
-    this.add.image(1233, 230, "endPlatform");
+    this.endPoint = this.physics.add.image(560, 360, "hitbox-invisible");
+    this.add.image(560, 360, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-    this.player = new Player(this, 180, 400);
+    this.player = new Player(this, 1200, 130);
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
     // this.physics.add.overlap(
@@ -178,13 +174,13 @@ class Scene extends Phaser.Scene {
 
     // const monsterTrap = new MonsterTrap(this, 900, 210);
     // this.traps.push(monsterTrap);
-    const monsterTrap = new MonsterTrap(this, 900, 210);
-    this.traps.push(monsterTrap);
+    // const monsterTrap = new MonsterTrap(this, 900, 210);
+    // this.traps.push(monsterTrap);
     // monsterTrap.canSetupTrap = true;
     // monsterTrap.initCursor();
 
-    const computerTrap = new ComputerTrap(this, 580, 400);
-    this.traps.push(computerTrap);
+    // const computerTrap = new ComputerTrap(this, 580, 400);
+    // this.traps.push(computerTrap);
     // openedTrap.createColliders();
     // computerTrap.canSetupTrap = true;
     // computerTrap.initCursor();
@@ -204,12 +200,14 @@ class Scene extends Phaser.Scene {
 
     // const multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
-    new PlatformLevelsScene1(this);
+    this.platformsLevel = new PlatformLevelsScene3(this);
   }
 
   // appelée très souvent (correspond au fps)
   update(time) {
     this.player?.update();
+
+    this.platformsLevel?.update()
 
     // for (let i = 0; i < this.traps.length; i++) {
     //   this.traps[i].update(time);

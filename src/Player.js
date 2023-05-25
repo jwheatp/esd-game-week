@@ -2,7 +2,7 @@ class Player {
   scene;
   sprite;
   speed = 200;
-  jump = 400;
+  jump = 350;
   canMove = true;
   isJumping = false;
 
@@ -18,7 +18,7 @@ class Player {
     this.y = y;
 
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
 
     this.sprite.body.setMass(1000);
 
