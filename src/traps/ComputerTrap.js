@@ -22,7 +22,7 @@ class ComputerTrap extends Trap {
     this.y = y;
 
     this.computerY = this.y;
-    this.cssX = this.x - 10;
+    this.cssX = this.x - 50;
 
     this.computer = scene.physics.add.image(x, this.computerY, "trapcomputer");
     this.computer.body.setAllowGravity(false);
@@ -36,8 +36,8 @@ class ComputerTrap extends Trap {
   startAnimation() {
     setInterval(() => this.fire(), 1500);
 
-    this.computer.setVelocityY(-this.speedComputer);
-    this.isGoingTop = true;
+    // this.computer.setVelocityY(-this.speedComputer);
+    // this.isGoingTop = true;
 
     this.css.setVelocityX(-this.speedComputer);
     this.isGoingLeft = true;
