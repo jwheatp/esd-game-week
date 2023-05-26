@@ -49,6 +49,16 @@ class Player {
     //   this.scene.isgameover = true;
     //   this.canMove = false
     // });
+    // this.scoreText = this.scene.add.text(600, 50, "t", {
+    //   fontSize: "40px",
+    //   color: "black",
+    // });
+    //score
+    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+      this.winRound();
+      this.scene.isgameover = true;
+      this.canMove = false;
+    });
 
     /*tests animations*/
     this.scene.anims.create({
@@ -72,6 +82,8 @@ class Player {
       repeat: -1,
     });
     this.sprite.body.setMass(1000);
+
+    this.score = 0;
 
     // Platform.addCollider(this.sprite)
     this.scene.platformsLevels.initCollider(this.sprite);
@@ -196,6 +208,7 @@ class Player {
 
     this.canMove = false;
     this.scene.sound.play("hit");
+
     this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
