@@ -5,7 +5,7 @@ class MultiplayerSystem {
 
   room;
   playerEntities = {};
-  
+
   remoteRef
 
   constructor(scene) {
@@ -18,7 +18,7 @@ class MultiplayerSystem {
     try {
       const name = window.location.hash.substring(1)
 
-      if(name) {
+      if (name) {
         this.room = await this.client.joinById(name);
         console.log(this.room)
       } else {
@@ -36,7 +36,10 @@ class MultiplayerSystem {
     this.room.state.players.onAdd((player, sessionId) => {
       console.log("A player has joined! Their unique session id is", sessionId);
 
-      const _player = new Player(this.scene, this.scene.startX, this.scene.startY);
+      const startX = this.scene.startX
+      const startY = this.scene.startY
+
+      const _player = new Player(this.scene, startX, startY);
       _player.sessionId = sessionId
       _player.freeze()
 
@@ -64,7 +67,7 @@ class MultiplayerSystem {
         } else {
           _player.serverX = player.x
           _player.serverY = player.y
-          if(player.animation) {
+          if (player.animation) {
             _player.sprite.play(player.animation, true);
           }
         }
@@ -84,11 +87,11 @@ class MultiplayerSystem {
     });
 
     this.room.onMessage("trap-create", (content) => {
-      if(content.from === this.scene.player.sessionId) {
+      if (content.from === this.scene.player.sessionId) {
         return
       }
 
-      if(this.scene.traps.find(t => t.id === content.trapId)) {
+      if (this.scene.traps.find(t => t.id === content.trapId)) {
         return
       }
 
@@ -104,7 +107,7 @@ class MultiplayerSystem {
     })
 
     this.room.onMessage("trap-move", (content) => {
-      if(content.from === this.scene.player.sessionId) {
+      if (content.from === this.scene.player.sessionId) {
         return
       }
 
@@ -116,7 +119,7 @@ class MultiplayerSystem {
     })
 
     this.room.onMessage("trap-settle", (content) => {
-      if(content.from === this.scene.player.sessionId) {
+      if (content.from === this.scene.player.sessionId) {
         return
       }
 
@@ -136,7 +139,7 @@ class MultiplayerSystem {
       return;
     }
 
-    if(!this.scene.player) {
+    if (!this.scene.player) {
       return
     }
 
@@ -144,7 +147,7 @@ class MultiplayerSystem {
     this.room.send(0, this.scene.player.inputPayload);
 
     for (let sessionId in this.playerEntities) {
-      if(sessionId === this.room.sessionId) {
+      if (sessionId === this.room.sessionId) {
         continue
       }
       const entity = this.playerEntities[sessionId];

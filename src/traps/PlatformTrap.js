@@ -6,8 +6,9 @@ class PlatformTrap extends Trap {
   
   distance = 80;
 
-  x
-  y
+  setX(x)
+    setY(y)
+
   isGoingDown = true;  
 
 
