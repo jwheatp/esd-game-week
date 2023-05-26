@@ -40,5 +40,6 @@ class Score {
       icon.alpha = 1;
       scoreText.alpha = 1;
     }
+
   }
 }
