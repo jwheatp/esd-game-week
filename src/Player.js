@@ -161,7 +161,7 @@ class Player {
       // this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityY(-2 * this.speed);
+      this.sprite.body.setVelocityY(-this.speed);
 
       this.lastSpeedY = -this.jump;
       this.sprite.play("anim-player-jump", true);
