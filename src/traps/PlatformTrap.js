@@ -5,7 +5,10 @@ class PlatformTrap extends Trap {
 
   distance = 80;
 
-  isGoingDown = true;
+ 
+
+  isGoingDown = true;  
+
 
   constructor(scene, x, y) {
     super();

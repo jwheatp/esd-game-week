@@ -1,15 +1,16 @@
 class Scene extends Phaser.Scene {
-  gm;
-
-  background;
-
   inputs;
   player;
+  viseur;
 
   traps = [];
 
-  endPoint;
+  hbBlackHole;
+  playerCollider;
+  blackHolead;
 
+  endPoint;
+  platforms = [];
   isgameover = false;
 
   platformsLevels;
@@ -22,29 +23,33 @@ class Scene extends Phaser.Scene {
 
   multiplayerSystem;
 
-  startX = 100;
-  startY = 430;
-
-  startX = 100;
-  startY = 405;
-
   // on précharge les assets
   preload() {
     new Preloader(this);
-  }
 
+    this.load.image("scene1", "assets/scene1.jpg");
+  }
+  // initialise la scène
+  // est appelée qu'une seule fois
   async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
     this.sound.play("gamesong");
 
-    this.gm = new GameManager(this);
+    this.add.image(640, 360, "scene1");
 
-    this.multiplayerSystem = new MultiplayerSystem(this);
+    this.platformsLevels = new PlatformLevels(this);
 
-    this.displayStartScreen();
-  }
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    this.endPoint = this.physics.add.image(1245, 230, "endPlatform");
+    this.endPoint.body.setAllowGravity(false);
 
-  displayStartScreen() {
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    this.multiplayerSystem = new MultiplayerSystem(this)
+    // await multiplayerSystem.init()
+
+    new PlatformLevels(this);
+
     // Créer un rectangle semi-transparent en arrière-plan
     var background = this.add.rectangle(
       this.game.config.width / 2,
@@ -101,9 +106,7 @@ class Scene extends Phaser.Scene {
       },
       this
     );
-  }
 
-  displayUI() {
     this.phaseTitle = this.add.text(640, 400, "", {
       color: "black",
       fontSize: "50px",
@@ -123,10 +126,16 @@ class Scene extends Phaser.Scene {
   // Fonction pour démarrer le jeu
   startGame() {
     // Ajouter ici la logique pour démarrer votre jeu
-    this.gm.run();
+
+    const gm = new GameManager(this);
+    gm.run();
+
     this.multiplayerSystem.init();
-    this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider");
+
+    this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider")
+
     this.score = new Score(this);
+
   }
 
   // appelée très souvent (correspond au fps)
@@ -155,13 +164,15 @@ class Scene extends Phaser.Scene {
     }
     // Vérifier si le joueur est mort
     if (this.player?.isDead) {
-      // // Désactiver les mouvements du joueur
-      // this.player.freeze();
-      // console.log("aaa");
-      // // Afficher l'écran de "Game Over"
-      // var gameOverScreen = new GameOverScreen(this, this.player);
-      // gameOverScreen.create();
-      // this.isGameOver = true;
+      // Désactiver les mouvements du joueur
+      this.player.freeze();
+
+      console.log("aaa");
+      // Afficher l'écran de "Game Over"
+      var gameOverScreen = new GameOverScreen(this, this.player);
+      gameOverScreen.create();
+
+      this.isGameOver = true;
     }
   }
 }

@@ -27,6 +27,6 @@ class LobbyPhase extends Phase {
 
   isDone() {
     // tous les pièges sont posés
-    return this.scene.multiplayerSystem.players().length === 1;
+    return this.scene.multiplayerSystem.players().length === 2;
   }
 }

@@ -51,6 +51,8 @@ class GameManager {
 
       this.scene.displayUI();
     } else if (this.index === 1) {
+      this.scene.startX = 800;
+      this.scene.startY = 550;
       this.scene.endPoint.destroy();
 
       this.scene.background = this.scene.add.image(640, 360, "scene2");
@@ -66,6 +68,8 @@ class GameManager {
 
       this.scene.displayUI();
     } else if (this.index === 2) {
+      this.scene.startX = 1195;
+      this.scene.startY = 130;
       this.scene.endPoint.destroy();
 
       this.scene.background = this.scene.add.image(640, 360, "scene3");
@@ -77,6 +81,8 @@ class GameManager {
 
       this.scene.displayUI();
     } else if (this.index === 3) {
+      this.scene.startX = 125;
+      this.scene.startY = 570;
       this.scene.endPoint.destroy();
 
       this.scene.background = this.scene.add.image(640, 360, "scene4");
@@ -88,6 +94,8 @@ class GameManager {
 
       this.scene.displayUI();
     } else if (this.index === 4) {
+      this.scene.startX = 95;
+      this.scene.startY = 310;
       this.scene.endPoint.destroy();
 
       this.scene.background = this.scene.add.image(640, 360, "scene5");
