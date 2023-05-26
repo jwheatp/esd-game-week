@@ -120,14 +120,14 @@ class Player {
   }
 
   setSkin() {
-    // this.skinNumber =
-    //   this.scene.multiplayerSystem
-    //     .players()
-    //     .findIndex((p) => p.sessionId === this.sessionId) + 1;
+    this.skinNumber =
+      this.scene.multiplayerSystem
+        .players()
+        .findIndex((p) => p.sessionId === this.sessionId) + 1;
 
     this.sprite = this.scene.physics.add.sprite(
-      x,
-      y,
+      this.x,
+      this.y,
       "player-" + this.skinNumber + "-idl"
     );
 
