@@ -258,8 +258,6 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() {}
-
   die() {
     console.log("le joueur est mort !");
 
@@ -269,8 +267,10 @@ class Player {
     this.sprite.play("anim-player-" + this.skinNumber + "-death", true);
 
     this.canMove = false;
-    this.isDead = true;
+    this.sprite.setScale(0.5, 0.1);
     this.scene.sound.play("hit");
+    this.canMove = false;
+    this.isDead = true;
 
     this.sprite.setVelocityX(0);
     this.sprite.setVelocityY(0);
@@ -297,7 +297,8 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
-    this.scene.sound.play("gamelose");
   }
-  fall() {}
+  fall() {
+    this.scene.sound.play("fall");
+  }
 }
