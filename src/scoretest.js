@@ -2,10 +2,16 @@ class Score {
   textscore;
   scene;
 
+  barrescore
+  ficelle
+
   constructor(scene, x, y) {
     this.scene = scene;
   }
   showScore() {
+    this.barrescore?.destroy()
+    this.ficelle?.destroy()
+    
     this.barrescore = this.scene.add.image(1000, 50, "barre");
     this.ficelle = this.scene.add.image(1000, 10, "ficelle");
     const iconOffsetX = 800;
@@ -13,8 +19,6 @@ class Score {
     const playerPositions = [];
 
     const players = this.scene.multiplayerSystem.players();
-
-    console.log(players);
 
     for (let i = 0; i < players.length; i++) {
       const position = {

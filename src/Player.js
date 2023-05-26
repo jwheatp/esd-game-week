@@ -117,13 +117,21 @@ class Player {
   //score
 
   winRound() {
-    this.score += 1;
+
     // this.scoreText.setText("player:" + this.score);
 
     this.hasWon = true;
-    if (this.scene.isgameover) {
+
+    this.scene.score.showScore()
+
+    if (this.scene.isGameOver) {
       return;
     }
+
+    this.scene.isGameOver = true;
+
+    this.score += 1;
+
     this.scene.sound.play("gamewin");
   }
 
