@@ -59,6 +59,8 @@ class MultiplayerSystem {
       // keep a reference of it on `playerEntities`
       this.playerEntities[sessionId] = _player;
 
+      _player.setSkin();
+
       // listening for server updates
       player.onChange(() => {
         // update local position immediately
@@ -101,6 +103,10 @@ class MultiplayerSystem {
       const lookup = {
         SawTrap: SawTrap,
         ComputerTrap: ComputerTrap,
+        DoorMainTrap: DoorMainTrap,
+        PlatformTrap: PlatformTrap,
+        BlackHoleTrap: BlackHoleTrap,
+        SpikesTrap: SpikesTrap,
       };
 
       const trap = new lookup[content.type](this.scene, content.x, content.y);
