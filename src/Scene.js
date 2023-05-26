@@ -137,13 +137,7 @@ class Scene extends Phaser.Scene {
     this.platformsLevels = new PlatformLevels(this);
 
 
-    // const doorTrap = new DoorTrap(this, 800, 455);
-    // this.traps.push(doorTrap);
-    // const doorTrap = new DoorTrap(this, 800, 455);
-    // this.traps.push(doorTrap);
-
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
+    new DoorMainTrap(this, 800, 455)
 
     // // piege sacha + faouzi
     // const platformTrap = new PlatformTrap(this, 600, 300);
