@@ -13,9 +13,6 @@ class RacePhase extends Phase {
   }
 
   isDone() {
-    console.log(
-      this.scene.multiplayerSystem.players().filter((p) => !p.hasFinished)
-    );
     return (
       this.scene.multiplayerSystem.players().filter((p) => !p.hasFinished)
         .length === 0
