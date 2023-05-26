@@ -115,6 +115,13 @@ class Player {
     this.reset();
   }
 
+  setSkin() {
+    this.skinNumber =
+      this.scene.multiplayerSystem
+        .players()
+        .findIndex((p) => p.sessionId === this.sessionId) + 1;
+  }
+
   reset() {
     this.hasWon = false;
     this.hasFinished = false;
