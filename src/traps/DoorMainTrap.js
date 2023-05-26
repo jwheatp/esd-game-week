@@ -1,12 +1,12 @@
 class DoorMainTrap extends Trap {
-  doorTrap
-  openedTrap
+  doorTrap;
+  openedTrap;
 
   constructor(scene, x, y) {
-    super(scene, x, y)
+    super(scene, x, y);
 
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
 
     this.doorTrap = new DoorTrap(this.scene, x, y);
     // this.scene.traps.push(doorTrap);
@@ -16,22 +16,25 @@ class DoorMainTrap extends Trap {
   }
 
   setX(x) {
-    this.openedSprite.x = x
-    this.hitboxSprite.x = x
-    this.doorSprite.x = x
+    this.openedTrap.openedSprite.x = x;
+    this.openedTrap.hitboxSprite.x = x;
+    this.doorTrap.doorSprite.x = x;
+
+    this.x = x;
   }
 
   setY(y) {
-    this.openedSprite.y = y
-    this.hitboxSprite.y = y
-    this.doorSprite.y = y
+    this.openedTrap.openedSprite.y = y;
+    this.openedTrap.hitboxSprite.y = y;
+    this.doorTrap.doorSprite.y = y;
+
+    this.y = y;
   }
 
   update(time) {
-    this.setup()
+    this.setup();
 
-    this.doorTrap.update(time)
-    this.openedTrap.update(time)
-
+    this.doorTrap.update(time);
+    this.openedTrap.update(time);
   }
 }
