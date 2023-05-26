@@ -39,101 +39,9 @@ class Scene extends Phaser.Scene {
 
     this.platformsLevels = new PlatformLevels(this);
 
-    new DoorMainTrap(this, 800, 455);
-
-    // // piege sacha + faouzi
-    // const platformTrap = new PlatformTrap(this, 600, 300);
-    // this.traps.push(platformTrap);
-
-    // var rect = this.add.rectangle(1010, 115, 400, 45, 0Xaa0000, 1);
-    // this.add.image(1080, 15, "blindfold-score");
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    // this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
-    // this.endPoint.body.setAllowGravity(false);
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-
-    // /!\ LE POINT D'ARRIVÉE EST "hitbox-invisible" ET PAS "endPlatform" /!\
-    // this.endPoint = this.physics.add.image(1233, 230, "hitbox-invisible");
-    // this.add.image(1233, 230, "endPlatform");
-    // this.endPoint.body.setAllowGravity(false);
-
-    this.score = new Score(this);
-    this.score.showScore();
-
-    this.player = new Player(this, 180, 230);
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-
-    // this.physics.add.overlap(
-    //   this.player.sprite,
-    //   this.hbBlackHole.sprite,
-    //   () => {
-    //     // Faire disparaître le joueur
-    //     this.player.die();
-    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
-    //   }
-    // );
-    // this.player = new Player(this, 200, 505);
-    // this.physics.add.overlap(
-    //   this.player.sprite,
-    //   this.hbBlackHole.sprite,
-    //   () => {
-    //     // Faire disparaître le joueur
-    //     this.player.die();
-    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
-    //   }
-    // );
-
-    // const sawTrap = new SawTrap(this, 400, 400);
-    // this.traps.push(sawTrap);
-
-    // this.physics.add.collider(this.player.sprite, platform.sprite);
-    // this.physics.add.collider(this.player.sprite, platform2.sprite);
-
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
-    // monsterTrap.canSetupTrap = true;
-    // monsterTrap.initCursor();
-    // // monsterTrap.canSetupTrap = true;
-    // // monsterTrap.initCursor();
-
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
-    // openedTrap.createColliders();
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
-    // monsterTrap.canSetupTrap = true;
-    // monsterTrap.initCursor();
-
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
-    // computerTrap.canSetupTrap = true;
-    // computerTrap.initCursor();
-
-    // openedTrap.createColliders();
-
-    // const spikesTrap = new SpikesTrap(this, 400, 350);
-    // this.traps.push(spikesTrap);
-
     this.multiplayerSystem = new MultiplayerSystem(this);
-    // await multiplayerSystem.init()
 
     new PlatformLevels(this);
-
-    //karim rayane
-    //karim rayane
-
-    // const spikesTrap = new SpikesTrap(this, 400, 350);
-    // this.traps.push(spikesTrap);
 
     // Créer un rectangle semi-transparent en arrière-plan
     var background = this.add.rectangle(
@@ -176,7 +84,7 @@ class Scene extends Phaser.Scene {
     startButton.setOrigin(0.5);
     startButton.setInteractive();
     // Gérer le clic sur le bouton "Start Game"
-    this.player.freeze();
+    this.player?.freeze();
     this.input.keyboard.on(
       "keydown-SPACE",
       function () {
@@ -186,11 +94,26 @@ class Scene extends Phaser.Scene {
           startButton.destroy();
           background.destroy();
           text.destroy();
-          this.player.unfreeze(); // Activer les mouvements du joueur
+          this.player?.unfreeze(); // Activer les mouvements du joueur
         }
       },
       this
     );
+
+    this.phaseTitle = this.add.text(640, 400, "", {
+      color: "black",
+      fontSize: "50px",
+      align: "center",
+      backgroundColor: "white",
+    });
+    this.phaseTitle.setOrigin(0.5);
+    this.roundTitle = this.add.text(640, 330, "", {
+      color: "black",
+      fontSize: "70px",
+      align: "center",
+      backgroundColor: "white",
+    });
+    this.roundTitle.setOrigin(0.5);
   }
 
   // Fonction pour démarrer le jeu
@@ -213,6 +136,10 @@ class Scene extends Phaser.Scene {
     //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
     //   }
     // );
+
+    
+    this.score = new Score(this);
+
   }
 
   // appelée très souvent (correspond au fps)
@@ -233,13 +160,12 @@ class Scene extends Phaser.Scene {
     if (this.isGameOver) {
       return;
     }
-    this.player.update();
 
     for (let i = 0; i < this.traps.length; i++) {
       this.traps[i].update();
     }
     // Vérifier si le joueur est mort
-    if (this.player.isDead) {
+    if (this.player?.isDead) {
       // Désactiver les mouvements du joueur
       this.player.freeze();
 
