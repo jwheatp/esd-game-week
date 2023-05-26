@@ -124,6 +124,12 @@ class PlatformLevelsScene4 {
       this.scene.physics.add.collider(target, this.platforms[i]);
     }
   }
+  
+  destroy() {
+    for (let i = 0; i < this.platforms.length; i++) {
+      this.platforms[i].destroy()
+    }
+  }
 
   update() {
     if (this.isGoingRight && this.snowPlatform.body.x > this.x + 0) {
