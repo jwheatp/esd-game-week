@@ -4,11 +4,11 @@ class BlackHoleTrap extends Trap {
   y;
   blackHoleSprite;
   constructor(scene, x, y) {
-    super();
+    super(scene, x, y);
     this.scene = scene;
     this.x = x;
     this.y = y;
-    this.blackHoleSprite = scene.physics.add.image(x, y, "trap - blackHole");
+    this.blackHoleSprite = scene.physics.add.image(x, y, "trap-blackHole");
     this.blackHoleSprite.setScale(0.2);
     this.blackHoleSprite.body.setAllowGravity(false);
     this.scene.tweens.add({
@@ -19,7 +19,7 @@ class BlackHoleTrap extends Trap {
       ease: "Linear",
     });
     this.hbBlackHole = new HbBlackHole(this.scene, this.x, this.y);
-    this.physics.add.overlap(
+    this.scene.physics.add.overlap(
       this.scene.player.sprite,
       this.hbBlackHole.sprite,
       () => {
@@ -30,6 +30,8 @@ class BlackHoleTrap extends Trap {
     );
   }
   update() {
+    this.setup()
+
     //trap BlackHole attraction
     if (
       this.scene.player.sprite.body.x >= this.blackHoleSprite.body.x - 100 &&
@@ -79,12 +81,12 @@ class BlackHoleTrap extends Trap {
   }
   setX(x) {
     this.blackHoleSprite.x = x;
-    this.sprite.x = x;
+    this.hbBlackHole.setX(x)
     this.x = x;
   }
   setY(y) {
     this.blackHoleSprite.y = y;
-    this.sprite.y = y;
+    this.hbBlackHole.setY(y)
     this.y = y;
   }
 }
@@ -94,7 +96,6 @@ class HbBlackHole {
   y;
   sprite;
   constructor(scene, x, y) {
-    super();
     this.scene = scene;
     this.x = x;
     this.y = y;
@@ -105,12 +106,10 @@ class HbBlackHole {
   update() { }
   setX(x) {
     this.HbBlackHoleSprite.x = x;
-    this.sprite.x = x;
     this.x = x;
   }
   setY(y) {
     this.HbBlackHoleSprite.y = y;
-    this.sprite.y = y;
     this.y = y;
   }
 }

@@ -1,16 +1,17 @@
+
 class Trap {
   scene;
   viseur;
   canSetupTrap = false;
   isSettled = false
 
-  speed = 200;
+  speed = 2;
 
   x;
   y;
 
   static createRandomTrap(scene, x, y) {
-    const traps = [SawTrap, DoorMainTrap]
+    const traps = [BlackHoleTrap]
     const index = Math.floor(Math.random() * traps.length);
     return new traps[index](scene, x, y)
   }

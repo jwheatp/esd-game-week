@@ -6,7 +6,7 @@ class Player {
   canMove = true;
   isJumping = false;
 
-  skinNumber = 1;
+  skinNumber = 2;
 
   lastSpeedX = 0;
   lastSpeedY = 0;
@@ -60,6 +60,8 @@ class Player {
     //   this.canMove = false;
     // });
 
+    this.sprite.body.setMass(1000);
+
     /*animations*/
     this.scene.anims.create({
       key: 'anim-player-' + this.skinNumber + '-run',
@@ -81,7 +83,6 @@ class Player {
       frameRate: 7,
       repeat: -1,
     });
-    this.sprite.body.setMass(1000);
 
     this.scene.anims.create({
       key: 'anim-player-' + this.skinNumber + '-death',
@@ -94,7 +95,7 @@ class Player {
       key: 'anim-player-' + this.skinNumber + '-victory',
       frames: [{ key: "player-" + this.skinNumber + "-move1" }, { key: "player-" + this.skinNumber + "-move2" }, {
         key: "player-" + this.skinNumber + "-move3"
-      }, { key: "player-" + this.skinNumber + "-move4" }],
+      }, { key: "player-" + this.skinNumber + "-move4" }, { key: "player-" + this.skinNumber + "-move5" }, { key: "player-" + this.skinNumber + "-move6" }, { key: "player-" + this.skinNumber + "-move7" }],
       frameRate: 7,
       repeat: -1
     })
@@ -186,7 +187,7 @@ class Player {
       this.sprite.body.setVelocityY(-2 * this.speed);
 
       this.lastSpeedY = -this.jump;
-      this.sprite.play("anim-player-jump", true);
+      this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
       this.inputPayload.animation = "anim-player-jump";
     }
 
@@ -196,22 +197,30 @@ class Player {
       this.scene.sound.play("run");
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(this.speed);
-      //this.lastSpeedX = this.speed;
-      this.sprite.play("anim-player-run", true);
-      this.inputPayload.animation = "anim-player-run";
+      this.inputPayload.animation = "anim-player-" + this.skinNumber + "-run";
       this.lastSpeedX = this.speed;
+      this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
+      if (this.isJumping) {
+        this.sprite.play('anim-player-' + this.skinNumber + '-jump', true);
+      }
+      this.sprite.flipX = false
     } else if (this.scene.inputs.left.isDown) {
       this.scene.sound.play("run");
-
+      //reverse the player
+      this.sprite.flipX = true
+      // animation
+      this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
+      if (this.isJumping) {
+        this.sprite.play('anim-player-' + this.skinNumber + '-jump', true);
+      }
       // je mets une vitesse X à 200
-
       this.sprite.body.setVelocityX(-this.speed);
     } else {
       // sinon, je remets la vitesse à 0
       this.sprite.body.setVelocityX(0);
 
       if (!this.isJumping) {
-        this.sprite.play("anim-player-idl", true);
+        this.sprite.play("anim-player-" + this.skinNumber + "-idl", true);
         this.inputPayload.animation = "anim-player-idl";
       }
       this.lastSpeedX = 0;
