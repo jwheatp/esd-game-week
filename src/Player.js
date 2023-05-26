@@ -219,7 +219,6 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() {}
 
   die() {
     console.log("le joueur est mort !");
@@ -227,13 +226,13 @@ class Player {
     this.isDead = true;
 
     this.canMove = false;
-    this.scene.sound.play("hit");
+    
 
     this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
+    this.scene.sound.play("hit");
     this.canMove = false;
     this.isDead = true;
-    this.scene.sound.play("hit");
 
     this.sprite.setVelocityX(0);
     this.sprite.setVelocityY(0);
@@ -260,9 +259,10 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
-    this.scene.sound.play("gamelose");
+
   }
   fall() {
-    
+        this.scene.sound.play("fall");
+
   }
 }
