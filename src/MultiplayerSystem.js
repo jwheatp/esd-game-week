@@ -35,11 +35,8 @@ class MultiplayerSystem {
     window.location.hash = this.room.id
     this.room.state.players.onAdd((player, sessionId) => {
       console.log("A player has joined! Their unique session id is", sessionId);
-      
-      const startX = 100
-      const startY = 430
 
-      const _player = new Player(this.scene, startX, startY);
+      const _player = new Player(this.scene, this.scene.startX, this.scene.startY);
       _player.sessionId = sessionId
       _player.freeze()
 
