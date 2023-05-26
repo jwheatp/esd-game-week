@@ -45,23 +45,6 @@ class Scene extends Phaser.Scene {
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
-    this.add.image(1000, 40, "blindfold-score");
-    this.add.text(870, 30, "Sydney", {
-      fontSize: "16px",
-      color: "black",
-    });
-
-    this.add.image(820, 40, "icon");
-    // var rect = this.add.rectangle(600, 20, 500, 45, 0xff0000, 1);
-    //bandeau pour le score 
-    // this.add.image(1000, 40, "string");
-    this.add.image(1020, 40, "blindfold-score");
-    this.add.image(830, 40, "icon-player1");
-    this.add.image(930, 40, "icon-player2");
-    this.add.image(1010, 40, "icon-player3");
-    this.add.image(1040, 40, "icon-player4");
-    this.add.image(1090, 40, "icon-player5");
-
     this.multiplayerSystem = new MultiplayerSystem(this)
     // await multiplayerSystem.init()
 
