@@ -15,6 +15,18 @@ class DoorMainTrap extends Trap {
     // this.scene.traps.push(openedTrap);
   }
 
+  setX(x) {
+    this.openedSprite.x = x
+    this.hitboxSprite.x = x
+    this.doorSprite.x = x
+  }
+
+  setY(y) {
+    this.openedSprite.y = y
+    this.hitboxSprite.y = y
+    this.doorSprite.y = y
+  }
+
   update(time) {
     this.setup()
 
