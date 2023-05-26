@@ -16,7 +16,6 @@ class Trap {
       PlatformTrap,
       BlackHoleTrap,
       SpikesTrap,
-      ComputerTrap,
     ];
     const index = Math.floor(Math.random() * traps.length);
     return new traps[index](scene, x, y);
