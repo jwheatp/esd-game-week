@@ -92,7 +92,7 @@ class Player {
     this.hasFinished = false;
     this.isDead = false;
 
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
     this.canMove = true;
 
     this.sprite.play("anim-player-idl", true);
@@ -255,8 +255,7 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
-  }
-  fall() {
     this.scene.sound.play("gamelose");
   }
+  fall() {}
 }

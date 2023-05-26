@@ -51,9 +51,6 @@ class ComputerTrap extends Trap {
     );
     this.css.setScale(0.09);
     this.css.body.setAllowGravity(false);
-
-    // this.css.setGravity(-100, -100);
-    // console.log(this.css.body.mass);
     this.scene.physics.add.overlap(this.css, this.scene.player.sprite, () => {
       this.scene.player.die();
     });
@@ -71,6 +68,7 @@ class ComputerTrap extends Trap {
   }
   update() {
     this.setup();
+    // le mouvement du computer 
     if (
       this.isGoingTop &&
       this.computer.body.y < this.computerY - this.distance
@@ -86,7 +84,7 @@ class ComputerTrap extends Trap {
       this.computer.setVelocityY(-this.speed);
       this.isGoingTop = true;
     }
-
+    //  le mouvement des attaques 
     if (this.isGoingLeft && this.css.body.x < this.x + 5) {
       this.css.setVelocityX(-this.speedfire);
       // this.isGoingLeft = false;
