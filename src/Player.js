@@ -124,14 +124,12 @@ class Player {
     //   this.scene.multiplayerSystem
     //     .players()
     //     .findIndex((p) => p.sessionId === this.sessionId) + 1;
-
-    this.sprite = this.scene.physics.add.sprite(
-      x,
-      y,
-      "player-" + this.skinNumber + "-idl"
-    );
-
-    console.log("skin is", this.skinNumber);
+    // this.sprite = this.scene.physics.add.sprite(
+    //   this.x,
+    //   this.y,
+    //   "player-" + this.skinNumber + "-idl"
+    // );
+    // console.log("skin is", this.skinNumber);
   }
 
   reset() {
