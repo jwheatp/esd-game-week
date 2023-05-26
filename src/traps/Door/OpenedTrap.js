@@ -14,76 +14,73 @@ class OpenedTrap extends Trap {
     this.lastOpenTime = null;
 
     this.openDeltaTime = 5000;
-    this.opened = false
+    this.opened = false;
 
-    this.openedSprite.alpha = 0
+    this.openedSprite.alpha = 0;
 
     this.openDeltaTimeMin = 2000; // Délai minimum  (2 secondes)
     this.openDeltaTimeMax = 7000; // Délai maximum  (7 secondes)
 
-
     this.hitboxSprite = scene.physics.add.image(x, y, "trap-mode-hitbox");
-    this.hitboxSprite.setScale(0.4)
-    this.hitboxSprite.setAlpha(0)
-    this.hitboxSprite.body.setAllowGravity(false)
-    this.hitboxSprite.setImmovable(true)
+    this.hitboxSprite.setScale(0.4);
+    this.hitboxSprite.setAlpha(0);
+    this.hitboxSprite.body.setAllowGravity(false);
+    this.hitboxSprite.setImmovable(true);
 
-    this.createColliders()
-
+    this.createColliders();
   }
 
   createColliders() {
-    this.scene.physics.add.overlap(this.scene.player.sprite, this.hitboxSprite, () => {
-      if (this.opened) {
-        console.log("go");
+    this.scene.physics.add.overlap(
+      this.scene.player.sprite,
+      this.hitboxSprite,
+      () => {
+        if (this.opened) {
+          console.log("go");
 
-        this.scene.player.freeze()
+          this.scene.player.freeze();
 
-        this.scene.tweens.chain({
-          targets: this.scene.player.sprite,
-          tweens: [
-            {
-              scale: 0.3,
-              // x: "+=10",
-              displayOriginY: 30,
-              duration: this.fadeDuration,
-              ease: 'Linear',
+          this.scene.tweens.chain({
+            targets: this.scene.player.sprite,
+            tweens: [
+              {
+                scale: 0.3,
+                // x: "+=10",
+                displayOriginY: 30,
+                duration: this.fadeDuration,
+                ease: "Linear",
+              },
+              {
+                alpha: 0,
+                duration: this.fadeDuration,
+                ease: "Linear",
+              },
+            ],
+            onComplete: () => {
+              setTimeout(() => {
+                this.scene.player.sprite.setPosition(100, 405);
+                this.scene.sound.play("teleport");
+
+                this.scene.tweens.chain({
+                  targets: this.scene.player.sprite,
+                  tweens: [
+                    {
+                      scale: 0.5,
+                      alpha: 1,
+                      duration: 1000,
+                      ease: "Linear",
+                    },
+                  ],
+                });
+
+                this.scene.player.unfreeze();
+              }, 0);
             },
-            {
-              alpha: 0,
-              duration: this.fadeDuration,
-              ease: 'Linear',
-            }
-          ],
-          onComplete: () => {
-            setTimeout(() => {
-              this.scene.player.sprite.setPosition(100, 405)
-              this.scene.sound.play("teleport");
-
-
-              this.scene.tweens.chain({
-                targets: this.scene.player.sprite,
-                tweens: [
-                  {
-                    scale: 0.4,
-                    alpha: 1,
-                    duration: 1000,
-                    ease: 'Linear'
-                  },
-                ]
-              });
-
-              this.scene.player.unfreeze()
-            }, 0)
-
-          }
-        });
+          });
+        }
       }
-    });
+    );
   }
-
-
-
 
   toggle() {
     this.opened = !this.opened;
@@ -94,14 +91,10 @@ class OpenedTrap extends Trap {
       targets: [this.openedSprite],
       alpha: targetAlpha,
       duration: this.fadeDuration,
-      ease: 'Linear',
-      onComplete: () => {
-
-      }
+      ease: "Linear",
+      onComplete: () => {},
     });
   }
-
-
 
   update(time) {
     if (!this.lastOpenTime) {
@@ -111,10 +104,11 @@ class OpenedTrap extends Trap {
     if (time - this.lastOpenTime > this.openDeltaTime) {
       this.lastOpenTime = time;
 
-      this.openDeltaTime = Math.random() * (this.openDeltaTimeMax - this.openDeltaTimeMin) + this.openDeltaTimeMin;
+      this.openDeltaTime =
+        Math.random() * (this.openDeltaTimeMax - this.openDeltaTimeMin) +
+        this.openDeltaTimeMin;
 
       this.toggle();
-      console.log(time)
     }
   }
 }

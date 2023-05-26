@@ -2,17 +2,17 @@ class Trap {
   scene;
   viseur;
   canSetupTrap = false;
-  isSettled = false
+  isSettled = false;
 
-  speed = 200;
+  speed = 2;
 
   x;
   y;
 
   static createRandomTrap(scene, x, y) {
-    const traps = [SawTrap, DoorMainTrap]
+    const traps = [DoorMainTrap];
     const index = Math.floor(Math.random() * traps.length);
-    return new traps[index](scene, x, y)
+    return new traps[index](scene, x, y);
   }
 
   constructor(scene, x, y) {
@@ -30,8 +30,8 @@ class Trap {
       trapId: this.id,
       type: this.constructor.name,
       x: this.x,
-      y: this.y
-    })
+      y: this.y,
+    });
   }
 
   static generateId() {
@@ -67,17 +67,17 @@ class Trap {
       } else if (this.scene.inputs.left.isDown) {
         // je mets une vitesse X à 200
         this.setX(this.x - this.speed);
-        this.setCursorX(this.x - this.speed)
+        this.setCursorX(this.x - this.speed);
       }
 
       if (this.scene.inputs.down.isDown) {
         // je mets une vitesse Y à 200
         this.setY(this.y + this.speed);
-        this.setCursorY(this.y + this.speed)
+        this.setCursorY(this.y + this.speed);
       } else if (this.scene.inputs.up.isDown) {
         // je mets une vitesse Y à 200
         this.setY(this.y - this.speed);
-        this.setCursorY(this.y - this.speed)
+        this.setCursorY(this.y - this.speed);
       }
 
       if (this.scene.inputs.space.isDown) {
@@ -85,48 +85,45 @@ class Trap {
         this.infoText.setVisible(false);
         this.viseur.setVisible(false);
         this.canSetupTrap = false;
-        this.isSettled = true
+        this.isSettled = true;
 
         this.scene.multiplayerSystem.room.send("trap-settle", {
           from: this.scene.player.sessionId,
-          trapId: this.id
-        })
+          trapId: this.id,
+        });
 
         // this.x = this.sprite.body.x
         // this.y = this.sprite.body.y
 
-        this.startAnimation()
+        this.startAnimation();
       }
 
       this.scene.multiplayerSystem.room.send("trap-move", {
         from: this.scene.player.sessionId,
         trapId: this.id,
         x: this.x,
-        y: this.y
-      })
-
+        y: this.y,
+      });
     }
   }
   setCursorX(x) {
     if (this.canSetupTrap) {
-      this.viseur.x = x
+      this.viseur.x = x;
     }
   }
   setCursorY(y) {
     if (this.canSetupTrap) {
-      this.viseur.y = y
+      this.viseur.y = y;
     }
   }
 
-  startAnimation() {
-
-  }
+  startAnimation() {}
 
   setX(x) {
-    this.x = x
+    this.x = x;
   }
 
   setY(y) {
-    this.y = y
+    this.y = y;
   }
 }
