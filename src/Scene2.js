@@ -49,8 +49,8 @@ class Scene2 extends Phaser.Scene {
     // this.traps.push(openedTrap);
 
     // piege sacha + faouzi
-    // const platformTrap = new PlatformTrap(this, 1100, 300);
-    // this.traps.push(platformTrap);
+    const platformTrap = new PlatformTrap(this, 1100, 300);
+    this.traps.push(platformTrap);
 
     this.add.image(1000, 40, "blindfold-score");
     this.add.image(1000, 40, "icon");
