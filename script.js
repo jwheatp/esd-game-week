@@ -6,13 +6,13 @@ const config = {
     default: "arcade",
     arcade: {
       debug: false,
-      gravity: { y: 400 },
+      gravity: { y: 2000 },
     },
   },
   audio: {
-    disableWebAudio: true
+    disableWebAudio: true,
   },
-  scene: Scene5,
+  scene: Scene,
 };
 
 const game = new Phaser.Game(config);

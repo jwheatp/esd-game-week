@@ -1,19 +1,24 @@
 class RacePhase extends Phase {
   constructor(scene) {
-    super(scene)
+    super(scene);
   }
-  
+
   run() {
-    this.setTitle("Jouez !")
+    this.setTitle("Jouez !");
 
-    console.log("/// Run - RacePhase")
-
-    this.scene.player.unfreeze()
+    console.log("/// Run - RacePhase");
+    this.scene.isGameOver = false;
+    this.scene.score.showScore();
+    this.scene.player.unfreeze();
   }
 
   isDone() {
-    // tous les pièges sont posés
-    console.log(this.scene.player.isDead || this.scene.player.hasWon)
-    return this.scene.player.isDead || this.scene.player.hasWon
+    console.log(
+      this.scene.multiplayerSystem.players().filter((p) => !p.hasFinished)
+    );
+    return (
+      this.scene.multiplayerSystem.players().filter((p) => !p.hasFinished)
+        .length === 0
+    );
   }
 }

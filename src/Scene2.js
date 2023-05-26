@@ -18,13 +18,14 @@ class Scene2 extends Phaser.Scene {
 
   platformsLevels
 
+  startX = 800;
+  startY = 550;
+
+
   // on précharge les assets
 
   preload() {
     new Preloader(this)
-
-    this.load.image("scene2", "assets/scene2.jpg");
-
   }
 
   // initialise la scène
@@ -66,69 +67,9 @@ class Scene2 extends Phaser.Scene {
     this.add.image(390, 570, "endPlatform");
     this.endPoint.body.setAllowGravity(false);
 
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-
-    // this.physics.add.overlap(
-    //   this.player.sprite,
-    //   this.hbBlackHole.sprite,
-    //   () => {
-    //     // Faire disparaître le joueur
-    //     this.player.die();
-    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
-    //   }
-    // );
-    // this.player = new Player(this, 200, 505);
-    // this.physics.add.overlap(
-    //   this.player.sprite,
-    //   this.hbBlackHole.sprite,
-    //   () => {
-    //     // Faire disparaître le joueur
-    //     this.player.die();
-    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
-    //   }
-    // );
-
-    // const sawTrap = new SawTrap(this, 400, 400);
-    // this.traps.push(sawTrap);
-
-    // this.physics.add.collider(this.player.sprite, platform.sprite);
-    // this.physics.add.collider(this.player.sprite, platform2.sprite);
-
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
-    // const monsterTrap = new MonsterTrap(this, 900, 210);
-    // this.traps.push(monsterTrap);
-    // monsterTrap.canSetupTrap = true;
-    // monsterTrap.initCursor();
-
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
-    // openedTrap.createColliders();
-    // computerTrap.canSetupTrap = true;
-    // computerTrap.initCursor();
-
-    // const openedTrap = new OpenedTrap(this, 800, 455);
-    // this.traps.push(openedTrap);
-
-    // const computerTrap = new ComputerTrap(this, 600, 410);
-    // this.traps.push(computerTrap);
-    // openedTrap.createColliders();
-    // const computerTrap = new ComputerTrap(this, 580, 400);
-    // this.traps.push(computerTrap);
-    // openedTrap.createColliders();
-
-    // const spikesTrap = new SpikesTrap(this, 400, 350);
-    // this.traps.push(spikesTrap);
-
-    // const multiplayerSystem = new MultiplayerSystem(this)
-    // await multiplayerSystem.init()
     this.platformsLevels = new PlatformLevelsScene2(this);
 
-    this.player = new Player(this, 800, 550);
+    this.player = new Player(this, this.startX, this.startY);
   }
 
   // appelée très souvent (correspond au fps)

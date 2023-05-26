@@ -27,7 +27,7 @@ class SetupPhase extends Phase {
 
   isDone() {
     // tous les pièges sont posés
-    console.log(this.scene.traps)
+    // console.log(this.scene.traps)
     return this.scene.traps.filter(t => !t.isSettled).length === 0
   }
 }

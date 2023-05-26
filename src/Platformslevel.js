@@ -115,6 +115,12 @@ class PlatformLevels {
 
   }
 
+  destroy() {
+    for (let i = 0; i < this.platforms.length; i++) {
+      this.platforms[i].destroy()
+    }
+  }
+
   initCollider(target) {
     for (let i = 0; i < this.platforms.length; i++) {
       this.scene.physics.add.collider(target, this.platforms[i]);
