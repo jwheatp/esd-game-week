@@ -6,6 +6,8 @@ class Player {
   canMove = true;
   isJumping = false;
 
+  skinNumber = 2;
+
   lastSpeedX = 0;
   lastSpeedY = 0;
   scoreText;
@@ -57,29 +59,47 @@ class Player {
     //   this.canMove = false;
     // });
 
-    /*tests animations*/
-    this.scene.anims.create({
-      key: "anim-player-run",
-      frames: [{ key: "player-run" }, { key: "player-walk" }],
-      frameRate: 7,
-      repeat: -1,
-    });
-
-    this.scene.anims.create({
-      key: "anim-player-idl",
-      frames: [{ key: "player-idl" }],
-      frameRate: 7,
-      repeat: -1,
-    });
-
-    this.scene.anims.create({
-      key: "anim-player-jump",
-      frames: [{ key: "player-jump" }],
-      frameRate: 7,
-      repeat: -1,
-    });
     this.sprite.body.setMass(1000);
 
+    /*animations*/
+    this.scene.anims.create({
+      key: 'anim-player-' + this.skinNumber + '-run',
+      frames: [{ key: "player-" + this.skinNumber + "-run" }, { key: "player-" + this.skinNumber + "-walk" }],
+      frameRate: 7,
+      repeat: -1,
+    });
+
+    this.scene.anims.create({
+      key: 'anim-player-' + this.skinNumber + '-idl',
+      frames: [{ key: "player-" + this.skinNumber + "-idl" }],
+      frameRate: 7,
+      repeat: -1,
+    });
+
+    this.scene.anims.create({
+      key: 'anim-player-' + this.skinNumber + '-jump',
+      frames: [{ key: "player-" + this.skinNumber + "-jump" }],
+      frameRate: 7,
+      repeat: -1,
+    });
+
+    this.scene.anims.create({
+      key: 'anim-player-' + this.skinNumber + '-death',
+      frames: [{ key: "player-" + this.skinNumber + "-death" }],
+      frameRate: 7,
+      repeat: -1
+    });
+
+    this.scene.anims.create({
+      key: 'anim-player-' + this.skinNumber + '-victory',
+      frames: [{ key: "player-" + this.skinNumber + "-move1" }, { key: "player-" + this.skinNumber + "-move2" }, {
+        key: "player-" + this.skinNumber + "-move3"
+      }, { key: "player-" + this.skinNumber + "-move4" }, { key: "player-" + this.skinNumber + "-move5" }, { key: "player-" + this.skinNumber + "-move6" }, { key: "player-" + this.skinNumber + "-move7" }],
+      frameRate: 7,
+      repeat: -1
+    })
+
+    this.sprite.body.setMass(1000);
     this.score = 0;
 
     this.sprite.body.setMass(1000);
@@ -164,40 +184,59 @@ class Player {
       this.sprite.body.setVelocityY(-this.speed);
 
       this.lastSpeedY = -this.jump;
-      this.sprite.play("anim-player-jump", true);
+      this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
       this.inputPayload.animation = "anim-player-jump";
     }
 
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
+
       this.scene.sound.play("run");
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(this.speed);
-      //this.lastSpeedX = this.speed;
-      this.sprite.play("anim-player-run", true);
-      this.inputPayload.animation = "anim-player-run";
+      this.inputPayload.animation = "anim-player-" + this.skinNumber + "-run";
       this.lastSpeedX = this.speed;
+      this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
+      if (this.isJumping) {
+        this.sprite.play('anim-player-' + this.skinNumber + '-jump', true);
+      }
+      this.sprite.flipX = false
     } else if (this.scene.inputs.left.isDown) {
       this.scene.sound.play("run");
-
+      //reverse the player
+      this.sprite.flipX = true
+      // animation
+      this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
+      if (this.isJumping) {
+        this.sprite.play('anim-player-' + this.skinNumber + '-jump', true);
+      }
       // je mets une vitesse X à 200
-
       this.sprite.body.setVelocityX(-this.speed);
     } else {
       // sinon, je remets la vitesse à 0
       this.sprite.body.setVelocityX(0);
 
       if (!this.isJumping) {
-        this.sprite.play("anim-player-idl", true);
+        this.sprite.play("anim-player-" + this.skinNumber + "-idl", true);
         this.inputPayload.animation = "anim-player-idl";
       }
       this.lastSpeedX = 0;
+
+      if (!this.isJumping || this.isDie) {
+        this.sprite.play('anim-player-' + this.skinNumber + '-idl', true);
+
+      }
     }
 
     // this.sprite.y += speed
     // this.inputPayload.up = true
     if (Math.abs(this.sprite.body.velocity.y) === 0) {
       this.isJumping = false;
+    }
+
+    //if player win
+    if (this.nPoint) {
+      this.sprite.play('anim-player-' + this.skinNumber + '-victory', true)
     }
   }
 
