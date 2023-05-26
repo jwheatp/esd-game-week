@@ -42,9 +42,6 @@ class Scene extends Phaser.Scene {
 
     this.platformsLevels = new PlatformLevels(this);
 
-
-    new DoorMainTrap(this, 800, 455)
-
     // // piege sacha + faouzi
     // const platformTrap = new PlatformTrap(this, 600, 300);
     // this.traps.push(platformTrap);
@@ -252,7 +249,9 @@ class Scene extends Phaser.Scene {
     this.platformsLevel?.update()
 
     for (let i = 0; i < this.traps.length; i++) {
-      this.traps[i].update(time);
+      if(this.traps[i]?.update) {
+        this.traps[i]?.update(time);
+      }
     }
     // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
     //   this.player.x = 500;

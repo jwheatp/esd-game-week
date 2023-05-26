@@ -179,6 +179,9 @@ class Player {
   freeze() {
     this.canMove = false;
     this.sprite.body.setAllowGravity(false);
+    this.sprite.setVelocityX(0)
+    this.sprite.setVelocityY(0)
+
   }
 
   unfreeze() {
