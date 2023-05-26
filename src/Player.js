@@ -13,7 +13,7 @@ class Player {
 
   hasWon = false;
   inputPayload = {
-    
+
   };
 
   inputQueue = []
@@ -87,7 +87,7 @@ class Player {
     this.hasWon = false;
     this.isDead = false;
 
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
     this.canMove = true;
 
     this.sprite.play("anim-player-idl", true);
@@ -132,7 +132,7 @@ class Player {
       // this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityY(-2*this.speed)
+      this.sprite.body.setVelocityY(-2 * this.speed)
 
       this.lastSpeedY = -this.jump;
       this.sprite.play("anim-player-jump", true);
@@ -160,7 +160,7 @@ class Player {
       // sinon, je remets la vitesse à 0
       this.sprite.body.setVelocityX(0)
 
-      if(!this.isJumping) {
+      if (!this.isJumping) {
         this.sprite.play('anim-player-idl', true);
         this.inputPayload.animation = "anim-player-idl"
 

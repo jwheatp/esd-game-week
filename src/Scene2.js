@@ -18,6 +18,10 @@ class Scene2 extends Phaser.Scene {
 
   platformsLevels
 
+  startX = 800;
+  startY = 550;
+
+
   // on précharge les assets
 
   preload() {
@@ -128,7 +132,7 @@ class Scene2 extends Phaser.Scene {
     // await multiplayerSystem.init()
     this.platformsLevels = new PlatformLevelsScene2(this);
 
-    this.player = new Player(this, 800, 550);
+    this.player = new Player(this, this.startX, this.startY);
   }
 
   // appelée très souvent (correspond au fps)

@@ -25,6 +25,9 @@ class Scene extends Phaser.Scene {
 
   multiplayerSystem
 
+  startX = 100;
+  startY = 405;
+
   // on précharge les assets
   preload() {
     new Preloader(this)
@@ -249,7 +252,7 @@ class Scene extends Phaser.Scene {
     this.platformsLevel?.update()
 
     for (let i = 0; i < this.traps.length; i++) {
-      if(this.traps[i]?.update) {
+      if (this.traps[i]?.update) {
         this.traps[i]?.update(time);
       }
     }
