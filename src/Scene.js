@@ -151,7 +151,9 @@ class Scene extends Phaser.Scene {
     this.platformsLevel?.update();
 
     for (let i = 0; i < this.traps.length; i++) {
-      this.traps[i].update(time);
+      if(this.traps[i]?.update) {
+        this.traps[i]?.update(time);
+      }
     }
     // if (this.opened && this.player.x === OpenedTrap.x && this.player.y === OpenedTrap.y) {
     //   this.player.x = 500;
