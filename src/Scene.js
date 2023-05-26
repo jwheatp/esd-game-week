@@ -39,7 +39,31 @@ class Scene extends Phaser.Scene {
 
     this.platformsLevels = new PlatformLevels(this);
 
-    this.multiplayerSystem = new MultiplayerSystem(this);
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    this.endPoint = this.physics.add.image(1245, 230, "endPlatform");
+    this.endPoint.body.setAllowGravity(false);
+
+    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+
+    this.add.image(1000, 40, "blindfold-score");
+    this.add.text(870, 30, "Sydney", {
+      fontSize: "16px",
+      color: "black",
+    });
+
+    this.add.image(820, 40, "icon");
+    // var rect = this.add.rectangle(600, 20, 500, 45, 0xff0000, 1);
+    //bandeau pour le score 
+    // this.add.image(1000, 40, "string");
+    this.add.image(1020, 40, "blindfold-score");
+    this.add.image(830, 40, "icon-player1");
+    this.add.image(930, 40, "icon-player2");
+    this.add.image(1010, 40, "icon-player3");
+    this.add.image(1040, 40, "icon-player4");
+    this.add.image(1090, 40, "icon-player5");
+
+    this.multiplayerSystem = new MultiplayerSystem(this)
+    // await multiplayerSystem.init()
 
     new PlatformLevels(this);
 
@@ -125,19 +149,8 @@ class Scene extends Phaser.Scene {
 
     this.multiplayerSystem.init();
 
-    this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider");
-    // this.physics.add.overlap(
-    //   this.player.sprite,
-    //   this.fallCollider,
-    //   () => {
-    //     // Faire disparaître le joueur
-    //     this.player.die();
-    //     this.player.fall()
-    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
-    //   }
-    // );
+    this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider")
 
-    
     this.score = new Score(this);
 
   }
