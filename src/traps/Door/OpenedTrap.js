@@ -28,6 +28,8 @@ class OpenedTrap extends Trap {
     this.hitboxSprite.body.setAllowGravity(false)
     this.hitboxSprite.setImmovable(true)
 
+    this.createColliders()
+
   }
 
   createColliders() {

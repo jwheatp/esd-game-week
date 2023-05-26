@@ -2,7 +2,7 @@ class Player {
   scene;
   sprite;
   speed = 200;
-  jump = 400;
+  jump = 350;
   canMove = true;
   isJumping = false;
 
@@ -28,7 +28,7 @@ class Player {
 
     // this.sprite.body.setAllowGravity(false)
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
 
     this.sprite.body.setMass(1000);
 
@@ -151,7 +151,8 @@ class Player {
       this.lastSpeedX = this.speed;
 
     } else if (this.scene.inputs.left.isDown) {
-       this.scene.sound.play("run");
+      this.scene.sound.play("run");
+
       // je mets une vitesse X à 200
 
       this.sprite.body.setVelocityX(-this.speed)
@@ -178,6 +179,9 @@ class Player {
   freeze() {
     this.canMove = false;
     this.sprite.body.setAllowGravity(false);
+    this.sprite.setVelocityX(0)
+    this.sprite.setVelocityY(0)
+
   }
 
   unfreeze() {
@@ -185,13 +189,17 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() {}
+  fall() { }
 
   die() {
     console.log("le joueur est mort !");
 
     this.isDead = true;
 
+
+    this.canMove = false;
+    this.scene.sound.play("hit");
+    this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
     this.isDead = true;
