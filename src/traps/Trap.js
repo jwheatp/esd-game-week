@@ -13,9 +13,9 @@ class Trap {
     const traps = [
       // SawTrap,
       // DoorMainTrap,
-      // PlatformTrap,
+      PlatformTrap,
       // BlackHoleTrap,
-      SpikesTrap,
+      // SpikesTrap,
       // ComputerTrap,
     ];
     const index = Math.floor(Math.random() * traps.length);
