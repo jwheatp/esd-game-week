@@ -46,7 +46,7 @@ class SpikesTrap extends Trap {
   }
 
   setY(y) {
-    this.platformSprite.y = y
+    this.platformSprite.y = y + 200
     this.platformSprite2.y = y
 
     this.y = y;
