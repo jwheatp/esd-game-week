@@ -1,4 +1,3 @@
-
 class Trap {
   scene;
   viseur;
@@ -12,12 +11,12 @@ class Trap {
 
   static createRandomTrap(scene, x, y) {
     const traps = [
-      // SawTrap,
-      // DoorMainTrap,
-      // PlatformTrap,
+      SawTrap,
+      DoorMainTrap,
+      PlatformTrap,
       BlackHoleTrap,
-      // SpikesTrap,
-      // ComputerTrap,
+      SpikesTrap,
+      ComputerTrap,
     ];
     const index = Math.floor(Math.random() * traps.length);
     return new traps[index](scene, x, y);
@@ -125,7 +124,7 @@ class Trap {
     }
   }
 
-  startAnimation() { }
+  startAnimation() {}
 
   setX(x) {
     this.x = x;
