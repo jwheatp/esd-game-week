@@ -47,6 +47,24 @@ class MonsterTrap extends Trap {
   showPiques() {
     this.piques.setVelocityY(-200);
   }
+  setX(x) {
+    this.ground.x = x;
+    this.piques.x= x;
+    this.barnacle.x= x;
+    this.bleu.x = x;
+
+    this.x = x
+  }
+
+  setY(y) {
+    this.ground.y = y;
+    this.piques.y= y;
+    this.barnacle.y= y;
+    this.bleu.y = y;
+
+
+    this.y = y
+  }
 
   setVelocityX(speed) {
     // je mets une vitesse X à 200
