@@ -12,13 +12,11 @@ class Player {
   score = 0;
 
   hasWon = false;
-  inputPayload = {
-    
-  };
+  inputPayload = {};
 
-  inputQueue = []
+  inputQueue = [];
 
-  gravityY
+  gravityY;
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -32,7 +30,7 @@ class Player {
 
     this.sprite.body.setMass(1000);
 
-    this.sprite.setScale(0.4)
+    this.sprite.setScale(0.4);
 
     //score text
     this.scoreText = this.scene.add.text(600, 50, "", {
@@ -48,6 +46,16 @@ class Player {
     //   this.winRound();
     //   this.scene.isgameover = true;
     //   this.canMove = false
+    // });
+    // this.scoreText = this.scene.add.text(600, 50, "t", {
+    //   fontSize: "40px",
+    //   color: "black",
+    // });
+    //score
+    // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+    //   this.winRound();
+    //   this.scene.isgameover = true;
+    //   this.canMove = false;
     // });
 
     /*tests animations*/
@@ -72,6 +80,8 @@ class Player {
       repeat: -1,
     });
     this.sprite.body.setMass(1000);
+
+    this.score = 0;
 
     // Platform.addCollider(this.sprite)
     this.scene.platformsLevels.initCollider(this.sprite);
@@ -123,12 +133,12 @@ class Player {
     // if (!this.score) {
     //   this.scene.isgameover = true;
     // }
-    const speed = 2
+    const speed = 2;
 
     this.inputPayload = {
       x: this.sprite.x,
-      y: this.sprite.y
-    }
+      y: this.sprite.y,
+    };
 
     if (!this.canMove) {
       // this.sprite.setVelocityX(0);
@@ -139,46 +149,43 @@ class Player {
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
       this.scene.sound.play("jump");
-      this.inputPayload.animation = "jump"
+      this.inputPayload.animation = "jump";
       // this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityY(-2*this.speed)
+      this.sprite.body.setVelocityY(-2 * this.speed);
 
       this.lastSpeedY = -this.jump;
       this.sprite.play("anim-player-jump", true);
-      this.inputPayload.animation = "anim-player-jump"
+      this.inputPayload.animation = "anim-player-jump";
     }
 
     // déplacement horizontal
-    if (this.scene.inputs.right.isDown
-    ) {
-      this.scene.sound.play("run");
-      // je mets une vitesse X à 200
-      this.sprite.body.setVelocityX(this.speed)
-      //this.lastSpeedX = this.speed;
-      this.sprite.play('anim-player-run', true);
-      this.inputPayload.animation = "anim-player-run"
-      this.lastSpeedX = this.speed;
+    if (this.scene.inputs.right.isDown) {
 
+       this.scene.sound.play("run");
+      // je mets une vitesse X à 200
+      this.sprite.body.setVelocityX(this.speed);
+      //this.lastSpeedX = this.speed;
+      this.sprite.play("anim-player-run", true);
+      this.inputPayload.animation = "anim-player-run";
+      this.lastSpeedX = this.speed;
     } else if (this.scene.inputs.left.isDown) {
       this.scene.sound.play("run");
 
       // je mets une vitesse X à 200
 
-      this.sprite.body.setVelocityX(-this.speed)
+      this.sprite.body.setVelocityX(-this.speed);
     } else {
       // sinon, je remets la vitesse à 0
-      this.sprite.body.setVelocityX(0)
+      this.sprite.body.setVelocityX(0);
 
-      if(!this.isJumping) {
-        this.sprite.play('anim-player-idl', true);
-        this.inputPayload.animation = "anim-player-idl"
-
+      if (!this.isJumping) {
+        this.sprite.play("anim-player-idl", true);
+        this.inputPayload.animation = "anim-player-idl";
       }
       this.lastSpeedX = 0;
     }
-
 
     // this.sprite.y += speed
     // this.inputPayload.up = true
@@ -200,23 +207,24 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() { }
+  fall() {}
 
   die() {
     console.log("le joueur est mort !");
 
     this.isDead = true;
 
-
     this.canMove = false;
     this.scene.sound.play("hit");
+
     this.canMove = false;
     this.sprite.setScale(0.5, 0.1);
     this.canMove = false;
     this.isDead = true;
+    this.scene.sound.play("hit");
 
-    this.sprite.setVelocityX(0)
-    this.sprite.setVelocityY(0)
+    this.sprite.setVelocityX(0);
+    this.sprite.setVelocityY(0);
 
     this.canMove = false;
 

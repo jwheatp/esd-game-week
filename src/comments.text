@@ -1,0 +1,14 @@
+// hounny 3malnaa tableau (ena na3ref esmou tableau d'enregistrement ) bch nsajlou fih 3la kol player icon position mte3ou
+//hounny maw 9otlik tableau kol X bch tabda binha w bin X lo5ra 130 (iconSpacingX)
+//hounny wa9et bch t7ot les icons samehom b tartib yaany icon-player1 icon-player2 enty samehom keka w taw howa ya5edh nom mte3hom wa7dou
+ c bon 3malna tableauu haka exemple de tableau 4 players: 
+  // playerPositions = [
+    //{ x: 800, y: 50, icon:icon-player1},
+    //{ x: 930, y: 50, icon:icon-player2},
+    //{ x: 1030, y: 50, icon:icon-player3},
+    //{ x: 1160, y: 50, icon:icon-player4},
+  //];
+   //hounny variable player bch tkoun feha les coordonnées li 3andek 3lih minhom score w m3a kol doura betbi3a bch tetbadel west boucle pour 5aterna
+   //hounny aka tableau li 3malneh kifkif bch ne5dhou kol position 
+      //donc ena tawa 3andy player 1 score mte3ou w lposition li bch yet7at feha
+      //hedhy position mta3 score yaany ki yabda 3andy position.x icon 800 score.x 850
