@@ -29,9 +29,6 @@ class Player {
 
     // this.sprite.body.setAllowGravity(false)
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.4);
-
-    this.sprite.setScale(0.4);
 
     //score text
     this.scoreText = this.scene.add.text(600, 50, "", {
@@ -63,41 +60,52 @@ class Player {
 
     /*animations*/
     this.scene.anims.create({
-      key: 'anim-player-' + this.skinNumber + '-run',
-      frames: [{ key: "player-" + this.skinNumber + "-run" }, { key: "player-" + this.skinNumber + "-walk" }],
+      key: "anim-player-" + this.skinNumber + "-run",
+      frames: [
+        { key: "player-" + this.skinNumber + "-run" },
+        { key: "player-" + this.skinNumber + "-walk" },
+      ],
       frameRate: 7,
       repeat: -1,
     });
 
     this.scene.anims.create({
-      key: 'anim-player-' + this.skinNumber + '-idl',
+      key: "anim-player-" + this.skinNumber + "-idl",
       frames: [{ key: "player-" + this.skinNumber + "-idl" }],
       frameRate: 7,
       repeat: -1,
     });
 
     this.scene.anims.create({
-      key: 'anim-player-' + this.skinNumber + '-jump',
+      key: "anim-player-" + this.skinNumber + "-jump",
       frames: [{ key: "player-" + this.skinNumber + "-jump" }],
       frameRate: 7,
       repeat: -1,
     });
 
     this.scene.anims.create({
-      key: 'anim-player-' + this.skinNumber + '-death',
+      key: "anim-player-" + this.skinNumber + "-death",
       frames: [{ key: "player-" + this.skinNumber + "-death" }],
       frameRate: 7,
-      repeat: -1
+      repeat: -1,
     });
 
     this.scene.anims.create({
-      key: 'anim-player-' + this.skinNumber + '-victory',
-      frames: [{ key: "player-" + this.skinNumber + "-move1" }, { key: "player-" + this.skinNumber + "-move2" }, {
-        key: "player-" + this.skinNumber + "-move3"
-      }, { key: "player-" + this.skinNumber + "-move4" }, { key: "player-" + this.skinNumber + "-move5" }, { key: "player-" + this.skinNumber + "-move6" }, { key: "player-" + this.skinNumber + "-move7" }],
+      key: "anim-player-" + this.skinNumber + "-victory",
+      frames: [
+        { key: "player-" + this.skinNumber + "-move1" },
+        { key: "player-" + this.skinNumber + "-move2" },
+        {
+          key: "player-" + this.skinNumber + "-move3",
+        },
+        { key: "player-" + this.skinNumber + "-move4" },
+        { key: "player-" + this.skinNumber + "-move5" },
+        { key: "player-" + this.skinNumber + "-move6" },
+        { key: "player-" + this.skinNumber + "-move7" },
+      ],
       frameRate: 7,
-      repeat: -1
-    })
+      repeat: -1,
+    });
 
     this.sprite.body.setMass(1000);
     this.score = 0;
@@ -190,25 +198,24 @@ class Player {
 
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
-
       this.scene.sound.play("run");
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(this.speed);
       this.inputPayload.animation = "anim-player-" + this.skinNumber + "-run";
       this.lastSpeedX = this.speed;
-      this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
+      this.sprite.play("anim-player-" + this.skinNumber + "-run", true);
       if (this.isJumping) {
-        this.sprite.play('anim-player-' + this.skinNumber + '-jump', true);
+        this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
       }
-      this.sprite.flipX = false
+      this.sprite.flipX = false;
     } else if (this.scene.inputs.left.isDown) {
       this.scene.sound.play("run");
       //reverse the player
-      this.sprite.flipX = true
+      this.sprite.flipX = true;
       // animation
-      this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
+      this.sprite.play("anim-player-" + this.skinNumber + "-run", true);
       if (this.isJumping) {
-        this.sprite.play('anim-player-' + this.skinNumber + '-jump', true);
+        this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
       }
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(-this.speed);
@@ -223,8 +230,7 @@ class Player {
       this.lastSpeedX = 0;
 
       if (!this.isJumping || this.isDie) {
-        this.sprite.play('anim-player-' + this.skinNumber + '-idl', true);
-
+        this.sprite.play("anim-player-" + this.skinNumber + "-idl", true);
       }
     }
 
@@ -236,7 +242,7 @@ class Player {
 
     //if player win
     if (this.nPoint) {
-      this.sprite.play('anim-player-' + this.skinNumber + '-victory', true)
+      this.sprite.play("anim-player-" + this.skinNumber + "-victory", true);
     }
   }
 
@@ -252,19 +258,19 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() { }
-
   die() {
     console.log("le joueur est mort !");
 
     this.hasFinished = true;
     this.isDead = true;
 
-    this.sprite.play('anim-player-' + this.skinNumber + '-death', true);
+    this.sprite.play("anim-player-" + this.skinNumber + "-death", true);
 
     this.canMove = false;
-    this.isDead = true;
+    this.sprite.setScale(0.5, 0.1);
     this.scene.sound.play("hit");
+    this.canMove = false;
+    this.isDead = true;
 
     this.sprite.setVelocityX(0);
     this.sprite.setVelocityY(0);
@@ -291,7 +297,8 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
-    this.scene.sound.play("gamelose");
   }
-  fall() { }
+  fall() {
+    this.scene.sound.play("fall");
+  }
 }

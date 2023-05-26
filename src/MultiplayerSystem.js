@@ -101,6 +101,10 @@ class MultiplayerSystem {
       const lookup = {
         SawTrap: SawTrap,
         ComputerTrap: ComputerTrap,
+        DoorMainTrap: DoorMainTrap,
+        PlatformTrap: PlatformTrap,
+        BlackHoleTrap: BlackHoleTrap,
+        SpikesTrap: SpikesTrap,
       };
 
       const trap = new lookup[content.type](this.scene, content.x, content.y);
