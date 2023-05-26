@@ -5,10 +5,7 @@ class PlatformTrap extends Trap {
 
   distance = 80;
 
- 
-
-  isGoingDown = true;  
-
+  isGoingDown = true;
 
   constructor(scene, x, y) {
     super();
@@ -22,10 +19,13 @@ class PlatformTrap extends Trap {
     this.platformSprite.body.setAllowGravity(false);
     this.platformSprite.setImmovable(true);
 
-    // this.scene.physics.add.collider(this.platformSprite, this.scene.player.sprite, function() {
-    //         this.platformSprite.setVelocityY(20);
-
-    // });
+    this.scene.physics.add.collider(
+      this.platformSprite,
+      this.scene.player.sprite,
+      () => {
+        this.platformSprite.setVelocityY(20);
+      }
+    );
 
     // this.platformSprite.setVelocityY(-this.speed);
 
