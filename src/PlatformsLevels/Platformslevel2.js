@@ -85,8 +85,12 @@ class PlatformLevelsScene2 {
     // this.sprite = scene.physics.add.staticImage(x, y, "cakePlatform");
     // this.sprite = scene.physics.add.staticImage(x, y, "grassPlatform");
     // this.sprite = scene.physics.add.staticImage(x, y, "dirtPlatform");
+  }
 
-
+  destroy() {
+    for (let i = 0; i < this.platforms.length; i++) {
+      this.platforms[i].destroy()
+    }
   }
 
 

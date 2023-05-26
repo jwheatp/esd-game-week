@@ -2,19 +2,19 @@ class Score {
   textscore;
   scene;
 
-  barrescore
-  ficelle
+  barrescore;
+  ficelle;
 
   constructor(scene, x, y) {
     this.scene = scene;
   }
   showScore() {
-    this.barrescore?.destroy()
-    this.ficelle?.destroy()
-    
+    this.barrescore?.destroy();
+    this.ficelle?.destroy();
+
     this.barrescore = this.scene.add.image(1000, 50, "barre");
     this.ficelle = this.scene.add.image(1000, 10, "ficelle");
-    const iconOffsetX = 800;
+    const iconOffsetX = 793;
     const iconSpacingX = 130;
     const playerPositions = [];
 
@@ -38,12 +38,12 @@ class Score {
 
       const icon = this.scene.add.image(position.x, position.y, position.icon);
       const scoreText = this.scene.add.text(scoreTextX, 45, player.score, {
-        fontSize: "16px",
+        fontFamily: `pangolin, cursive`,
+        fontSize: "23px",
         color: "black",
       });
       icon.alpha = 1;
       scoreText.alpha = 1;
     }
-
   }
 }

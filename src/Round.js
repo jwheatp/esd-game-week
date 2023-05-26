@@ -11,11 +11,11 @@ class Round {
   isStarted = false
   isDone = false
 
+  roundIndex
+
   constructor(scene, roundIndex) {
     this.scene = scene
-    
-    this.setTitle("Round " + (roundIndex+1))
-    console.log('::: Round ', roundIndex)
+    this.roundIndex = roundIndex
 
     this.phases = [new LobbyPhase(scene), new SetupPhase(scene), new RacePhase(scene)]
   }
@@ -28,6 +28,11 @@ class Round {
     setTimeout(() => {
       this.scene.roundTitle.alpha = 0
     }, 2000)
+  }
+
+  before() {
+    this.setTitle("Round " + (this.roundIndex+1))
+    console.log('::: Round ', this.roundIndex)
   }
 
   run() {

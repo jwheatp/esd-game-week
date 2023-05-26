@@ -15,6 +15,9 @@ class Scene4 extends Phaser.Scene {
 
   platformsLevels
 
+  startX = 125;
+  startY = 570;
+
   // on précharge les assets
   preload() {
     new Preloader(this)
@@ -124,7 +127,7 @@ class Scene4 extends Phaser.Scene {
 
     this.platformsLevels = new PlatformLevelsScene4(this);
 
-    this.player = new Player(this, 100, 570);
+    this.player = new Player(this, this.startX, this.startY);
   }
 
   // appelée très souvent (correspond au fps)

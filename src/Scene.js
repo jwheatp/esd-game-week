@@ -1,16 +1,15 @@
 class Scene extends Phaser.Scene {
+  gm
+
+  background
+
   inputs;
   player;
-  viseur;
 
   traps = [];
 
-  hbBlackHole;
-  playerCollider;
-  blackHolead;
-
   endPoint;
-  platforms = [];
+
   isgameover = false;
 
   platformsLevels;
@@ -23,90 +22,89 @@ class Scene extends Phaser.Scene {
 
   multiplayerSystem;
 
+  startX = 100
+  startY = 430
+
+  startX = 100;
+  startY = 405;
+
   // on précharge les assets
   preload() {
     new Preloader(this);
-
-    this.load.image("scene1", "assets/scene1.jpg");
   }
-  // initialise la scène
-  // est appelée qu'une seule fois
+
   async create() {
     this.inputs = this.input.keyboard.createCursorKeys();
     this.sound.play("gamesong");
 
-    this.add.image(640, 360, "scene1");
-
-    this.platformsLevels = new PlatformLevels(this);
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    this.endPoint = this.physics.add.image(1245, 230, "endPlatform");
-    this.endPoint.body.setAllowGravity(false);
-
-    // this.hbBlackHole = new hbBlackHole(this, 900, 400);
+    this.gm = new GameManager(this);
 
     this.multiplayerSystem = new MultiplayerSystem(this)
-    // await multiplayerSystem.init()
 
-    new PlatformLevels(this);
+    this.displayStartScreen()
+  }
 
-    // Créer un rectangle semi-transparent en arrière-plan
-    var background = this.add.rectangle(
-      this.game.config.width / 2,
-      this.game.config.height / 2,
-      this.game.config.width,
-      this.game.config.height,
-      0x000000,
-      0.5
-    );
-    background.setOrigin(0.5);
+  displayStartScreen() {
+        // Créer un rectangle semi-transparent en arrière-plan
+        var background = this.add.rectangle(
+          this.game.config.width / 2,
+          this.game.config.height / 2,
+          this.game.config.width,
+          this.game.config.height,
+          0x000000,
+          0.5
+        );
+        background.setOrigin(0.5);
+    
+        // Afficher la pop-up de démarrage
+        var startButton = this.add.text(
+          this.game.config.width / 2,
+          this.game.config.height / 2,
+          "Start Game",
+          {
+            fontFamily: "Arial",
+            fontSize: 48,
+            color: "#ffffff",
+          }
+        );
+    
+        var style = {
+          font: "20px Arial",
+          fill: "#ffffff",
+          align: "center",
+        };
+    
+        var style = {
+          font: "20px Arial",
+          fill: "#ffffff",
+          align: "center",
+        };
+    
+        var text = this.add.text(560, 400, "Hello, Phaser!", style);
+        text.text = "Press Espace";
+    
+        startButton.setOrigin(0.5);
+        startButton.setInteractive();
+        // Gérer le clic sur le bouton "Start Game"
+        this.player?.freeze();
+        this.input.keyboard.on(
+          "keydown-SPACE",
+          function () {
+            if (!this.isGameStarted) {
+              this.isGameStarted = true;
+              this.startGame();
+              startButton.destroy();
+              background.destroy();
+              text.destroy();
+              this.player?.unfreeze(); // Activer les mouvements du joueur
+            }
+          },
+          this
+        );
+  }
 
-    // Afficher la pop-up de démarrage
-    var startButton = this.add.text(
-      this.game.config.width / 2,
-      this.game.config.height / 2,
-      "Start Game",
-      {
-        fontFamily: "Arial",
-        fontSize: 48,
-        color: "#ffffff",
-      }
-    );
-
-    var style = {
-      font: "20px Arial",
-      fill: "#ffffff",
-      align: "center",
-    };
-
-    var style = {
-      font: "20px Arial",
-      fill: "#ffffff",
-      align: "center",
-    };
-
-    var text = this.add.text(560, 400, "Hello, Phaser!", style);
-    text.text = "Press Espace";
-
-    startButton.setOrigin(0.5);
-    startButton.setInteractive();
-    // Gérer le clic sur le bouton "Start Game"
-    this.player?.freeze();
-    this.input.keyboard.on(
-      "keydown-SPACE",
-      function () {
-        if (!this.isGameStarted) {
-          this.isGameStarted = true;
-          this.startGame();
-          startButton.destroy();
-          background.destroy();
-          text.destroy();
-          this.player?.unfreeze(); // Activer les mouvements du joueur
-        }
-      },
-      this
-    );
-
+  displayUI() {
+    
     this.phaseTitle = this.add.text(640, 400, "", {
       color: "black",
       fontSize: "50px",
@@ -121,21 +119,16 @@ class Scene extends Phaser.Scene {
       backgroundColor: "white",
     });
     this.roundTitle.setOrigin(0.5);
+
   }
 
   // Fonction pour démarrer le jeu
   startGame() {
     // Ajouter ici la logique pour démarrer votre jeu
-
-    const gm = new GameManager(this);
-    gm.run();
-
+    this.gm.run();
     this.multiplayerSystem.init();
-
     this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider")
-
     this.score = new Score(this);
-
   }
 
   // appelée très souvent (correspond au fps)

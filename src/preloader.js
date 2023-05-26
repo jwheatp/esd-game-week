@@ -1,7 +1,8 @@
 class Preloader {
-
   constructor(scene) {
     // scene.load.image("scene1", "assets/scene1.jpg");
+    scene.load.image("scene1", "assets/scene1.jpg");
+    scene.load.image("scene2", "assets/scene2.jpg");
 
     scene.load.image("fall-collider", "assets/platforms/fallcollider.png");
 
@@ -85,7 +86,7 @@ class Preloader {
     // scene.load.audio("jump", "assets/audio/jump-player.mp3");
     scene.load.audio("jump", "assets/audio/cartoonjump.mp3");
     scene.load.audio("teleport", "assets/audio/teleportation.mp3");
-    scene.load.audio("run", "assets/audio/run_1.mp3");
+    scene.load.audio("run", "assets/audio/footstep_1.mp3");
     scene.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
@@ -109,8 +110,8 @@ class Preloader {
     scene.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-    // scene.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
-    // scene.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
+    scene.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    scene.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
     scene.load.image("trap-blackHole", "assets/traps/blackHole.png");
@@ -172,6 +173,4 @@ class Preloader {
     scene.load.image("icon-player4", "assets/traps/dev/mario.png");
     scene.load.image("icon-player5", "assets/traps/dev/mario.png");
   }
-
-
 }

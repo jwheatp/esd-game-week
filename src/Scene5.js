@@ -15,6 +15,9 @@ class Scene5 extends Phaser.Scene {
 
   platformsLevels
 
+  startX = 95;
+  startY = 310;
+
   positions = [
     { x: 1160, y: 150 },
     { x: 1160, y: 550 },
@@ -159,7 +162,7 @@ class Scene5 extends Phaser.Scene {
 
     this.platformsLevels = new PlatformLevelsScene5(this)
 
-    this.player = new Player(this, 80, 310);
+    this.player = new Player(this, this.startX, this.startY);
   }
 
   // appelée très souvent (correspond au fps)
