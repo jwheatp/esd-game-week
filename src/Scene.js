@@ -50,9 +50,8 @@ class Scene extends Phaser.Scene {
     // this.add.image(1080, 15, "blindfold-score");
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
-    // this.endPoint = this.physics.add.image(1200, 300, "endPlatform");
-    // this.endPoint.body.setAllowGravity(false);
-
+    this.endPoint = this.physics.add.image(1245, 230, "endPlatform");
+    this.endPoint.body.setAllowGravity(false);
 
     // this.hbBlackHole = new hbBlackHole(this, 900, 400);
 
@@ -226,16 +225,6 @@ class Scene extends Phaser.Scene {
     this.multiplayerSystem.init()
 
     this.fallCollider = this.physics.add.staticImage(640, 800, "fall-collider")
-    // this.physics.add.overlap(
-    //   this.player.sprite,
-    //   this.fallCollider,
-    //   () => {
-    //     // Faire disparaître le joueur
-    //     this.player.die();
-    //     this.player.fall()
-    //     // Autres actions à effectuer en cas de collision avec hbBlackHole...
-    //   }
-    // );
 
 
   }

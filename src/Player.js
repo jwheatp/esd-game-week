@@ -76,9 +76,20 @@ class Player {
     // Platform.addCollider(this.sprite)
     this.scene.platformsLevels.initCollider(this.sprite);
 
-    // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
-    //   this.winRound();
-    // });
+    this.scene.physics.add.overlap(
+      this.sprite,
+      this.scene.fallCollider,
+      () => {
+        // Faire disparaître le joueur
+        this.scene.player?.die();
+        this.scene.player?.fall()
+        // Autres actions à effectuer en cas de collision avec hbBlackHole...
+      }
+    );
+
+    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+      this.winRound();
+    });
     this.sprite.body.setMass(1000)
 
   }
@@ -97,7 +108,7 @@ class Player {
 
   winRound() {
     this.score += 1;
-    this.scoreText.setText("player:" + this.score);
+    // this.scoreText.setText("player:" + this.score);
 
     this.hasWon = true;
     if (this.scene.isgameover) {
