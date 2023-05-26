@@ -38,7 +38,7 @@ class ComputerTrap extends Trap {
 
     const myInterval = setInterval(() => this.fire(), 1500);
   }
-  
+
   fire() {
     const index = Math.floor(Math.random() * this.images.length);
 
@@ -55,6 +55,20 @@ class ComputerTrap extends Trap {
       this.scene.player.die();
     });
   }
+  setX(x) {
+    this.computer.x = x;
+    this.css.x = x;
+
+    this.x = x;
+  }
+
+  setY(y) {
+    this.computer.y = y;
+    this.css.y = y;
+
+    this.y = y;
+  }
+
   setVelocityX(speed) {
     // je mets une vitesse X à 200
     this.computer.setVelocityX(speed);
@@ -68,7 +82,7 @@ class ComputerTrap extends Trap {
   }
   update() {
     this.setup();
-    // le mouvement du computer 
+    // le mouvement du computer
     if (
       this.isGoingTop &&
       this.computer.body.y < this.computerY - this.distance
@@ -84,7 +98,7 @@ class ComputerTrap extends Trap {
       this.computer.setVelocityY(-this.speed);
       this.isGoingTop = true;
     }
-    //  le mouvement des attaques 
+    //  le mouvement des fires
     if (this.isGoingLeft && this.css.body.x < this.x + 5) {
       this.css.setVelocityX(-this.speedfire);
       // this.isGoingLeft = false;
