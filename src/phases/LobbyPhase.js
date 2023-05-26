@@ -15,7 +15,7 @@ class LobbyPhase extends Phase {
     // }
     if(this.scene.player) {
       this.scene.player.reset()
-      this.scene.player.sprite.setPosition(200, 400)
+      this.scene.player.sprite.setPosition(this.scene.startX, this.scene.startY)
       this.scene.player.freeze()
     }
 

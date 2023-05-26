@@ -83,7 +83,23 @@ class Player {
 
     this.score = 0;
 
-    // Platform.addCollider(this.sprite)
+    this.sprite.body.setMass(1000)
+
+    this.reset()
+
+  }
+
+  reset() {
+    this.hasWon = false;
+    this.isDead = false;
+
+    this.sprite.setScale(0.5);
+    this.canMove = true;
+
+    this.sprite.play("anim-player-idl", true);
+
+    this.scene.children.bringToTop(this.sprite);
+
     this.scene.platformsLevels.initCollider(this.sprite);
 
     this.scene.physics.add.overlap(
@@ -100,18 +116,6 @@ class Player {
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
       this.winRound();
     });
-    this.sprite.body.setMass(1000)
-
-  }
-
-  reset() {
-    this.hasWon = false;
-    this.isDead = false;
-
-    this.sprite.setScale(0.5);
-    this.canMove = true;
-
-    this.sprite.play("anim-player-idl", true);
   }
 
   //score

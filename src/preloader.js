@@ -2,6 +2,8 @@ class Preloader {
 
   constructor(scene) {
     // scene.load.image("scene1", "assets/scene1.jpg");
+    scene.load.image("scene1", "assets/scene1.jpg");
+    scene.load.image("scene2", "assets/scene2.jpg");
 
     scene.load.image("fall-collider", "assets/platforms/fallcollider.png");
 

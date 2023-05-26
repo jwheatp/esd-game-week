@@ -7,7 +7,7 @@ class RacePhase extends Phase {
     this.setTitle("Jouez !");
 
     console.log("/// Run - RacePhase");
-
+    this.scene.isGameOver = false;
     this.scene.score.showScore();
     this.scene.player.unfreeze();
   }
