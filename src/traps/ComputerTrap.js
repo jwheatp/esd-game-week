@@ -12,7 +12,7 @@ class ComputerTrap extends Trap {
   isGoingTop = true;
   isGoingLeft = true;
 
-  images = ["trapcss", "traphtml", "trapphp", "trapjs", "trapwordpress"];
+  images = ["trapcss", "traphtml", "trapphp", "trapjs"];
 
   constructor(scene, x, y) {
     super(scene, x, y);
@@ -22,7 +22,7 @@ class ComputerTrap extends Trap {
     this.y = y;
 
     this.computerY = this.y;
-    this.cssX = this.x - 50;
+    this.cssX = this.x - 10;
 
     this.computer = scene.physics.add.image(x, this.computerY, "trapcomputer");
     this.computer.body.setAllowGravity(false);
@@ -53,7 +53,6 @@ class ComputerTrap extends Trap {
       this.computer.body.y + 30,
       this.images[index]
     );
-    this.css.setScale(0.09);
     this.css.body.setAllowGravity(false);
     this.scene.physics.add.overlap(this.css, this.scene.player.sprite, () => {
       this.scene.player.die();
@@ -68,6 +67,7 @@ class ComputerTrap extends Trap {
 
   setY(y) {
     this.computer.y = y;
+    // this.computerY = y;
     this.css.y = y;
 
     this.computerY = y;
@@ -77,21 +77,21 @@ class ComputerTrap extends Trap {
   update() {
     this.setup();
     // le mouvement du computer
-    if (
-      this.isGoingTop &&
-      this.computer.body.y < this.computerY - this.distance
-    ) {
-      this.computer.setVelocityY(this.speed);
-      this.isGoingTop = false;
-    }
+    // if (
+    //   !this.isGoingTop &&
+    //   this.computer.body.y < this.computerY - this.distance
+    // ) {
+    //   this.computer.setVelocityY(this.speed);
+    //   this.isGoingTop = false;
+    // }
 
-    if (
-      !this.isGoingTop &&
-      this.computer.body.y > this.computerY + this.distance
-    ) {
-      this.computer.setVelocityY(-this.speed);
-      this.isGoingTop = true;
-    }
+    // if (
+    //   !this.isGoingTop &&
+    //   this.computer.body.y > this.computerY + this.distance
+    // ) {
+    //   this.computer.setVelocityY(-this.speed);
+    //   this.isGoingTop = true;
+    // }
     //  le mouvement des fires
     if (this.isGoingLeft && this.css.body.x < this.x + 5) {
       this.css.setVelocityX(-this.speedfire);
