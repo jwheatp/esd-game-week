@@ -7,7 +7,7 @@ class SpikesTrap extends Trap {
   y;
 
   constructor(scene, x, y) {
-    super();
+    super(scene, x, y);
 
     this.scene = scene;
     this.x = x;
@@ -42,7 +42,33 @@ class SpikesTrap extends Trap {
     this.platformSprite.setVelocityY(100);
   }
 
+  setX(x) {
+    this.platformSprite.x = x;
+    this.platformSprite2.x = x;
+
+    this.x = x;
+  }
+
+  setY(y) {
+    this.platformSprite.y = y;
+    this.platformSprite2.y = y;
+
+    this.y = y;
+  }
+
+  setVelocityX(speed) {
+    this.platformSprite.setVelocityX(speed);
+    this.platformSprite2.setVelocityX(speed);
+  }
+
+  setVelocityY(speed) {
+    this.platformSprite.setVelocityY(speed);
+    this.platformSprite2.setVelocityY(speed);
+  }
+
   update() {
+    this.setup();
+
     if (this.platformSprite.body.y > this.initialY + 200) {
       this.platformSprite.setVelocityY(-40);
     } else if (this.platformSprite.body.y < this.initialY) {
