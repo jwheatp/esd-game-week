@@ -117,11 +117,53 @@ class Preloader {
     scene.load.image("trap-blackHole", "assets/traps/blackHole.png");
 
     //animation player
-    scene.load.image("player-death", "assets/skin/playerTwo-Death.png");
-    scene.load.image("player-jump", "assets/skin/playerTwo-Jump.png");
-    scene.load.image("player-run", "assets/skin/playerTwo-Run.png");
-    scene.load.image("player-walk", "assets/skin/playerTwo-Walk.png");
-    scene.load.image("player-idl", "assets/skin/playerTwo.png");
+    //skin1
+    scene.load.image("player-1-death", "assets/skin/playerOne-all/playerOne-Death.png");
+    scene.load.image("player-1-jump", "assets/skin/playerOne-all/playerOne-Jump.png");
+    scene.load.image("player-1-run", "assets/skin/playerOne-all/playerOne-Run.png");
+    scene.load.image("player-1-walk", "assets/skin/playerOne-all/playerOne-Walk.png");
+    scene.load.image("player-1-idl", "assets/skin/playerOne-all/playerOne.png");
+
+    scene.load.image("player-1-move1", "assets/skin/playerOne-all/victoryDanceOne/move1.png");
+    scene.load.image("player-1-move2", "assets/skin/playerOne-all/victoryDanceOne/move2.png");
+
+    //skin2
+    scene.load.image("player-2-death", "assets/skin/playerTwo-all/playerTwo-Death.png");
+    scene.load.image("player-2-jump", "assets/skin/playerTwo-all/playerTwo-Jump.png");
+    scene.load.image("player-2-run", "assets/skin/playerTwo-all/playerTwo-Run.png");
+    scene.load.image("player-2-walk", "assets/skin/playerTwo-all/playerTwo-Walk.png");
+    scene.load.image("player-2-idl", "assets/skin/playerTwo-all/playerTwo.png");
+
+    scene.load.image("player-2-move1", "assets/skin/playerTwo-all/victoryDanceTwo/move1.png");
+    scene.load.image("player-2-move2", "assets/skin/playerTwo-all/victoryDanceTwo/move2.png");
+    scene.load.image("player-2-move3", "assets/skin/playerTwo-all/victoryDanceTwo/move3.png");
+    scene.load.image("player-2-move4", "assets/skin/playerTwo-all/victoryDanceTwo/move4.png");
+
+    //skin3
+    scene.load.image("player-3-death", "assets/skin/playerThree-all/playerThree-Death.png");
+    scene.load.image("player-3-jump", "assets/skin/playerThree-all/playerThree-Jump.png");
+    scene.load.image("player-3-run", "assets/skin/playerThree-all/playerThree-Run.png");
+    scene.load.image("player-3-walk", "assets/skin/playerThree-all/playerThree-Walk.png");
+    scene.load.image("player-3-idl", "assets/skin/playerThree-all/playerThree.png");
+
+    scene.load.image("player-3-move1", "assets/skin/playerThree-all/victoryDanceThree/move1.png");
+    scene.load.image("player-3-move2", "assets/skin/playerThree-all/victoryDanceThree/move2.png");
+
+    //skin4
+    scene.load.image("player-4-death", "assets/skin/playerFour-all/playerFour-Death.png");
+    scene.load.image("player-4-jump", "assets/skin/playerFour-all/playerFour-Jump.png");
+    scene.load.image("player-4-run", "assets/skin/playerFour-all/playerFour-Run.png");
+    scene.load.image("player-4-walk", "assets/skin/playerFour-all/playerFour-Walk.png");
+    scene.load.image("player-4-idl", "assets/skin/playerFour-all/playerFour.png");
+
+    scene.load.image("player-4-move1", "assets/skin/playerFour-all/victoryDanceFour/move1.png");
+    scene.load.image("player-4-move2", "assets/skin/playerFour-all/victoryDanceFour/move2.png");
+    scene.load.image("player-4-move3", "assets/skin/playerFour-all/victoryDanceFour/move3.png");
+    scene.load.image("player-4-move4", "assets/skin/playerFour-all/victoryDanceFour/move4.png");
+    scene.load.image("player-4-move5", "assets/skin/playerFour-all/victoryDanceFour/move5.png");
+    scene.load.image("player-4-move6", "assets/skin/playerFour-all/victoryDanceFour/move6.png");
+    scene.load.image("player-4-move7", "assets/skin/playerFour-all/victoryDanceFour/move7.png");
+
     //bandeau du score et icone du player
     // scene.load.image("string", "assets/traps/dev/.png");
     scene.load.image("blindfold-score", "assets/traps/dev/test2.png");

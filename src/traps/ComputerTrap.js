@@ -2,7 +2,9 @@ class ComputerTrap extends Trap {
   scene;
   css;
   computer;
-  speed = 80;
+
+  speedComputer = 80;
+
   speedfire = 200;
   distance = 100;
   x;
@@ -29,14 +31,16 @@ class ComputerTrap extends Trap {
 
     this.css = scene.physics.add.image(this.cssX, this.computerY, "trapcss");
     this.css.body.setAllowGravity(false);
+  }
 
-    this.computer.setVelocityY(-this.speed);
+  startAnimation() {
+    setInterval(() => this.fire(), 1500);
+
+    this.computer.setVelocityY(-this.speedComputer);
     this.isGoingTop = true;
 
-    this.css.setVelocityX(-this.speed);
+    this.css.setVelocityX(-this.speedComputer);
     this.isGoingLeft = true;
-
-    const myInterval = setInterval(() => this.fire(), 1500);
   }
 
   fire() {
@@ -71,26 +75,26 @@ class ComputerTrap extends Trap {
 
   update() {
     this.setup();
-    // // le mouvement du computer
-    // if (
-    //   this.isGoingTop &&
-    //   this.computer.body.y < this.computerY - this.distance
-    // ) {
-    //   this.computer.setVelocityY(this.speed);
-    //   this.isGoingTop = false;
-    // }
+    // le mouvement du computer
+    if (
+      this.isGoingTop &&
+      this.computer.body.y < this.computerY - this.distance
+    ) {
+      this.computer.setVelocityY(this.speed);
+      this.isGoingTop = false;
+    }
 
-    // if (
-    //   !this.isGoingTop &&
-    //   this.computer.body.y > this.computerY + this.distance
-    // ) {
-    //   this.computer.setVelocityY(-this.speed);
-    //   this.isGoingTop = true;
-    // }
-    // //  le mouvement des fires
-    // if (this.isGoingLeft && this.css.body.x < this.x + 5) {
-    //   this.css.setVelocityX(-this.speedfire);
-    //   // this.isGoingLeft = false;
-    // }
+    if (
+      !this.isGoingTop &&
+      this.computer.body.y > this.computerY + this.distance
+    ) {
+      this.computer.setVelocityY(-this.speed);
+      this.isGoingTop = true;
+    }
+    //  le mouvement des fires
+    if (this.isGoingLeft && this.css.body.x < this.x + 5) {
+      this.css.setVelocityX(-this.speedfire);
+      // this.isGoingLeft = false;
+    }
   }
 }
