@@ -65,7 +65,7 @@ class OpenedTrap extends Trap {
                   targets: this.scene.player.sprite,
                   tweens: [
                     {
-                      scale: 0.4,
+                      scale: 1,
                       alpha: 1,
                       duration: 1000,
                       ease: "Linear",
@@ -92,7 +92,7 @@ class OpenedTrap extends Trap {
       alpha: targetAlpha,
       duration: this.fadeDuration,
       ease: "Linear",
-      onComplete: () => { },
+      onComplete: () => {},
     });
   }
 

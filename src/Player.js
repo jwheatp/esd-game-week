@@ -141,6 +141,7 @@ class Player {
     this.canMove = true;
 
     this.sprite.play("anim-player-idl", true);
+    this.inputPayload.animation = "anim-player-" + this.skinNumber + "-idl";
 
     this.scene.children.bringToTop(this.sprite);
 
@@ -162,6 +163,8 @@ class Player {
 
   winRound() {
     console.log("finished");
+    // this.freeze();
+
     // if already arrived, return
     if (this.hasFinished) return;
 
@@ -175,6 +178,7 @@ class Player {
 
       this.hasWon = true;
       this.scene.sound.play("gamewin");
+
       this.score += 1;
     }
   }
@@ -210,7 +214,7 @@ class Player {
 
       this.lastSpeedY = -this.jump;
       this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
-      this.inputPayload.animation = "anim-player-jump";
+      this.inputPayload.animation = "anim-player-" + this.skinNumber + "-jump";
     }
 
     // déplacement horizontal
@@ -221,8 +225,11 @@ class Player {
       this.inputPayload.animation = "anim-player-" + this.skinNumber + "-run";
       this.lastSpeedX = this.speed;
       this.sprite.play("anim-player-" + this.skinNumber + "-run", true);
+      this.inputPayload.animation = "anim-player-" + this.skinNumber + "-run";
       if (this.isJumping) {
         this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
+        this.inputPayload.animation =
+          "anim-player-" + this.skinNumber + "-jump";
       }
       this.sprite.flipX = false;
     } else if (this.scene.inputs.left.isDown) {
@@ -231,8 +238,11 @@ class Player {
       this.sprite.flipX = true;
       // animation
       this.sprite.play("anim-player-" + this.skinNumber + "-run", true);
+      this.inputPayload.animation = "anim-player-" + this.skinNumber + "-run";
       if (this.isJumping) {
         this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
+        this.inputPayload.animation =
+          "anim-player-" + this.skinNumber + "-jump";
       }
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(-this.speed);
@@ -240,15 +250,11 @@ class Player {
       // sinon, je remets la vitesse à 0
       this.sprite.body.setVelocityX(0);
 
-      if (!this.isJumping) {
+      if (!this.isJumping && !this.isDead) {
         this.sprite.play("anim-player-" + this.skinNumber + "-idl", true);
-        this.inputPayload.animation = "anim-player-idl";
+        this.inputPayload.animation = "anim-player-" + this.skinNumber + "-idl";
       }
       this.lastSpeedX = 0;
-
-      if (!this.isJumping || this.isDie) {
-        this.sprite.play("anim-player-" + this.skinNumber + "-idl", true);
-      }
     }
 
     // this.sprite.y += speed
@@ -258,8 +264,10 @@ class Player {
     }
 
     //if player win
-    if (this.nPoint) {
+    if (this.hasWon) {
       this.sprite.play("anim-player-" + this.skinNumber + "-victory", true);
+      this.inputPayload.animation =
+        "anim-player-" + this.skinNumber + "-victory";
     }
   }
 
@@ -282,6 +290,7 @@ class Player {
     this.isDead = true;
 
     this.sprite.play("anim-player-" + this.skinNumber + "-death", true);
+    this.inputPayload.animation = "anim-player-" + this.skinNumber + "-death";
 
     this.canMove = false;
     this.scene.sound.play("hit");
