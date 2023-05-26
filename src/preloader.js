@@ -83,7 +83,6 @@ class Preloader {
     scene.load.audio("gamesong", "assets/audio/game-song.mp3");
     scene.load.audio("gamewin", "assets/audio/win.mp3");
     scene.load.audio("gamelose", "assets/audio/lose.mp3");
-    // scene.load.audio("jump", "assets/audio/jump-player.mp3");
     scene.load.audio("jump", "assets/audio/cartoonjump.mp3");
     scene.load.audio("teleport", "assets/audio/teleportation.mp3");
     scene.load.audio("run", "assets/audio/footstep_1.mp3");
