@@ -12,7 +12,7 @@ const config = {
   audio: {
     disableWebAudio: true
   },
-  scene: Scene,
+  scene: Scene4,
 };
 
 const game = new Phaser.Game(config);
