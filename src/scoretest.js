@@ -39,20 +39,11 @@ class Score {
       const icon = this.scene.add.image(position.x, position.y, position.icon);
       const scoreText = this.scene.add.text(scoreTextX, 45, player.score, {
         fontFamily: `pangolin, cursive`,
-        fontSize: "20px",
+        fontSize: "23px",
         color: "black",
       });
       icon.alpha = 1;
       scoreText.alpha = 1;
     }
-    // mise à jour du score pour le joueur 1 avec un score de 1
-    //this.updateScore(1, 1);
   }
-  // updateScore(playerIndex, newScore) {
-  //   // Mettre à jour le score du joueur correspondant
-  //   if (playerIndex >= 0 && playerIndex < this.playerScores.length) {
-  //     this.playerScores[playerIndex] = newScore;
-  //     // Mettre à jour l'affichage du score
-  //   }
-  // }
 }
