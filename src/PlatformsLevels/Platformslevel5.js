@@ -86,6 +86,12 @@ class PlatformLevelsScene5 {
     }
   }
 
+  destroy() {
+    for (let i = 0; i < this.platforms.length; i++) {
+      this.platforms[i].destroy()
+    }
+  }
+  
   update() {
     // if (this.isGoingRight && this.dirtPlatform.body.x > this.x + 550) {
 

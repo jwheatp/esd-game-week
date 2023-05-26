@@ -1,8 +1,9 @@
 class Preloader {
 
   constructor(scene) {
-
     // scene.load.image("scene1", "assets/scene1.jpg");
+    scene.load.image("scene1", "assets/scene1.jpg");
+    scene.load.image("scene2", "assets/scene2.jpg");
 
     scene.load.image("fall-collider", "assets/platforms/fallcollider.png");
 
@@ -36,12 +37,32 @@ class Preloader {
     scene.load.image("grassPlatform", "assets/platforms/grassPlatform.png");
     scene.load.image("rockdecoration", "assets/platforms/rock_decoration.png");
     scene.load.image("dirtPlatform", "assets/platforms/dirtPlatform.png");
-    scene.load.image("bigsnowPlatform", "assets/platforms/big-snowPlatform.png");
-    scene.load.image("big-dirtPlatform", "assets/platforms/big-dirtPlatform.png");
+    scene.load.image(
+      "bigsnowPlatform",
+      "assets/platforms/big-snowPlatform.png"
+    );
+    scene.load.image(
+      "big-dirtPlatform",
+      "assets/platforms/big-dirtPlatform.png"
+    );
     scene.load.image("90dirtPlatform", "assets/platforms/90dirtPlatform.png");
     scene.load.image("brickCube", "assets/platforms/brickCube.png");
-    scene.load.image("double-bigdirtPlatform", "assets/platforms/double-bigdirtPlatform.png");
-    scene.load.image("rotatesnowPlatform", "assets/platforms/rotatesnowPlatform.png");
+    scene.load.image(
+      "double-bigdirtPlatform",
+      "assets/platforms/double-bigdirtPlatform.png"
+    );
+    scene.load.image(
+      "rotatesnowPlatform",
+      "assets/platforms/rotatesnowPlatform.png"
+    );
+
+    //bandeau du score et icone du player
+    scene.load.image("barre", "assets/traps/dev/barre.jpeg");
+    scene.load.image("ficelle", "assets/traps/dev/ficelle.png");
+    scene.load.image("icon-player1", "assets/traps/dev/rinocar.svg");
+    scene.load.image("icon-player2", "assets/traps/dev/yellowmons.png");
+    scene.load.image("icon-player3", "assets/traps/dev/bluemons.png");
+    scene.load.image("icon-player4", "assets/traps/dev/redmons.png");
 
     // /!\ NE PAS SUPPRIMER HITBOX INVISIBLE, IL VA AVEC LE DRAPEAU
     scene.load.image("endPlatform", "assets/platforms/end.png");
@@ -66,7 +87,7 @@ class Preloader {
     // scene.load.audio("jump", "assets/audio/jump-player.mp3");
     scene.load.audio("jump", "assets/audio/cartoonjump.mp3");
     scene.load.audio("teleport", "assets/audio/teleportation.mp3");
-    scene.load.audio("run", "assets/audio/run_1.mp3");
+    scene.load.audio("run", "assets/audio/footstep_1.mp3");
     scene.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
