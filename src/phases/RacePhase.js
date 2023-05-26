@@ -13,8 +13,12 @@ class RacePhase extends Phase {
   }
 
   isDone() {
-    // tous les pièges sont posés
-    console.log(this.scene.player.isDead || this.scene.player.hasWon);
-    return this.scene.player.isDead || this.scene.player.hasWon;
+    console.log(
+      this.scene.multiplayerSystem.players().filter((p) => !p.hasFinished)
+    );
+    return (
+      this.scene.multiplayerSystem.players().filter((p) => !p.hasFinished)
+        .length === 0
+    );
   }
 }

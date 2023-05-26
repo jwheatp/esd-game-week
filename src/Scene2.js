@@ -18,6 +18,10 @@ class Scene2 extends Phaser.Scene {
 
   platformsLevels
 
+  startX = 800;
+  startY = 550;
+
+
   // on précharge les assets
 
   preload() {
@@ -49,8 +53,8 @@ class Scene2 extends Phaser.Scene {
     // this.traps.push(openedTrap);
 
     // piege sacha + faouzi
-    const platformTrap = new PlatformTrap(this, 1100, 300);
-    this.traps.push(platformTrap);
+    // const platformTrap = new PlatformTrap(this, 1100, 300);
+    // this.traps.push(platformTrap);
 
     this.add.image(1000, 40, "blindfold-score");
     this.add.image(1000, 40, "icon");
@@ -64,6 +68,8 @@ class Scene2 extends Phaser.Scene {
     this.endPoint.body.setAllowGravity(false);
 
     this.platformsLevels = new PlatformLevelsScene2(this);
+
+    this.player = new Player(this, this.startX, this.startY);
   }
 
   // appelée très souvent (correspond au fps)
