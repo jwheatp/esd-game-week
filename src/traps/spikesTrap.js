@@ -7,6 +7,7 @@ class SpikesTrap extends Trap {
   x
   y
 
+
   constructor(scene, x, y) {
     super();
 
@@ -27,12 +28,37 @@ class SpikesTrap extends Trap {
     this.platformSprite2.setImmovable(true);
     this.scene.physics.add.collider(this.platformSprite2, this.scene.player.sprite);
 
+
     this.initialY = 200; // Stockez la position initiale de la plateforme
-
-    this.platformSprite.setVelocityY(100)
-
-
+    this.platformSprite.setVelocityY(100);
   }
+
+  setX(x) {
+    this.platformSprite.x = x
+    this.platformSprite2.x = x
+
+    this.x = x
+  }
+
+  setY(y) {
+    this.platformSprite.y = y
+    this.platformSprite2.y = y
+
+    this.y = y
+  }
+
+  setVelocityX(speed) {
+    this.platformSprite.setVelocityX(speed)
+    this.platformSprite2.setVelocityX(speed)
+  }
+
+  setVelocityY(speed) {
+    this.platformSprite.setVelocityY(speed)
+    this.platformSprite2.setVelocityY(speed)
+  }
+
+
+
 
   update() {
     if (this.platformSprite.body.y > this.initialY + 200) {
