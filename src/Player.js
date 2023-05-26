@@ -93,7 +93,7 @@ class Player {
     this.hasWon = false;
     this.isDead = false;
 
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
     this.canMove = true;
 
     this.sprite.play("anim-player-idl", true);
@@ -175,7 +175,7 @@ class Player {
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
 
-       this.scene.sound.play("run");
+      this.scene.sound.play("run");
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(this.speed);
       //this.lastSpeedX = this.speed;
@@ -219,7 +219,7 @@ class Player {
     this.sprite.body.setAllowGravity(true);
   }
 
-  fall() {}
+  fall() { }
 
   die() {
     console.log("le joueur est mort !");
@@ -263,6 +263,6 @@ class Player {
     this.scene.sound.play("gamelose");
   }
   fall() {
-    
+
   }
 }
