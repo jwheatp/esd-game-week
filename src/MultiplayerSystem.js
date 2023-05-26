@@ -1,5 +1,7 @@
 class MultiplayerSystem {
-  client = new Colyseus.Client("ws://localhost:2567");
+  client = new Colyseus.Client(
+    "https://esd-game-week-server-production.up.railway.app"
+  );
 
   scene;
 

@@ -1,5 +1,4 @@
 class Preloader {
-
   constructor(scene) {
     // scene.load.image("scene1", "assets/scene1.jpg");
     scene.load.image("scene1", "assets/scene1.jpg");
@@ -111,8 +110,8 @@ class Preloader {
     scene.load.image("viseur-1", "assets/traps/viseur.png");
 
     // new trap karim et rayan
-    // scene.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
-    // scene.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
+    scene.load.image("trap-saw-spike", "assets/traps/spike/piege2.png");
+    scene.load.image("trap-saw-platform2", "assets/traps/spike/piege.png");
 
     // new trap sixte antoine
     scene.load.image("trap-blackHole", "assets/traps/blackHole.png");
@@ -132,6 +131,4 @@ class Preloader {
     scene.load.image("icon-player4", "assets/traps/dev/mario.png");
     scene.load.image("icon-player5", "assets/traps/dev/mario.png");
   }
-
-
 }
