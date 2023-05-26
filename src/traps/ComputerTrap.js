@@ -69,39 +69,28 @@ class ComputerTrap extends Trap {
     this.y = y;
   }
 
-  setVelocityX(speed) {
-    // je mets une vitesse X à 200
-    this.computer.setVelocityX(speed);
-    this.css.setVelocityX(speed);
-  }
-
-  setVelocityY(speed) {
-    // je mets une vitesse X à 200
-    this.computer.setVelocityY(speed);
-    this.css.setVelocityY(speed);
-  }
   update() {
     this.setup();
-    // le mouvement du computer
-    if (
-      this.isGoingTop &&
-      this.computer.body.y < this.computerY - this.distance
-    ) {
-      this.computer.setVelocityY(this.speed);
-      this.isGoingTop = false;
-    }
+    // // le mouvement du computer
+    // if (
+    //   this.isGoingTop &&
+    //   this.computer.body.y < this.computerY - this.distance
+    // ) {
+    //   this.computer.setVelocityY(this.speed);
+    //   this.isGoingTop = false;
+    // }
 
-    if (
-      !this.isGoingTop &&
-      this.computer.body.y > this.computerY + this.distance
-    ) {
-      this.computer.setVelocityY(-this.speed);
-      this.isGoingTop = true;
-    }
-    //  le mouvement des fires
-    if (this.isGoingLeft && this.css.body.x < this.x + 5) {
-      this.css.setVelocityX(-this.speedfire);
-      // this.isGoingLeft = false;
-    }
+    // if (
+    //   !this.isGoingTop &&
+    //   this.computer.body.y > this.computerY + this.distance
+    // ) {
+    //   this.computer.setVelocityY(-this.speed);
+    //   this.isGoingTop = true;
+    // }
+    // //  le mouvement des fires
+    // if (this.isGoingLeft && this.css.body.x < this.x + 5) {
+    //   this.css.setVelocityX(-this.speedfire);
+    //   // this.isGoingLeft = false;
+    // }
   }
 }

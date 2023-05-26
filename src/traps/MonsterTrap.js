@@ -49,37 +49,20 @@ class MonsterTrap extends Trap {
   }
   setX(x) {
     this.ground.x = x;
-    this.piques.x= x;
-    this.barnacle.x= x;
+    this.piques.x = x;
+    this.barnacle.x = x;
     this.bleu.x = x;
 
-    this.x = x
+    this.x = x;
   }
 
   setY(y) {
     this.ground.y = y;
-    this.piques.y= y;
-    this.barnacle.y= y;
+    this.piques.y = y;
+    this.barnacle.y = y;
     this.bleu.y = y;
 
-
-    this.y = y
-  }
-
-  setVelocityX(speed) {
-    // je mets une vitesse X à 200
-    this.ground.setVelocityX(speed);
-    this.piques.setVelocityX(speed);
-    this.barnacle.setVelocityX(speed);
-    this.bleu.setVelocityX(speed);
-  }
-
-  setVelocityY(speed) {
-    // je mets une vitesse X à 200
-    this.ground.setVelocityY(speed);
-    this.piques.setVelocityY(speed);
-    this.barnacle.setVelocityY(speed);
-    this.bleu.setVelocityY(speed);
+    this.y = y;
   }
 
   update() {
