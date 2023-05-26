@@ -256,8 +256,9 @@ class Player {
 
   destroy() {
     this.sprite.alpha = 0;
+    this.scene.sound.play("gamelose");
   }
   fall() {
-    this.scene.sound.play("gamelose");
+    
   }
 }

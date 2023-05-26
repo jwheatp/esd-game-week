@@ -85,7 +85,7 @@ class Preloader {
     // scene.load.audio("jump", "assets/audio/jump-player.mp3");
     scene.load.audio("jump", "assets/audio/cartoonjump.mp3");
     scene.load.audio("teleport", "assets/audio/teleportation.mp3");
-    scene.load.audio("run", "assets/audio/run_1.mp3");
+    scene.load.audio("run", "assets/audio/footstep_1.mp3");
     scene.load.audio("hit", "assets/audio/hitWall.mp3");
 
     //new trap ranime et celine
