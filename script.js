@@ -10,7 +10,7 @@ const config = {
     },
   },
   audio: {
-    disableWebAudio: true
+    disableWebAudio: true,
   },
   scene: Scene,
 };

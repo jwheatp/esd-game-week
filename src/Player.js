@@ -2,7 +2,7 @@ class Player {
   scene;
   sprite;
   speed = 200;
-  jump = 400;
+  jump = 350;
   canMove = true;
   isJumping = false;
 
@@ -14,13 +14,11 @@ class Player {
   score = 0;
 
   hasWon = false;
-  inputPayload = {
+  inputPayload = {};
 
-  };
+  inputQueue = [];
 
-  inputQueue = []
-
-  gravityY
+  gravityY;
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -30,11 +28,11 @@ class Player {
 
     // this.sprite.body.setAllowGravity(false)
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
-    this.sprite.setScale(0.5);
+    this.sprite.setScale(0.4);
 
     this.sprite.body.setMass(1000);
 
-    this.sprite.setScale(0.4)
+    this.sprite.setScale(0.4);
 
     //score text
     this.scoreText = this.scene.add.text(600, 50, "", {
@@ -50,6 +48,16 @@ class Player {
     //   this.winRound();
     //   this.scene.isgameover = true;
     //   this.canMove = false
+    // });
+    // this.scoreText = this.scene.add.text(600, 50, "t", {
+    //   fontSize: "40px",
+    //   color: "black",
+    // });
+    //score
+    // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+    //   this.winRound();
+    //   this.scene.isgameover = true;
+    //   this.canMove = false;
     // });
 
     /*animations*/
@@ -92,6 +100,7 @@ class Player {
     })
 
     this.sprite.body.setMass(1000);
+    this.score = 0;
 
     // Platform.addCollider(this.sprite)
     this.scene.platformsLevels.initCollider(this.sprite);
@@ -99,6 +108,21 @@ class Player {
     // this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
     //   this.winRound();
     // });
+    this.scene.physics.add.overlap(
+      this.sprite,
+      this.scene.fallCollider,
+      () => {
+        // Faire disparaître le joueur
+        this.scene.player?.die();
+        this.scene.player?.fall()
+        // Autres actions à effectuer en cas de collision avec hbBlackHole...
+      }
+    );
+
+    this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
+      this.winRound();
+    });
+    this.sprite.body.setMass(1000)
 
   }
 
@@ -115,13 +139,21 @@ class Player {
   //score
 
   winRound() {
-    this.score += 1;
-    this.scoreText.setText("player:" + this.score);
+
+    // this.scoreText.setText("player:" + this.score);
 
     this.hasWon = true;
-    if (this.scene.isgameover) {
+
+    this.scene.score.showScore()
+
+    if (this.scene.isGameOver) {
       return;
     }
+
+    this.scene.isGameOver = true;
+
+    this.score += 1;
+
     this.scene.sound.play("gamewin");
   }
 
@@ -131,12 +163,12 @@ class Player {
     // if (!this.score) {
     //   this.scene.isgameover = true;
     // }
-    const speed = 2
+    const speed = 2;
 
     this.inputPayload = {
       x: this.sprite.x,
-      y: this.sprite.y
-    }
+      y: this.sprite.y,
+    };
 
     if (!this.canMove) {
       // this.sprite.setVelocityX(0);
@@ -147,48 +179,40 @@ class Player {
     if (!this.isJumping && this.scene.inputs.up.isDown) {
       this.isJumping = true;
       this.scene.sound.play("jump");
-      this.inputPayload.animation = "jump"
+      this.inputPayload.animation = "jump";
       // this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityY(-2 * this.speed)
+      this.sprite.body.setVelocityY(-2 * this.speed);
 
       this.lastSpeedY = -this.jump;
-      this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
-      this.inputPayload.animation = "anim-player-jump"
+      this.sprite.play("anim-player-jump", true);
+      this.inputPayload.animation = "anim-player-jump";
     }
 
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
+
+      this.scene.sound.play("run");
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityX(this.speed)
-      this.inputPayload.animation = "anim-player-run"
+      this.sprite.body.setVelocityX(this.speed);
+      //this.lastSpeedX = this.speed;
+      this.sprite.play("anim-player-run", true);
+      this.inputPayload.animation = "anim-player-run";
       this.lastSpeedX = this.speed;
-      this.sprite.flipX = false
-      //lancement de l'animation
-      if (!this.isJumping) {
-        this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
-      }
+    } else if (this.scene.inputs.left.isDown) {
+      this.scene.sound.play("run");
 
-    }
-    else if (this.scene.inputs.left.isDown) {
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityX(-this.speed)
-      //launch animation
-      if (!this.isJumping) {
-        this.sprite.play('anim-player-' + this.skinNumber + '-run', true);
-        //reverse player
-        this.sprite.flipX = true
-      }
 
+      this.sprite.body.setVelocityX(-this.speed);
     } else {
       // sinon, je remets la vitesse à 0
-      this.sprite.body.setVelocityX(0)
+      this.sprite.body.setVelocityX(0);
 
       if (!this.isJumping) {
-        this.sprite.play('anim-player-' + this.skinNumber + '-idl', true);
-        this.inputPayload.animation = "anim-player-idl"
-
+        this.sprite.play("anim-player-idl", true);
+        this.inputPayload.animation = "anim-player-idl";
       }
       this.lastSpeedX = 0;
 
@@ -197,7 +221,6 @@ class Player {
 
       }
     }
-
 
     // this.sprite.y += speed
     // this.inputPayload.up = true
@@ -214,6 +237,9 @@ class Player {
   freeze() {
     this.canMove = false;
     this.sprite.body.setAllowGravity(false);
+    this.sprite.setVelocityX(0)
+    this.sprite.setVelocityY(0)
+
   }
 
   unfreeze() {
@@ -232,9 +258,10 @@ class Player {
 
     this.canMove = false;
     this.isDead = true;
+    this.scene.sound.play("hit");
 
-    this.sprite.setVelocityX(0)
-    this.sprite.setVelocityY(0)
+    this.sprite.setVelocityX(0);
+    this.sprite.setVelocityY(0);
 
     this.canMove = false;
 
