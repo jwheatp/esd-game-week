@@ -11,6 +11,7 @@ class Player {
   scoreText;
   score = 0;
 
+  hasFinished = false;
   hasWon = false;
   inputPayload = {};
 
@@ -27,8 +28,6 @@ class Player {
     // this.sprite.body.setAllowGravity(false)
     this.sprite = scene.physics.add.sprite(x, y, "player-idl");
     this.sprite.setScale(0.4);
-
-    this.sprite.body.setMass(1000);
 
     this.sprite.setScale(0.4);
 
@@ -83,14 +82,14 @@ class Player {
 
     this.score = 0;
 
-    this.sprite.body.setMass(1000)
+    this.sprite.body.setMass(1000);
 
-    this.reset()
-
+    this.reset();
   }
 
   reset() {
     this.hasWon = false;
+    this.hasFinished = false;
     this.isDead = false;
 
     this.sprite.setScale(0.5);
@@ -102,16 +101,12 @@ class Player {
 
     this.scene.platformsLevels.initCollider(this.sprite);
 
-    this.scene.physics.add.overlap(
-      this.sprite,
-      this.scene.fallCollider,
-      () => {
-        // Faire disparaître le joueur
-        this.scene.player?.die();
-        this.scene.player?.fall()
-        // Autres actions à effectuer en cas de collision avec hbBlackHole...
-      }
-    );
+    this.scene.physics.add.overlap(this.sprite, this.scene.fallCollider, () => {
+      // Faire disparaître le joueur
+      this.scene.player?.die();
+      this.scene.player?.fall();
+      // Autres actions à effectuer en cas de collision avec hbBlackHole...
+    });
 
     this.scene.physics.add.overlap(this.scene.endPoint, this.sprite, () => {
       this.winRound();
@@ -121,22 +116,22 @@ class Player {
   //score
 
   winRound() {
+    console.log("finished");
+    // if already arrived, return
+    if (this.hasFinished) return;
 
-    // this.scoreText.setText("player:" + this.score);
+    this.hasFinished = true;
 
-    this.hasWon = true;
+    const players = this.scene.multiplayerSystem.players();
 
-    this.scene.score.showScore()
+    // if no one has arrived, we win !
+    if (!players.find((p) => p.hasWon)) {
+      console.log("has won");
 
-    if (this.scene.isGameOver) {
-      return;
+      this.hasWon = true;
+      this.scene.sound.play("gamewin");
+      this.score += 1;
     }
-
-    this.scene.isGameOver = true;
-
-    this.score += 1;
-
-    this.scene.sound.play("gamewin");
   }
 
   update() {
@@ -150,6 +145,7 @@ class Player {
     this.inputPayload = {
       x: this.sprite.x,
       y: this.sprite.y,
+      hasFinished: this.hasFinished,
     };
 
     if (!this.canMove) {
@@ -174,8 +170,7 @@ class Player {
 
     // déplacement horizontal
     if (this.scene.inputs.right.isDown) {
-
-       this.scene.sound.play("run");
+      this.scene.sound.play("run");
       // je mets une vitesse X à 200
       this.sprite.body.setVelocityX(this.speed);
       //this.lastSpeedX = this.speed;
@@ -209,9 +204,8 @@ class Player {
   freeze() {
     this.canMove = false;
     this.sprite.body.setAllowGravity(false);
-    this.sprite.setVelocityX(0)
-    this.sprite.setVelocityY(0)
-
+    this.sprite.setVelocityX(0);
+    this.sprite.setVelocityY(0);
   }
 
   unfreeze() {
@@ -224,6 +218,7 @@ class Player {
   die() {
     console.log("le joueur est mort !");
 
+    this.hasFinished = true;
     this.isDead = true;
 
     this.canMove = false;
