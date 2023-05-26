@@ -11,12 +11,12 @@ class Trap {
 
   static createRandomTrap(scene, x, y) {
     const traps = [
-      SawTrap,
-      DoorMainTrap,
-      PlatformTrap,
-      BlackHoleTrap,
+      // SawTrap,
+      // DoorMainTrap,
+      // PlatformTrap,
+      // BlackHoleTrap,
       SpikesTrap,
-      ComputerTrap,
+      // ComputerTrap,
     ];
     const index = Math.floor(Math.random() * traps.length);
     return new traps[index](scene, x, y);

@@ -59,6 +59,8 @@ class MultiplayerSystem {
       // keep a reference of it on `playerEntities`
       this.playerEntities[sessionId] = _player;
 
+      _player.setSkin();
+
       // listening for server updates
       player.onChange(() => {
         // update local position immediately

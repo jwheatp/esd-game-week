@@ -2,7 +2,7 @@ class Player {
   scene;
   sprite;
   speed = 200;
-  jump = 350;
+  jump = 400;
   canMove = true;
   isJumping = false;
 
@@ -28,7 +28,11 @@ class Player {
     this.y = y;
 
     // this.sprite.body.setAllowGravity(false)
-    this.sprite = scene.physics.add.sprite(x, y, "player-idl");
+    this.sprite = this.scene.physics.add.sprite(
+      x,
+      y,
+      "player-" + this.skinNumber + "-idl"
+    );
 
     //score text
     this.scoreText = this.scene.add.text(600, 50, "", {
@@ -115,12 +119,27 @@ class Player {
     this.reset();
   }
 
+  setSkin() {
+    // this.skinNumber =
+    //   this.scene.multiplayerSystem
+    //     .players()
+    //     .findIndex((p) => p.sessionId === this.sessionId) + 1;
+
+    this.sprite = this.scene.physics.add.sprite(
+      x,
+      y,
+      "player-" + this.skinNumber + "-idl"
+    );
+
+    console.log("skin is", this.skinNumber);
+  }
+
   reset() {
     this.hasWon = false;
     this.hasFinished = false;
     this.isDead = false;
 
-    this.sprite.setScale(0.4);
+    this.sprite.setScale(1);
     this.canMove = true;
 
     this.sprite.play("anim-player-idl", true);
@@ -189,7 +208,7 @@ class Player {
       // this.scene.sound.play("jump");
 
       // je mets une vitesse X à 200
-      this.sprite.body.setVelocityY(-this.speed);
+      this.sprite.body.setVelocityY(-this.jump);
 
       this.lastSpeedY = -this.jump;
       this.sprite.play("anim-player-" + this.skinNumber + "-jump", true);
@@ -267,7 +286,6 @@ class Player {
     this.sprite.play("anim-player-" + this.skinNumber + "-death", true);
 
     this.canMove = false;
-    this.sprite.setScale(0.5, 0.1);
     this.scene.sound.play("hit");
     this.canMove = false;
     this.isDead = true;

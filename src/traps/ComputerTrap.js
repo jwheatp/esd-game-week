@@ -70,6 +70,7 @@ class ComputerTrap extends Trap {
     this.computer.y = y;
     this.css.y = y;
 
+    this.computerY = y;
     this.y = y;
   }
 
